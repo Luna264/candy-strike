@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dr2muauq4tijd"]
 
 [ext_resource type="Texture2D" uid="uid://cuu1oh7cqqnf6" path="res://assets/sprites/knight.png" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://dg7pcyttef12w" path="res://player.gd" id="1_g2els"]
+[ext_resource type="Script" uid="uid://dg7pcyttef12w" path="res://scripts/player.gd" id="1_g2els"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -61,3 +61,8 @@ one_shot = true
 [node name="BufferTimer" type="Timer" parent="."]
 wait_time = 0.15
 one_shot = true
+
+[node name="Attack" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Attack" to="." method="_on_attack_timeout"]

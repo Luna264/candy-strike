@@ -1,16 +1,45 @@
 extends CharacterBody2D
 
+
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var buffer_timer: Timer = $BufferTimer
-
+@onready var animation_playerCC: AnimationPlayer = $AnimationPlayer
+@onready var candycane: Area2D = $candycane
+@onready var anim_player = candycane.get_node("AnimationPlayer")
+@onready var attack: Timer = $Attack
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
+var is_crit = false
+var is_attacking = false
 
+func _process(delta: float) -> void:
+#ATTACKING
+	if Input.is_action_just_pressed("b_attack"):
+		is_crit = false
+		is_attacking = true
+		anim_player.play("attackbase")
+		attack.start()
+		
+	if Input.is_action_just_pressed("c_attack"):
+		is_crit = true
+		is_attacking = true
+		anim_player.play("attackcrit")
+		attack.start()
+	
+
+		
+
+func _on_attack_timeout() -> void:
+	is_attacking = false
+	anim_player.play("RESET")
+
+#---------------------------------------------------------
 
 var was_on_floor = false
 func _physics_process(delta: float) -> void:
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
