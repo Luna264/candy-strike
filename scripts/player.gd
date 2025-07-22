@@ -12,7 +12,7 @@ const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
 var is_crit = false
 var is_attacking = false
-var friction = 200.0
+var friction = 500.0
 var knockback = Vector2.ZERO
 var knockback_toggle = false
 var knockback_timer = 0.0
@@ -40,23 +40,24 @@ func _on_attack_timeout() -> void:
 var was_on_floor = false
 
 func _physics_process(delta: float) -> void:
+	var direction := Input.get_axis("left", "right")
 	if knockback_timer > 0.0: #knockback enabled
 		velocity.x = knockback.x
 		knockback_timer -= delta
-		set_process_input(false)
+		knockback_toggle = true
 	if knockback_timer <= 0.0: #no knockback 
-		knockback = Vector2.ZERO		
-		set_process_input(true)
+		knockback = Vector2.ZERO
+		knockback_toggle = false		
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
+			
 	if was_on_floor and not is_on_floor() and velocity.y > 0:
 		coyote_timer.start()
 	was_on_floor = is_on_floor()
-		
+			
 	if Input.is_action_just_pressed("jump") and not is_on_floor():
 		buffer_timer.start()
-			
+				
 	if Input.is_action_just_pressed("jump") and is_on_floor() || Input.is_action_just_pressed("jump") and not coyote_timer.is_stopped() ||  not buffer_timer.is_stopped() && is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		buffer_timer.stop()
@@ -64,27 +65,25 @@ func _physics_process(delta: float) -> void:
 
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("left", "right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, friction)
-		
-		#direction flipping
-	if direction == 1:
-		animated_sprite_2d.flip_h = false
-	if direction == -1:
-		animated_sprite_2d.flip_h = true
-
-
-	await get_tree().create_timer(1).timeout
-	knockback_toggle = false
+	if knockback_toggle == false:
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, friction * delta)
+				
+			#direction flipping
+		if direction == 1:
+			animated_sprite_2d.flip_h = false
+		if direction == -1:
+			animated_sprite_2d.flip_h = true
+	elif knockback_toggle == true:
+		direction = 0
 	move_and_slide()
+		
 	
 func _knockback(enemyPosition: Vector2):
-	knockback_toggle == true
 	var knockbackDirection = (global_position - enemyPosition).normalized()
-	knockback.x = knockbackDirection.x * 500
+	knockback.x = knockbackDirection.x * 100
 	knockback_timer = 0.3
 
 	

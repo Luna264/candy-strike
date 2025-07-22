@@ -28,7 +28,7 @@ shape = SubResource("WorldBoundaryShape2D_uwrxv")
 [node name="walls" type="Node" parent="."]
 
 [node name="boundary2" parent="walls" instance=ExtResource("2_yqjtg")]
-position = Vector2(-26, 90)
+position = Vector2(93, 45)
 
 [node name="enemy" parent="." instance=ExtResource("3_lnu2h")]
 position = Vector2(12, 88)
