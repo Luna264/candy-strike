@@ -4,7 +4,6 @@ extends Area2D
 var dmg = 0
 var knock_x = 0
 var knock_y = 0
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 func hit(delta: float) -> void:
 	if player.is_crit == false:

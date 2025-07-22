@@ -15,10 +15,9 @@ position = Vector2(-91, 87)
 [node name="candycane" parent="player" instance=ExtResource("4_lbhrr")]
 position = Vector2(19, 8)
 
-[node name="Camera2D" type="Camera2D" parent="player"]
-position = Vector2(17, -9)
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1, 58)
 zoom = Vector2(5, 5)
-position_smoothing_enabled = true
 
 [node name="floor" type="StaticBody2D" parent="."]
 
@@ -35,4 +34,3 @@ position = Vector2(93, 45)
 position = Vector2(12, 88)
 
 [connection signal="body_entered" from="player/candycane" to="player/candycane" method="attack_enemies"]
-[connection signal="damage_output" from="enemy" to="player" method="_on_enemy_damage_output"]

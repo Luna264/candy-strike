@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cnxaur8wfvwfq"]
+[gd_scene load_steps=10 format=3 uid="uid://cnxaur8wfvwfq"]
 
 [ext_resource type="Texture2D" uid="uid://cxxgq5eo4idu2" path="res://assets/sprites/slime_purple.png" id="1_7k104"]
 [ext_resource type="Script" uid="uid://1gwwpgejvn6f" path="res://scripts/enemy.gd" id="1_md0e3"]
-[ext_resource type="Script" uid="uid://dtim2tfkpwget" path="res://scripts/pause_timer.gd" id="3_4ra3w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gyqm"]
 atlas = ExtResource("1_7k104")
@@ -61,13 +60,6 @@ flip_h = true
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_md0e3")
 
-[node name="pause_timer" type="Timer" parent="."]
-process_mode = 3
-process_priority = 25
-wait_time = 0.1
-one_shot = true
-script = ExtResource("3_4ra3w")
-
 [node name="hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
@@ -75,4 +67,4 @@ position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_4ra3w")
 debug_color = Color(0.579367, 0.414971, 0.930006, 0.42)
 
-[connection signal="timeout" from="pause_timer" to="pause_timer" method="_on_timeout"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
