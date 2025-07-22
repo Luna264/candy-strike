@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cnxaur8wfvwfq"]
+[gd_scene load_steps=10 format=3 uid="uid://cnxaur8wfvwfq"]
 
 [ext_resource type="Texture2D" uid="uid://cxxgq5eo4idu2" path="res://assets/sprites/slime_purple.png" id="1_7k104"]
 [ext_resource type="Script" uid="uid://1gwwpgejvn6f" path="res://scripts/enemy.gd" id="1_md0e3"]
@@ -43,9 +43,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
 size = Vector2(14, 15)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
-size = Vector2(16, 16)
-
 [node name="enemy" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_md0e3")
 
@@ -64,15 +61,8 @@ shape = SubResource("RectangleShape2D_md0e3")
 [node name="pause_timer" type="Timer" parent="."]
 process_mode = 3
 process_priority = 25
-wait_time = 0.1
+wait_time = 0.05
 one_shot = true
 script = ExtResource("3_4ra3w")
-
-[node name="hitbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(0, 3)
-shape = SubResource("RectangleShape2D_4ra3w")
-debug_color = Color(0.579367, 0.414971, 0.930006, 0.42)
 
 [connection signal="timeout" from="pause_timer" to="pause_timer" method="_on_timeout"]
