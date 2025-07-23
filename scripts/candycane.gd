@@ -24,3 +24,15 @@ func hit(delta: float) -> void:
 	for body in get_overlapping_bodies():
 		if body.has_method("take_damage"):
 			body.take_damage(dmg, global_position, knock_x, knock_y) #passing in candy cane global position which enemy takes as attacker_position
+
+
+func _on_animation_player_animation_finished(anim_name) -> void:
+	if anim_name.begins_with("b_attack") or anim_name.begins_with("c_attack"):
+		player.is_damaged = false
+		player.is_attacking = false
+
+	elif anim_name == "hit":
+		player.is_damaged = false
+		player.is_attacking = false
+
+		
