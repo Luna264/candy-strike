@@ -1,29 +1,30 @@
 extends CharacterBody2D
 
 @onready var coyote_timer: Timer = $CoyoteTimer
-@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var buffer_timer: Timer = $BufferTimer
-@onready var candycane: Area2D = $candycane
-@onready var anim_player = candycane.get_node("AnimationPlayer")
 @onready var attack: Timer = $Attack
 @onready var cooldown_crit: Timer = $CooldownCrit
+
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
+@onready var candycane: Area2D = $candycane
+
+@onready var anim_player = candycane.get_node("AnimationPlayer")
 @onready var _player_animation_player: AnimationPlayer = $AnimationPlayer
 
-const SPEED = 150.0
-const JUMP_VELOCITY = -300.0
 var is_crit = false
 var is_attacking = false
 var is_damaged = false
+
 var friction = 500.0
+const SPEED = 150.0
+const JUMP_VELOCITY = -300.0
+
 var knockback = Vector2.ZERO
 var knockback_toggle = false
 var knockback_timer = 0.0
-var current_animation = ""
 
 var health = 150
-
-#func _ready() -> void:
-	#connect("", anim_player_finished)
 
 
 func _process(delta: float) -> void:
@@ -36,6 +37,7 @@ func _process(delta: float) -> void:
 			is_crit = false
 			is_attacking = true
 			update_animation("attack")
+			
 			
 			if not Input.get_axis("left", "right") == 0:
 				if Input.get_axis("left", "right") < 0: # left
@@ -58,7 +60,7 @@ func _process(delta: float) -> void:
 			is_crit = true
 			is_attacking = true
 			update_animation("attack")
-		
+			
 			if not Input.get_axis("left", "right") == 0:
 				if Input.get_axis("left", "right") < 0: # left
 					sprite_2d.flip_h = true
@@ -110,7 +112,8 @@ func _physics_process(delta: float) -> void:
 		if is_attacking:
 			is_attacking = false
 			update_animation("run")
-			
+		
+		update_animation("jump")
 		velocity.y = JUMP_VELOCITY
 		buffer_timer.stop()
 		coyote_timer.stop()
@@ -176,12 +179,8 @@ func update_animation(animation):
 func _on_animation_player_animation_finished(anim_name) -> void:
 	if anim_name == "hit":
 		is_damaged = false
-		print("not damaged")
 		is_attacking = false
-		print("not attacked")
+		
 	if anim_name == "attack":
 		is_damaged = false
-		print("not damaged")
 		is_attacking = false
-		print("not attacked")
-		

@@ -19,7 +19,7 @@ var is_damaged = false
 var flash_in_progress = false
 
 signal damage_output
-
+signal shakescreen
 
 func _ready() -> void:
 	sprite_2d.material = sprite_2d.material.duplicate()
@@ -44,6 +44,7 @@ func take_damage(dmg, attacker_position, knockback_x, knockback_y):
 	health -= dmg
 
 #knockback
+	emit_signal("shakescreen")
 	var direction = (global_position - attacker_position).normalized()
 	velocity.x = direction.x * knockback_x
 	velocity.y = knockback_y
