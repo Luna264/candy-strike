@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var buffer_timer: Timer = $BufferTimer
 @onready var attack: Timer = $Attack
 @onready var cooldown_crit: Timer = $CooldownCrit
+@onready var hit_timer: Timer = $HitTimer
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
@@ -11,6 +12,8 @@ extends CharacterBody2D
 
 @onready var anim_player = candycane.get_node("AnimationPlayer")
 @onready var _player_animation_player: AnimationPlayer = $AnimationPlayer
+
+signal shakescreenplayer
 
 var is_crit = false
 var is_attacking = false
@@ -80,6 +83,8 @@ func _process(delta: float) -> void:
 
 func _on_attack_timeout() -> void:
 	is_attacking = false
+	is_damaged = false
+	update_animation("RESET")
 	anim_player.play("RESET")
 
 var was_on_floor = false
@@ -113,7 +118,6 @@ func _physics_process(delta: float) -> void:
 			is_attacking = false
 			update_animation("run")
 		
-		update_animation("jump")
 		velocity.y = JUMP_VELOCITY
 		buffer_timer.stop()
 		coyote_timer.stop()
@@ -131,9 +135,6 @@ func _physics_process(delta: float) -> void:
 			update_animation("idle")
 		
 
-		
-		
-			
 		if direction == 1 and is_attacking == false:
 			sprite_2d.flip_h = false
 			anim_player.play("idle_right")
@@ -155,19 +156,26 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.name == "hitbox":
 		_knockback(area.get_parent().position)
 		print("collided")
+		
 		if is_attacking:
 			return
-		if not is_damaged:
+			
+		elif is_damaged:
+			return	
+			
+		else:
 			is_damaged == true
 			update_animation("hit")
-		if is_damaged:
-			return
+			
+		hit_timer.start()	
+		
 
 func _on_enemy_damage_output(damage_output) -> void: #take_damage function for player basically
 		
 	is_attacking = false 
 	is_damaged = true
 	
+	emit_signal("shakescreenplayer")
 	print("being attacked")
 	health = health - damage_output
 
@@ -184,3 +192,9 @@ func _on_animation_player_animation_finished(anim_name) -> void:
 	if anim_name == "attack":
 		is_damaged = false
 		is_attacking = false
+
+
+func _on_hit_timer_timeout() -> void:
+	is_attacking = false
+	is_damaged = false
+	update_animation("run")
