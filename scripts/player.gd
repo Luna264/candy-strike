@@ -128,10 +128,12 @@ func _physics_process(delta: float) -> void:
 			velocity.x = direction * SPEED
 			if not is_attacking:
 				update_animation("run") 
+			if is_attacking:
+				velocity.x = 0
 
 			
 		elif is_damaged == false and is_attacking == false:
-			velocity.x = move_toward(velocity.x, 0, friction * delta)
+			velocity.x = move_toward(velocity.x, 0, 900 * delta)
 			update_animation("idle")
 		
 
@@ -154,6 +156,7 @@ func _knockback(enemyPosition: Vector2):
 	
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.name == "hitbox":
+		emit_signal("shakescreenplayer")
 		_knockback(area.get_parent().position)
 		print("collided")
 		
@@ -175,7 +178,6 @@ func _on_enemy_damage_output(damage_output) -> void: #take_damage function for p
 	is_attacking = false 
 	is_damaged = true
 	
-	emit_signal("shakescreenplayer")
 	print("being attacked")
 	health = health - damage_output
 

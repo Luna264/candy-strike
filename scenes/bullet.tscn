@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcob47h15jf4f"]
+
+[ext_resource type="Texture2D" uid="uid://clfmb002e6t1l" path="res://assets/sprites/coin.png" id="1_mkf8s"]
+[ext_resource type="Script" uid="uid://cupst8gr0eys0" path="res://scripts/bullet.gd" id="1_y25gk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mkf8s"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y25gk"]
+radius = 0.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_y25gk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.397625, 0.371275)
+texture = ExtResource("1_mkf8s")
+hframes = 12
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+scale = Vector2(0.998273, 0.996185)
+shape = SubResource("CircleShape2D_mkf8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_y25gk")
+disabled = true
+
+[node name="AliveTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="AliveTimer" to="." method="_on_alive_timer_timeout"]

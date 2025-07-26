@@ -1,0 +1,135 @@
+extends CharacterBody2D
+
+var health = 150
+@export var speed = 80.0
+@onready var player = get_tree().get_first_node_in_group("player")
+var friction = 500.0
+var damageoutput = 150
+var knockback_x_jump = 200
+var knockback_y_jump = -200
+@onready var shootposition: Area2D = $shootposition
+
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var damage_timer: Timer = $DamageTimer
+@onready var shoot_timer: Timer = $ShootTimer
+@export var bullet_scene: PackedScene
+@onready var attack_timer: Timer = $AttackTimer
+
+
+var is_attacking = false
+var is_damaged = false
+var flash_in_progress = false
+
+signal damage_output
+signal shakescreen
+
+func _ready() -> void:
+	sprite_2d.material = sprite_2d.material.duplicate()
+
+
+func _process(delta: float) -> void:
+	if not is_attacking and not is_damaged:
+		animation_player.play("idle")
+
+	if health <= 0:
+		print("enemy dead")
+		queue_free()
+
+
+func take_damage(dmg, attacker_position, knockback_x, knockback_y):
+	if is_damaged:
+		return 
+	
+	is_damaged = true
+	damage_timer.start()
+	flash()
+	health -= dmg
+
+#knockback
+	emit_signal("shakescreen")
+	var direction = (global_position - attacker_position).normalized()
+	velocity.x = direction.x * knockback_x
+	velocity.y = knockback_y
+
+
+func _physics_process(delta):
+	if not is_attacking and not is_damaged:
+		animation_player.play("idle")
+		
+	if not is_damaged:
+		
+		if is_on_floor():
+			velocity.y = 300
+		
+		var direction = (player.global_position - global_position)
+		var distance = direction.length()
+		var move_direction = Vector2.ZERO
+
+		if distance > 90:
+			velocity = direction.normalized() * speed
+		
+		elif distance < 40:
+			velocity = direction.normalized() * -speed
+		
+		else:
+			velocity = Vector2.ZERO 
+	move_and_slide()
+	face_player()
+
+
+
+
+
+
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.name == "hurtbox":
+		emit_signal("damage_output", 10)
+
+func face_player():
+	if player:
+		sprite_2d.flip_h = player.global_position.x < global_position.x
+
+
+
+
+func flash():
+	if flash_in_progress:
+		return 
+	flash_in_progress = true
+	
+	animation_player.play("hit")
+	
+	flash_in_progress = false
+
+
+func _on_damage_timer_timeout() -> void:
+	is_damaged = false
+
+func shoot():
+	if is_attacking:
+		return
+	is_attacking = true
+	animation_player.play("attack")
+	attack_timer.start()
+	var bullet = bullet_scene.instantiate()
+	get_tree().current_scene.add_child(bullet)
+	bullet.global_position = shootposition.global_position
+
+	var direction = (player.global_position - global_position).normalized()
+	bullet.velocity = direction * 100
+
+	
+
+	
+
+func _on_shoot_timer_timeout() -> void:
+	shoot()
+	
+
+
+func _on_attack_timer_timeout() -> void:
+	is_attacking = false
+	is_damaged = false
