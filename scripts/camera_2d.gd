@@ -27,14 +27,18 @@ func shake() -> void:
 	offset.y = max_offset.y * amount * randf_range(-1, 1) #random number so isnt same shake
 	
 	
-func _on_enemy_shakescreen() -> void: #slime
-	add_trauma(0.1)
-	shake()
+
 	
 func _on_player_shakescreenplayer() -> void: #player
 	add_trauma(0.1)
 	shake()
 
-func _on_character_body_2d_shakescreen() -> void: #cloud
+
+func _on_slime_shakescreen() -> void:
+	add_trauma(0.1)
+	shake()
+
+
+func _on_flyingcloud_shakescreen() -> void:
 	add_trauma(0.1)
 	shake()

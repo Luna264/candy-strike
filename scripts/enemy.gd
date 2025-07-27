@@ -26,7 +26,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if not is_attacking and not is_damaged:
+	if not is_attacking and not is_damaged and not flash_in_progress:
 		animation_player.play("idle")
 
 	if health <= 0:
@@ -35,8 +35,11 @@ func _process(delta: float) -> void:
 
 
 func take_damage(dmg, attacker_position, knockback_x, knockback_y):
+	emit_signal("shakescreen")
 	if is_damaged:
 		return 
+	if flash_in_progress:
+		return
 	
 	is_damaged = true
 	damage_timer.start()
@@ -44,7 +47,6 @@ func take_damage(dmg, attacker_position, knockback_x, knockback_y):
 	health -= dmg
 
 #knockback
-	emit_signal("shakescreen")
 	var direction = (global_position - attacker_position).normalized()
 	velocity.x = direction.x * knockback_x
 	velocity.y = knockback_y
@@ -68,12 +70,18 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 
 
 func _slime_jump() -> void:
+	if flash_in_progress:
+		return
+	if is_attacking:
+		return
+	if is_damaged:
+		return
 	is_attacking = true
-	attack_timer.start()
 	face_player()
 	var direction = (player.global_position - global_position).normalized()
 	velocity.x = direction.x * knockback_x_jump
 	velocity.y = knockback_y_jump
+	attack_timer.start()
 
 
 func _on_jump_timer_timeout() -> void:
@@ -88,11 +96,13 @@ func face_player():
 
 func _on_attack_timer_timeout() -> void:
 	is_attacking = false
-
-
+	flash_in_progress = false
+	animation_player.play("RESET")
+	
 func _on_damage_timer_timeout() -> void:
 	is_damaged = false
-
+	flash_in_progress = false
+	animation_player.play("RESET")
 
 func flash():
 	if flash_in_progress:
@@ -101,4 +111,7 @@ func flash():
 	
 	animation_player.play("hit")
 	
-	flash_in_progress = false
+	
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "hit":
+		flash_in_progress = false

@@ -29,7 +29,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if not is_attacking and not is_damaged:
+	if not is_attacking and not is_damaged and not flash_in_progress:
 		animation_player.play("idle")
 
 	if health <= 0:
@@ -38,6 +38,7 @@ func _process(delta: float) -> void:
 
 
 func take_damage(dmg, attacker_position, knockback_x, knockback_y):
+	emit_signal("shakescreen")
 	if is_damaged:
 		return 
 	
@@ -47,7 +48,6 @@ func take_damage(dmg, attacker_position, knockback_x, knockback_y):
 	health -= dmg
 
 #knockback
-	emit_signal("shakescreen")
 	var direction = (global_position - attacker_position).normalized()
 	velocity.x = direction.x * knockback_x
 	velocity.y = knockback_y
@@ -101,22 +101,26 @@ func flash():
 	flash_in_progress = true
 	
 	animation_player.play("hit")
-	
-	flash_in_progress = false
+	damage_timer.start()
 
 
 func _on_damage_timer_timeout() -> void:
 	is_damaged = false
+	flash_in_progress = false
+	animation_player.play("RESET")
 
 func shoot():
+	if flash_in_progress:
+		return
 	if is_attacking:
 		return
 	is_attacking = true
 	animation_player.play("attack")
 	attack_timer.start()
+	
 	var bullet = bullet_scene.instantiate()
 	get_tree().current_scene.add_child(bullet)
-	bullet.global_position = shootposition.global_position
+	bullet.global_position = global_position
 
 	var direction = (player.global_position - global_position).normalized()
 	bullet.velocity = direction * 100
@@ -133,3 +137,8 @@ func _on_shoot_timer_timeout() -> void:
 func _on_attack_timer_timeout() -> void:
 	is_attacking = false
 	is_damaged = false
+	
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "hit":
+		flash_in_progress = false
+		is_damaged = false

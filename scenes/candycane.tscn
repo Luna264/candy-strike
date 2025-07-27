@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b0a8uhc4gcgfd" path="res://assets/sprites/fruit.png" id="1_ijo3b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ad8d1"]
-size = Vector2(30.3067, 28.6724)
+size = Vector2(88.4317, 28.6724)
 
 [sub_resource type="Animation" id="Animation_abuwl"]
 length = 0.001

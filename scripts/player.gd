@@ -18,6 +18,7 @@ signal shakescreenplayer
 var is_crit = false
 var is_attacking = false
 var is_damaged = false
+var flash_in_progress = false
 
 var friction = 500.0
 const SPEED = 150.0
@@ -124,11 +125,13 @@ func _physics_process(delta: float) -> void:
 
 
 	if knockback_toggle == false: #move when knockback is not enabled
-		if direction and not is_damaged:
+		if direction and not is_damaged and not flash_in_progress:
 			velocity.x = direction * SPEED
 			if not is_attacking:
 				update_animation("run") 
 			if is_attacking:
+				velocity.x = 0
+			elif flash_in_progress:
 				velocity.x = 0
 
 			
@@ -158,7 +161,6 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.name == "hitbox":
 		emit_signal("shakescreenplayer")
 		_knockback(area.get_parent().position)
-		print("collided")
 		
 		if is_attacking:
 			return
@@ -166,11 +168,13 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		elif is_damaged:
 			return	
 			
-		else:
-			is_damaged == true
-			update_animation("hit")
+		elif flash_in_progress:
+			return
 			
-		hit_timer.start()	
+		else:
+			is_damaged = true
+			flash()
+		hit_timer.start()		
 		
 
 func _on_enemy_damage_output(damage_output) -> void: #take_damage function for player basically
@@ -189,14 +193,21 @@ func update_animation(animation):
 func _on_animation_player_animation_finished(anim_name) -> void:
 	if anim_name == "hit":
 		is_damaged = false
-		is_attacking = false
-		
-	if anim_name == "attack":
-		is_damaged = false
-		is_attacking = false
+		flash_in_progress = false
+		update_animation("idle")
 
+	if anim_name == "attack":
+		is_attacking = false
+		update_animation("idle")
+
+func flash():
+	if flash_in_progress or is_attacking:
+		return
+	flash_in_progress = true
+	is_damaged = true
+	update_animation("hit")
 
 func _on_hit_timer_timeout() -> void:
 	is_attacking = false
 	is_damaged = false
-	update_animation("run")
+	flash_in_progress = false

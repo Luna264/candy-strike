@@ -1,6 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dud5pfmal615j"]
 
 [ext_resource type="Script" uid="uid://t3xgu281551c" path="res://scripts/flyingcloud.gd" id="1_ptnb2"]
+[ext_resource type="PackedScene" uid="uid://bcob47h15jf4f" path="res://scenes/bullet.tscn" id="2_da073"]
 [ext_resource type="Shader" uid="uid://llhsmpsnall1" path="res://shaders/enemy.gdshader" id="2_swwsf"]
 [ext_resource type="Texture2D" uid="uid://b53wndx6qvd7s" path="res://assets/sprites/slime_green.png" id="3_da073"]
 
@@ -84,17 +85,20 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(0, 5)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("shootposition/CollisionShape2D:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+
+[sub_resource type="Animation" id="Animation_ptnb2"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.47, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(17, 5)]
+"values": [Vector2(0, -1), Vector2(0, -4), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_c4w8v"]
@@ -175,33 +179,6 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(0, 5), Vector2(0, -0.875), Vector2(0, 5.125)]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("shootposition/CollisionShape2D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.66, 0.67, 0.99, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(7.5, 5), Vector2(7, -1), Vector2(7, -1), Vector2(8, 5), Vector2(7, 5)]
-}
-
-[sub_resource type="Animation" id="Animation_ptnb2"]
-resource_name = "attack"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.47, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -1), Vector2(0, -4), Vector2(0, 0)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5uy6h"]
 _data = {
@@ -215,16 +192,14 @@ _data = {
 size = Vector2(14, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2qnhh"]
-size = Vector2(14, 11.75)
+size = Vector2(20, 11.75)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptnb2"]
-size = Vector2(3, 11)
-
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
+[node name="flyingcloud" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_ptnb2")
+bullet_scene = ExtResource("2_da073")
 
 [node name="DamageTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.4
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -255,17 +230,10 @@ debug_color = Color(0.579367, 0.414971, 0.930006, 0.42)
 [node name="ShootTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="shootposition" type="Area2D" parent="."]
-scale = Vector2(1.88298, 1.12295)
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="shootposition"]
-position = Vector2(17, 5)
-shape = SubResource("RectangleShape2D_ptnb2")
-
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
 
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

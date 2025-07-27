@@ -104,9 +104,9 @@ _data = {
 size = Vector2(14, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
-size = Vector2(14, 11.75)
+size = Vector2(16, 11.75)
 
-[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
+[node name="slime" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_md0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -142,7 +142,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="DamageTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.4
 one_shot = true
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
