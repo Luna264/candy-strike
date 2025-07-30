@@ -9,7 +9,7 @@ var knockback_x_jump = 200
 var knockback_y_jump = -200
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = get_tree().get_first_node_in_group("base_animation_player")
 @onready var attack_timer: Timer = $AttackTimer
 @onready var damage_timer: Timer = $DamageTimer
 
@@ -44,12 +44,7 @@ func take_damage(dmg, attacker_position, knockback_x, knockback_y):
 	flash()
 	health -= dmg
 
-#knockback
 
-
-func _physics_process(delta):
-
-	move_and_slide()
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
@@ -58,20 +53,17 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 
 
 
-
 func _on_attack_timer_timeout() -> void:
 	is_attacking = false
 	flash_in_progress = false
-	animation_player.play("RESET")
 	
 func _on_damage_timer_timeout() -> void:
 	is_damaged = false
 	flash_in_progress = false
-	animation_player.play("RESET")
 
 func flash():
 	if flash_in_progress:
-		animation_player.stop() # force stop previous to allow restart
+		animation_player.stop() 
 	animation_player.play("hit")
 	flash_in_progress = true
 	
@@ -79,11 +71,3 @@ func flash():
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "hit":
 		flash_in_progress = false
-
-
-func _on_detection_attack() -> void:
-	attack_timer.start()
-
-
-func _on_detection_area_exited(area: Area2D) -> void:
-	pass # Replace with function body.

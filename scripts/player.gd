@@ -158,7 +158,7 @@ func _knockback(enemyPosition: Vector2):
 
 	
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if area.name == "hitbox":
+	if area.name == "hitbox" or area.is_in_group("enemy"):
 		emit_signal("shakescreenplayer")
 		_knockback(area.get_parent().position)
 		

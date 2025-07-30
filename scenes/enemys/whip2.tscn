@@ -1,0 +1,199 @@
+[gd_scene load_steps=12 format=3 uid="uid://dktgcjci3yto6"]
+
+[ext_resource type="Script" uid="uid://pmc8xdnlkmcy" path="res://scripts/detection.gd" id="1_al61v"]
+[ext_resource type="Script" uid="uid://cq6fsu8j2kqmt" path="res://scripts/whipActualWhip.gd" id="1_kivbn"]
+[ext_resource type="Shader" uid="uid://llhsmpsnall1" path="res://shaders/enemy.gdshader" id="2_r8r4l"]
+[ext_resource type="Texture2D" uid="uid://clfmb002e6t1l" path="res://assets/sprites/coin.png" id="3_kmrfy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_57con"]
+radius = 48.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sooaf"]
+shader = ExtResource("2_r8r4l")
+shader_parameter/flash_color = Color(0, 0, 0, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="Animation" id="Animation_kivbn"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("whipSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("whipColider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_mnddd"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("whipColider:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("whipSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("whipSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.94),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(15, 36), Vector2(54, -45)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("whipColider:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.94),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(38, 52), Vector2(59, -19)]
+}
+
+[sub_resource type="Animation" id="Animation_a2j43"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("whipSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("whipColider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("whipSprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(54, -45)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("whipColider:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(59, -19)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fp2sq"]
+_data = {
+&"RESET": SubResource("Animation_a2j43"),
+&"attack": SubResource("Animation_mnddd"),
+&"idle": SubResource("Animation_kivbn")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8awoc"]
+radius = 9.88098
+height = 86.8421
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_kivbn")
+
+[node name="detection" type="Area2D" parent="." groups=["detection"]]
+collision_mask = 255
+script = ExtResource("1_al61v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_57con")
+
+[node name="AttackTimer" type="Timer" parent="detection"]
+wait_time = 0.61
+one_shot = true
+
+[node name="whipSprite" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_sooaf")
+position = Vector2(54, -45)
+rotation = -1.99575
+texture = ExtResource("3_kmrfy")
+region_enabled = true
+region_rect = Rect2(53.2045, 2.79479, 7.32532, 14.6506)
+
+[node name="WhipAnimationPlayer" type="AnimationPlayer" parent="." groups=["whip_animation_player"]]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_fp2sq")
+}
+
+[node name="whipColider" type="CollisionShape2D" parent="."]
+position = Vector2(59, -19)
+rotation = -0.645652
+scale = Vector2(1.39856, -1.16083)
+shape = SubResource("CapsuleShape2D_8awoc")
+disabled = true
+debug_color = Color(0.727844, 0.238311, 1, 0.42)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="detection" to="detection" method="_on_area_entered"]
+[connection signal="area_exited" from="detection" to="detection" method="_on_area_exited"]
+[connection signal="attack" from="detection" to="." method="_on_detection_attack"]
+[connection signal="stopAttack" from="detection" to="." method="_on_detection_stop_attack"]
+[connection signal="timeout" from="detection/AttackTimer" to="detection" method="_on_attack_timer_timeout"]

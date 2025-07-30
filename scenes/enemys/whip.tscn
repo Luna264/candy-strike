@@ -1,21 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://cu1w7icylyldk"]
+[gd_scene load_steps=10 format=3 uid="uid://cu1w7icylyldk"]
 
 [ext_resource type="Script" uid="uid://1ltusd6mbgam" path="res://scripts/whip.gd" id="1_u0fn8"]
 [ext_resource type="Shader" uid="uid://llhsmpsnall1" path="res://shaders/enemy.gdshader" id="2_k33x4"]
 [ext_resource type="Texture2D" uid="uid://b0a8uhc4gcgfd" path="res://assets/sprites/fruit.png" id="2_xpmi8"]
-[ext_resource type="Script" uid="uid://pmc8xdnlkmcy" path="res://scripts/detection.gd" id="3_xpmi8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yni71"]
 shader = ExtResource("2_k33x4")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
-[sub_resource type="Animation" id="Animation_k33x4"]
-resource_name = "idle"
-
-[sub_resource type="Animation" id="Animation_yni71"]
+[sub_resource type="Animation" id="Animation_qlk83"]
 resource_name = "hit"
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,13 +19,28 @@ tracks/0/path = NodePath("Sprite2D:material:shader_parameter/flash_value")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.233333),
+"times": PackedFloat32Array(0, 0.266667, 0.466667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_qlk83"]
+[sub_resource type="Animation" id="Animation_jopwe"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_vsdag"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -46,16 +57,13 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ekoho"]
 _data = {
-&"RESET": SubResource("Animation_qlk83"),
-&"hit": SubResource("Animation_yni71"),
-&"idle": SubResource("Animation_k33x4")
+&"RESET": SubResource("Animation_vsdag"),
+&"hit": SubResource("Animation_qlk83"),
+&"idle": SubResource("Animation_jopwe")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k33x4"]
 height = 20.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xpmi8"]
-radius = 48.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_u0fn8")
@@ -73,7 +81,7 @@ one_shot = true
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["base_animation_player"]]
 libraries = {
 &"": SubResource("AnimationLibrary_ekoho")
 }
@@ -86,22 +94,7 @@ shape = SubResource("CapsuleShape2D_k33x4")
 [node name="box" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_k33x4")
 
-[node name="detection" type="Area2D" parent="." groups=["enemy"]]
-collision_mask = 255
-script = ExtResource("3_xpmi8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
-position = Vector2(-1, 0)
-shape = SubResource("CircleShape2D_xpmi8")
-
-[node name="AttackTimer" type="Timer" parent="detection"]
-one_shot = true
-
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="area_entered" from="detection" to="detection" method="_on_area_entered"]
-[connection signal="area_exited" from="detection" to="detection" method="_on_area_exited"]
-[connection signal="attack" from="detection" to="." method="_on_detection_attack"]
-[connection signal="timeout" from="detection/AttackTimer" to="detection" method="_on_attack_timer_timeout"]

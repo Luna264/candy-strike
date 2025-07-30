@@ -1,0 +1,42 @@
+extends Area2D
+
+var health = 150
+@export var speed = -80.0
+@onready var player = get_tree().get_first_node_in_group("player")
+var friction = 500.0
+var damageoutput = 150
+var knockback_x_jump = 200
+var knockback_y_jump = -200
+
+@onready var detection: Area2D = $detection
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var attack_timer: Timer = $AttackTimer
+@onready var damage_timer: Timer = $DamageTimer
+@onready var whip_animation_player: AnimationPlayer = %WhipAnimationPlayer
+
+
+var is_attacking = false
+var flash_in_progress = false
+
+signal damage_output
+signal shakescreen
+
+#func _ready() -> void:
+	#sprite_2d.material = sprite_2d.material.duplicate()
+
+func _process(delta: float) -> void:
+	if detection:
+		if not detection.player_is:
+			whip_animation_player.play("idle")
+
+func _on_detection_attack() -> void:
+	whip_animation_player.play("attack")
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.name == "hurtbox":
+		emit_signal("damage_output", 10)
+
+
+func _on_detection_stop_attack() -> void:
+	whip_animation_player.play("idle")

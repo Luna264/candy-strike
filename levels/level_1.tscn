@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=9 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://dr2muauq4tijd" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_gwceb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cv7u13y5ejaoy" path="res://scenes/enviornment/glassplatform.tscn" id="5_n46q3"]
 [ext_resource type="Script" uid="uid://dy5gn03cyk8v7" path="res://scripts/camera_2d.gd" id="6_5ot28"]
 [ext_resource type="PackedScene" uid="uid://cu1w7icylyldk" path="res://scenes/enemys/whip.tscn" id="6_btoec"]
+[ext_resource type="PackedScene" uid="uid://dktgcjci3yto6" path="res://scenes/enemys/whip2.tscn" id="7_gwceb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
 
@@ -45,7 +46,10 @@ follow_node = NodePath("../player")
 position = Vector2(-2, 97)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("6_btoec")]
-position = Vector2(-204, 79)
+position = Vector2(-182, 72)
+
+[node name="Area2D" parent="CharacterBody2D" instance=ExtResource("7_gwceb")]
+position = Vector2(0, -1)
 
 [connection signal="shakescreenplayer" from="player" to="Camera2D" method="_on_player_shakescreenplayer"]
 [connection signal="body_entered" from="player/candycane" to="player/candycane" method="attack_enemies"]

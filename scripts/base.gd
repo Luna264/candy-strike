@@ -10,7 +10,7 @@ var knockback_y_jump = -200
 
 @onready var jump_timer: Timer = $JumpTimer
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_player: AnimationPlayer = get_tree().get_first_node_in_group("base_animation_player")
 @onready var attack_timer: Timer = $AttackTimer
 @onready var damage_timer: Timer = $DamageTimer
 

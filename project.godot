@@ -23,6 +23,9 @@ enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 enemy=""
 player=""
+base_animation_player=""
+whip_animation_player=""
+detection=""
 
 [input]
 

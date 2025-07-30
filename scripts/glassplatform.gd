@@ -15,10 +15,10 @@ func _physics_process(delta: float) -> void:
 		breaking_timer -= delta
 		animation_player.play("idle")
 	
-	if breaking_timer > 3 and not is_shattering:
+	if breaking_timer > 1 and not is_shattering:
 		animation_player.play("breaking")
 		
-	if breaking_timer > 6:
+	if breaking_timer > 3:
 		is_shattering = true
 		emit_signal("shatter")
 		
