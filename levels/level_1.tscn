@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=8 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://dr2muauq4tijd" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_gwceb"]
 [ext_resource type="PackedScene" uid="uid://cnwbmgldjbxaf" path="res://scenes/boundaryTemp.tscn" id="3_l53as"]
-[ext_resource type="PackedScene" uid="uid://cfkrk6ijkg2em" path="res://scenes/bubblysoda.tscn" id="5_08mmt"]
+[ext_resource type="PackedScene" uid="uid://cv7u13y5ejaoy" path="res://scenes/enviornment/glassplatform.tscn" id="5_n46q3"]
 [ext_resource type="Script" uid="uid://dy5gn03cyk8v7" path="res://scripts/camera_2d.gd" id="6_5ot28"]
-[ext_resource type="PackedScene" uid="uid://cnxaur8wfvwfq" path="res://scenes/slime.tscn" id="6_btoec"]
-[ext_resource type="PackedScene" uid="uid://dud5pfmal615j" path="res://scenes/flyingcloud.tscn" id="7_gwceb"]
+[ext_resource type="PackedScene" uid="uid://cu1w7icylyldk" path="res://scenes/enemys/whip.tscn" id="6_btoec"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
 
@@ -28,10 +27,11 @@ shape = SubResource("WorldBoundaryShape2D_uwrxv")
 [node name="walls" type="Node" parent="."]
 
 [node name="boundary2" parent="walls" instance=ExtResource("3_l53as")]
-position = Vector2(113, 38)
+position = Vector2(129, 31)
 
-[node name="bubblysoda" parent="." instance=ExtResource("5_08mmt")]
-position = Vector2(3, 119)
+[node name="boundary3" parent="walls" instance=ExtResource("3_l53as")]
+position = Vector2(-134, -106)
+scale = Vector2(20.6867, 1.0855)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_node")]
 position = Vector2(-66.5972, 74.0809)
@@ -41,17 +41,12 @@ position_smoothing_enabled = true
 script = ExtResource("6_5ot28")
 follow_node = NodePath("../player")
 
-[node name="boundary2" parent="." instance=ExtResource("3_l53as")]
-position = Vector2(-192, 9)
-scale = Vector2(20.6867, 1.0855)
+[node name="glassplatform" parent="." instance=ExtResource("5_n46q3")]
+position = Vector2(-2, 97)
 
-[node name="slime" parent="." instance=ExtResource("6_btoec")]
-position = Vector2(-39, 94)
-
-[node name="flyingcloud" parent="." instance=ExtResource("7_gwceb")]
-position = Vector2(-135, 41)
+[node name="CharacterBody2D" parent="." instance=ExtResource("6_btoec")]
+position = Vector2(-204, 79)
 
 [connection signal="shakescreenplayer" from="player" to="Camera2D" method="_on_player_shakescreenplayer"]
 [connection signal="body_entered" from="player/candycane" to="player/candycane" method="attack_enemies"]
-[connection signal="shakescreen" from="slime" to="Camera2D" method="_on_slime_shakescreen"]
-[connection signal="shakescreen" from="flyingcloud" to="Camera2D" method="_on_flyingcloud_shakescreen"]
+[connection signal="shatter" from="glassplatform" to="glassplatform" method="_on_shatter"]

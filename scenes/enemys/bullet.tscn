@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://clfmb002e6t1l" path="res://assets/sprites/coin.png" id="1_mkf8s"]
 [ext_resource type="Script" uid="uid://cupst8gr0eys0" path="res://scripts/bullet.gd" id="1_y25gk"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_mkf8s"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_l5glv"]
 radius = 2.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y25gk"]
@@ -12,16 +12,15 @@ radius = 0.0
 [node name="bullet" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_y25gk")
 
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_l5glv")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.397625, 0.371275)
 texture = ExtResource("1_mkf8s")
 hframes = 12
-
-[node name="hitbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-scale = Vector2(0.998273, 0.996185)
-shape = SubResource("CircleShape2D_mkf8s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_y25gk")

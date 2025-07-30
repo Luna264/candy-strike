@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=3 uid="uid://dud5pfmal615j"]
 
-[ext_resource type="Script" uid="uid://t3xgu281551c" path="res://scripts/flyingcloud.gd" id="1_ptnb2"]
-[ext_resource type="PackedScene" uid="uid://bcob47h15jf4f" path="res://scenes/bullet.tscn" id="2_da073"]
-[ext_resource type="Shader" uid="uid://llhsmpsnall1" path="res://shaders/enemy.gdshader" id="2_swwsf"]
-[ext_resource type="Texture2D" uid="uid://b53wndx6qvd7s" path="res://assets/sprites/slime_green.png" id="3_da073"]
+[ext_resource type="Script" uid="uid://t3xgu281551c" path="res://scripts/flyingcloud.gd" id="1_nw0xq"]
+[ext_resource type="PackedScene" uid="uid://bcob47h15jf4f" path="res://scenes/enemys/bullet.tscn" id="2_fxr5l"]
+[ext_resource type="Shader" uid="uid://llhsmpsnall1" path="res://shaders/enemy.gdshader" id="3_83knr"]
+[ext_resource type="Texture2D" uid="uid://b53wndx6qvd7s" path="res://assets/sprites/slime_green.png" id="4_0obba"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3w7v2"]
 resource_local_to_scene = true
-shader = ExtResource("2_swwsf")
+shader = ExtResource("3_83knr")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
@@ -195,8 +195,8 @@ size = Vector2(14, 11)
 size = Vector2(20, 11.75)
 
 [node name="flyingcloud" type="CharacterBody2D" groups=["enemy"]]
-script = ExtResource("1_ptnb2")
-bullet_scene = ExtResource("2_da073")
+script = ExtResource("1_nw0xq")
+bullet_scene = ExtResource("2_fxr5l")
 
 [node name="DamageTimer" type="Timer" parent="."]
 wait_time = 0.4
@@ -205,7 +205,7 @@ one_shot = true
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_3w7v2")
 position = Vector2(0, -1)
-texture = ExtResource("3_da073")
+texture = ExtResource("4_0obba")
 hframes = 4
 vframes = 3
 frame = 3
@@ -235,5 +235,6 @@ one_shot = true
 
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

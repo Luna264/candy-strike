@@ -181,6 +181,7 @@ size = Vector2(9.89242, 12.3947)
 size = Vector2(10.1013, 12.8878)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 1
 position = Vector2(0, -13)
 scale = Vector2(1.43546, 1.43546)
 script = ExtResource("1_g2els")
@@ -220,7 +221,7 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
-[node name="hurtbox" type="Area2D" parent="."]
+[node name="hurtbox" type="Area2D" parent="." groups=["player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2(-0.17416, 7.83719)

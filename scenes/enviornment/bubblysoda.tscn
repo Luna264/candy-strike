@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cfkrk6ijkg2em"]
 
-[ext_resource type="Script" uid="uid://b87qxuk5jgop6" path="res://scripts/bubblysoda.gd" id="1_qlhfm"]
-[ext_resource type="Texture2D" uid="uid://clfmb002e6t1l" path="res://assets/sprites/coin.png" id="1_sjamq"]
+[ext_resource type="Texture2D" uid="uid://clfmb002e6t1l" path="res://assets/sprites/coin.png" id="1_xp34m"]
+[ext_resource type="Script" uid="uid://b87qxuk5jgop6" path="res://scripts/bubblysoda.gd" id="2_mk8cx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlhfm"]
 size = Vector2(33, 2.5)
@@ -67,7 +67,7 @@ _data = {
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3.375, 0.3125)
-texture = ExtResource("1_sjamq")
+texture = ExtResource("1_xp34m")
 hframes = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -75,7 +75,7 @@ position = Vector2(0.5, 0.25)
 shape = SubResource("RectangleShape2D_qlhfm")
 
 [node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("1_qlhfm")
+script = ExtResource("2_mk8cx")
 
 [node name="bubblebox" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -26.5)

@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://cnxaur8wfvwfq"]
 
-[ext_resource type="Texture2D" uid="uid://cxxgq5eo4idu2" path="res://assets/sprites/slime_purple.png" id="1_7k104"]
-[ext_resource type="Script" uid="uid://1gwwpgejvn6f" path="res://scripts/enemy.gd" id="1_md0e3"]
-[ext_resource type="Shader" uid="uid://llhsmpsnall1" path="res://shaders/enemy.gdshader" id="2_4ra3w"]
+[ext_resource type="Script" uid="uid://1gwwpgejvn6f" path="res://scripts/enemy.gd" id="1_ya1je"]
+[ext_resource type="Shader" uid="uid://llhsmpsnall1" path="res://shaders/enemy.gdshader" id="2_pyd2g"]
+[ext_resource type="Texture2D" uid="uid://cxxgq5eo4idu2" path="res://assets/sprites/slime_purple.png" id="3_v8wig"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3w7v2"]
 resource_local_to_scene = true
-shader = ExtResource("2_4ra3w")
+shader = ExtResource("2_pyd2g")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
@@ -107,12 +107,12 @@ size = Vector2(14, 11)
 size = Vector2(16, 11.75)
 
 [node name="slime" type="CharacterBody2D" groups=["enemy"]]
-script = ExtResource("1_md0e3")
+script = ExtResource("1_ya1je")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_3w7v2")
 position = Vector2(0, -1)
-texture = ExtResource("1_7k104")
+texture = ExtResource("3_v8wig")
 hframes = 4
 vframes = 3
 frame = 3
