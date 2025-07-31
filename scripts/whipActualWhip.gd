@@ -9,9 +9,6 @@ var knockback_x_jump = 200
 var knockback_y_jump = -200
 
 @onready var detection: Area2D = $detection
-@onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var attack_timer: Timer = $AttackTimer
-@onready var damage_timer: Timer = $DamageTimer
 @onready var whip_animation_player: AnimationPlayer = %WhipAnimationPlayer
 
 
@@ -21,13 +18,8 @@ var flash_in_progress = false
 signal damage_output
 signal shakescreen
 
-#func _ready() -> void:
-	#sprite_2d.material = sprite_2d.material.duplicate()
-
-func _process(delta: float) -> void:
-	if detection:
-		if not detection.player_is:
-			whip_animation_player.play("idle")
+func _ready() -> void:
+	whip_animation_player.play("idle")
 
 func _on_detection_attack() -> void:
 	whip_animation_player.play("attack")
