@@ -153,11 +153,11 @@ func _physics_process(delta: float) -> void:
 	
 func _knockback(enemyPosition: Vector2):
 	var knockbackDirection = (global_position - enemyPosition).normalized() #same idea asin enemy script with direction
-	knockback.x = knockbackDirection.x * 100 #not setting velocity here becaause that is abad idea
+	knockback.x = knockbackDirection.x * 200 #not setting velocity here becaause that is abad idea
 	knockback_timer = 0.2 #how long knockback will last
 
 	
-func _on_hurtbox_area_entered(area: Area2D) -> void:
+func _on_hurtbox_area_entered(area: Area2D) -> void:           #take damage player detection
 	if area.name == "hitbox" or area.is_in_group("enemy"):
 		emit_signal("shakescreenplayer")
 		_knockback(area.get_parent().position)
@@ -211,3 +211,7 @@ func _on_hit_timer_timeout() -> void:
 	is_attacking = false
 	is_damaged = false
 	flash_in_progress = false
+
+
+func _on_shakescreenplayer() -> void:
+	pass # Replace with function body.

@@ -7,7 +7,7 @@ var active = false
 
 func _physics_process(delta: float) -> void:
 	for body in get_overlapping_bodies():
-			body.velocity.y = floatAmount
+			body.velocity.x = floatAmount
 
 func update_animation(animation):
 	animation_player.play(animation)

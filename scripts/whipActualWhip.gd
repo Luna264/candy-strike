@@ -8,6 +8,7 @@ var damageoutput = 150
 var knockback_x_jump = 200
 var knockback_y_jump = -200
 
+
 @onready var detection: Area2D = $detection
 @onready var whip_animation_player: AnimationPlayer = %WhipAnimationPlayer
 

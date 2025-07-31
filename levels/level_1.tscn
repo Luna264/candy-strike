@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=6 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://dr2muauq4tijd" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_gwceb"]
 [ext_resource type="PackedScene" uid="uid://cnwbmgldjbxaf" path="res://scenes/boundaryTemp.tscn" id="3_l53as"]
-[ext_resource type="PackedScene" uid="uid://cv7u13y5ejaoy" path="res://scenes/enviornment/glassplatform.tscn" id="5_n46q3"]
 [ext_resource type="Script" uid="uid://dy5gn03cyk8v7" path="res://scripts/camera_2d.gd" id="6_5ot28"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
@@ -26,7 +25,7 @@ shape = SubResource("WorldBoundaryShape2D_uwrxv")
 [node name="walls" type="Node" parent="."]
 
 [node name="boundary2" parent="walls" instance=ExtResource("3_l53as")]
-position = Vector2(129, 31)
+position = Vector2(38, -17)
 
 [node name="boundary3" parent="walls" instance=ExtResource("3_l53as")]
 position = Vector2(-134, -106)
@@ -40,9 +39,5 @@ position_smoothing_enabled = true
 script = ExtResource("6_5ot28")
 follow_node = NodePath("../player")
 
-[node name="glassplatform" parent="." instance=ExtResource("5_n46q3")]
-position = Vector2(-2, 97)
-
 [connection signal="shakescreenplayer" from="player" to="Camera2D" method="_on_player_shakescreenplayer"]
 [connection signal="body_entered" from="player/candycane" to="player/candycane" method="attack_enemies"]
-[connection signal="shatter" from="glassplatform" to="glassplatform" method="_on_shatter"]

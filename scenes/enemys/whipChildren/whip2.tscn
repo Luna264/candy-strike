@@ -30,7 +30,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("whipColider:disabled")
+tracks/1/path = NodePath("hitbox/hitbox:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -54,14 +54,26 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("whipColider:position")
+tracks/3/path = NodePath("hitbox/hitbox:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(59, -19)]
+"values": [Vector2(-11.4526, -6.86195)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("hitbox/hitbox:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.166796]
 }
 
 [sub_resource type="Animation" id="Animation_mnddd"]
@@ -69,7 +81,7 @@ resource_name = "attack"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("whipColider:disabled")
+tracks/0/path = NodePath("hitbox/hitbox:disabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -105,14 +117,26 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("whipColider:position")
+tracks/3/path = NodePath("hitbox/hitbox:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.94),
+"times": PackedFloat32Array(0, 0.933333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(38, 52), Vector2(59, -19)]
+"values": [Vector2(-45.6619, -24.347), Vector2(-1.69022, 14.4768)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("hitbox/hitbox:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.166796, 1.23099]
 }
 
 [sub_resource type="Animation" id="Animation_kivbn"]
@@ -132,7 +156,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("whipColider:disabled")
+tracks/1/path = NodePath("hitbox/hitbox:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -150,10 +174,10 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8awoc"]
-radius = 9.88098
-height = 86.8421
+radius = 5.71863
+height = 45.1644
 
-[node name="Area2D" type="Area2D"]
+[node name="whipMain" type="Area2D"]
 script = ExtResource("1_kivbn")
 
 [node name="detection" type="Area2D" parent="." groups=["detection"]]
@@ -183,10 +207,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_fp2sq")
 }
 
-[node name="whipColider" type="CollisionShape2D" parent="."]
+[node name="hitbox" type="Area2D" parent="."]
 position = Vector2(59, -19)
 rotation = -0.645652
 scale = Vector2(1.39856, -1.16083)
+
+[node name="hitbox" type="CollisionShape2D" parent="hitbox" groups=["enemy"]]
+position = Vector2(-11.4526, -6.86195)
+rotation = 0.166796
 shape = SubResource("CapsuleShape2D_8awoc")
 disabled = true
 debug_color = Color(0.727844, 0.238311, 1, 0.42)

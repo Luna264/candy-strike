@@ -7,7 +7,6 @@ var friction = 500.0
 var damageoutput = 150
 var knockback_x_jump = 200
 var knockback_y_jump = -200
-@onready var shootposition: Area2D = $shootposition
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer

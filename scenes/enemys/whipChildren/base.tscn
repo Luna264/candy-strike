@@ -65,7 +65,7 @@ _data = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k33x4"]
 height = 20.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
+[node name="whipBase" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_u0fn8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

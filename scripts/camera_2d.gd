@@ -5,9 +5,16 @@ extends Camera2D
 @export var max_rot : float = 0.1 
 @export var follow_node : Node2D 
 
+
+
 var trauma : float = 0.0
 var trauma_power : int = 2 
 
+
+func _ready() -> void:
+	var slime = $"../slime"
+	if slime:
+		slime.shakescreen.connect(_on_slime_shakescreen)
 
 func _process(delta : float) -> void:
 	if follow_node: 
@@ -18,7 +25,7 @@ func _process(delta : float) -> void:
 
 
 func add_trauma(amount : float) -> void:
-	trauma = min(trauma + amount, 1.0)  #how much shake 
+	trauma = min(trauma + amount, 0.3)  #how much shake 
 
 func shake() -> void:
 	var amount = pow(trauma, trauma_power) #trauma ^ trauma power
@@ -30,15 +37,18 @@ func shake() -> void:
 
 	
 func _on_player_shakescreenplayer() -> void: #player
-	add_trauma(0.1)
+	add_trauma(0.2)
 	shake()
 
-
-func _on_slime_shakescreen() -> void:
-	add_trauma(0.1)
+func _on_slime_shakescreen():
+	add_trauma(0.2)
 	shake()
-
 
 func _on_flyingcloud_shakescreen() -> void:
+	add_trauma(0.1)
+	shake()
+	
+
+func _on_whip_shakescreen() -> void:
 	add_trauma(0.1)
 	shake()

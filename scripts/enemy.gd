@@ -34,8 +34,24 @@ func _process(delta: float) -> void:
 		queue_free()
 
 
+func take_damage_explode(dmg, attacker_position, knockback_x, knockback_y):
+	shakescreen.emit()
+	if is_damaged:
+		return 
+	if flash_in_progress:
+		return
+	
+	is_damaged = true
+	damage_timer.start()
+	flash()
+	health -= dmg
+
+	var direction = (global_position - attacker_position).normalized()
+	velocity.x = direction.x * knockback_x
+	velocity.y = knockback_y
+
 func take_damage(dmg, attacker_position, knockback_x, knockback_y):
-	emit_signal("shakescreen")
+	shakescreen.emit()
 	if is_damaged:
 		return 
 	if flash_in_progress:
