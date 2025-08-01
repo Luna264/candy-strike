@@ -33,6 +33,7 @@ func _process(delta: float) -> void:
 
 	if health <= 0:
 		print("enemy dead")
+		get_tree().call_group("level", "enemy_death")
 		queue_free()
 
 

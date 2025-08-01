@@ -22,14 +22,17 @@ var explode_timer = 0.0
 var first_stage = false
 var is_exploding = false
 var second_stage = false
+var is_jumping = false
+@onready var jump_timer: Timer = $JumpTimer
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	if not is_damaged and not is_exploding:
+	if not is_damaged and not is_exploding and not is_jumping:
 		var direction = (player.global_position - global_position).normalized()
 		velocity.x = speed * direction.x
+	face_player()
 	
 	move_and_slide()
 
@@ -73,26 +76,28 @@ func _process(delta: float) -> void:
 
 	if health <= 0:
 		print("enemy dead")
+		get_tree().call_group("level", "enemy_death")
 		queue_free()
-
+	
 	if detector.player_is == true:
 		explode_timer += delta
 		first_stage = true
 		
 	elif detector.player_is == false:
-		explode_timer -= delta
+		first_stage = false
+		explode_timer = 0.0
 	else:
 		explode_timer = max(0, explode_timer - delta)
 		
 	if first_stage == true and not second_stage and not is_exploding:
 		animation_player.play("blow1")
 		
-	if explode_timer > 0.5 and not is_exploding:
+	if explode_timer > 1 and not is_exploding:
 		first_stage = false
 		second_stage = true
 		animation_player.play("blow2")
 		
-	if explode_timer > 0.8 and not is_exploding:
+	if explode_timer > 2 and not is_exploding:
 		first_stage = false
 		second_stage = false
 		is_exploding = true
@@ -127,3 +132,11 @@ func _on_explode() -> void:
 	first_stage = false
 	second_stage = false
 	animation_player.play("explode")
+
+func _on_jump_timer_timeout() -> void:
+	var direction = (player.global_position - global_position).normalized()
+	is_jumping = true
+	velocity.y = -350 
+	velocity.x += 20 * direction.x
+	jump_timer.start()
+	is_jumping = false

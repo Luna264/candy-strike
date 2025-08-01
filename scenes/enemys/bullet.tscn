@@ -12,15 +12,15 @@ radius = 0.0
 [node name="bullet" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_y25gk")
 
-[node name="hitbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-shape = SubResource("CircleShape2D_l5glv")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.397625, 0.371275)
 texture = ExtResource("1_mkf8s")
 hframes = 12
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_l5glv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_y25gk")

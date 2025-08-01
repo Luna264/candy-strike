@@ -331,6 +331,10 @@ shape = SubResource("CircleShape2D_qqjtv")
 disabled = true
 debug_color = Color(0.788218, 0.339548, 0.681222, 0.42)
 
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
 [connection signal="explode" from="." to="." method="_on_explode"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="detector" to="detector" method="_on_area_entered"]
@@ -340,3 +344,4 @@ debug_color = Color(0.788218, 0.339548, 0.681222, 0.42)
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]

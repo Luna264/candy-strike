@@ -26,6 +26,8 @@ player=""
 base_animation_player=""
 whip_animation_player=""
 detection=""
+SLIMEspawners=""
+level_manager=""
 
 [input]
 

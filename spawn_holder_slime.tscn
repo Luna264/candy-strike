@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj50ct1x5vf46"]
+
+[ext_resource type="Script" uid="uid://3plydfi27bmp" path="res://scripts/spawn_holder_slime.gd" id="1_uqkkn"]
+
+[node name="SpawnHolderSLIME" type="Node2D"]
+script = ExtResource("1_uqkkn")
+
+[node name="Spawner" type="Node2D" parent="." groups=["SLIMEspawners"]]
+position = Vector2(109, 121)
+
+[node name="Spawner2" type="Node2D" parent="." groups=["SLIMEspawners"]]
+position = Vector2(-248, 6)
+
+[node name="Spawner3" type="Node2D" parent="." groups=["SLIMEspawners"]]
+position = Vector2(-26, 78)

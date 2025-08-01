@@ -211,7 +211,3 @@ func _on_hit_timer_timeout() -> void:
 	is_attacking = false
 	is_damaged = false
 	flash_in_progress = false
-
-
-func _on_shakescreenplayer() -> void:
-	pass # Replace with function body.

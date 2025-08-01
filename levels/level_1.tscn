@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=8 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://dr2muauq4tijd" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_gwceb"]
 [ext_resource type="PackedScene" uid="uid://cnwbmgldjbxaf" path="res://scenes/boundaryTemp.tscn" id="3_l53as"]
+[ext_resource type="Script" uid="uid://3plydfi27bmp" path="res://scripts/spawn_holder_slime.gd" id="5_n46q3"]
 [ext_resource type="Script" uid="uid://dy5gn03cyk8v7" path="res://scripts/camera_2d.gd" id="6_5ot28"]
+[ext_resource type="Script" uid="uid://b23w3mfh8ex6c" path="res://scripts/level_manager.gd" id="6_btoec"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
 
@@ -39,5 +41,33 @@ position_smoothing_enabled = true
 script = ExtResource("6_5ot28")
 follow_node = NodePath("../player")
 
+[node name="SpawnHolderSLIME" type="Node2D" parent="."]
+position = Vector2(0, 2)
+script = ExtResource("5_n46q3")
+
+[node name="Spawner" type="Node2D" parent="SpawnHolderSLIME" groups=["SLIMEspawners"]]
+position = Vector2(109, 121)
+
+[node name="Spawner2" type="Node2D" parent="SpawnHolderSLIME" groups=["SLIMEspawners"]]
+position = Vector2(-248, 6)
+
+[node name="Spawner3" type="Node2D" parent="SpawnHolderSLIME" groups=["SLIMEspawners"]]
+position = Vector2(-26, 78)
+
+[node name="WaveTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.6
+one_shot = true
+autostart = true
+
+[node name="LevelManager" type="Node2D" parent="." groups=["level_manager"]]
+script = ExtResource("6_btoec")
+
+[node name="Check" type="Timer" parent="LevelManager"]
+wait_time = 0.5
+autostart = true
+
 [connection signal="shakescreenplayer" from="player" to="Camera2D" method="_on_player_shakescreenplayer"]
 [connection signal="body_entered" from="player/candycane" to="player/candycane" method="attack_enemies"]
+[connection signal="timeout" from="WaveTimer" to="SpawnHolderSLIME" method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="LevelManager/Check" to="LevelManager" method="_on_check_timeout"]
