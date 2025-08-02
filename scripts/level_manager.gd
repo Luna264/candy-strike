@@ -5,8 +5,12 @@ extends Node2D
 @onready var check: Timer = $Check
 
 signal levelSwap
+var level_over = false
 
 func _on_check_timeout() -> void:
-	if totalDeaths >= 2:
-		emit_signal("levelSwapa")
-		print("levelover, from level manager")
+	if totalDeaths >= 1 and not level_over:
+		if level_over == true:
+			return
+		else:
+			emit_signal("levelSwap")
+			var level_over = true

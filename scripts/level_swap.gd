@@ -3,13 +3,28 @@ extends Area2D
 signal nextLevel
 
 var is_active = false
+var is_starting = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var swap: Timer = $Swap
+var current_animation = ""
+
 
 func _process(delta: float) -> void:
-	if is_active == false:
+	
+	if is_active:
+		is_starting = false
+	
+	if is_active == false and is_starting == false:
 		animation_player.play("inactive")
-	if is_active == true:
+		print("inactive")
+		
+	if is_active == true and is_starting == false:
 		animation_player.play("active")
+		print("active")
+		
+	if is_active == false and is_starting == true:
+		animation_player.play("alive")
+		print("alive")
 
 func _on_area_entered(area: Node2D) -> void:
 	if area.is_in_group("player"):
@@ -21,5 +36,9 @@ func _on_area_entered(area: Node2D) -> void:
 
 
 func _on_level_manager_level_swap() -> void:
-	animation_player.play("alive")
-	is_active = true
+		is_starting = true
+	
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "alive":
+		is_starting = false
+		is_active = true
