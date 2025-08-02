@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=9 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://dr2muauq4tijd" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_gwceb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://3plydfi27bmp" path="res://scripts/spawn_holder_slime.gd" id="5_n46q3"]
 [ext_resource type="Script" uid="uid://dy5gn03cyk8v7" path="res://scripts/camera_2d.gd" id="6_5ot28"]
 [ext_resource type="Script" uid="uid://b23w3mfh8ex6c" path="res://scripts/level_manager.gd" id="6_btoec"]
+[ext_resource type="PackedScene" uid="uid://b2dc757t46rfw" path="res://scenes/level_swap.tscn" id="7_gwceb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
 
@@ -67,7 +68,12 @@ script = ExtResource("6_btoec")
 wait_time = 0.5
 autostart = true
 
+[node name="LevelSwap" parent="." instance=ExtResource("7_gwceb")]
+position = Vector2(2, 73)
+
 [connection signal="shakescreenplayer" from="player" to="Camera2D" method="_on_player_shakescreenplayer"]
 [connection signal="body_entered" from="player/candycane" to="player/candycane" method="attack_enemies"]
+[connection signal="enemyShakescreen" from="player/candycane" to="Camera2D" method="_on_candycane_enemy_shakescreen"]
 [connection signal="timeout" from="WaveTimer" to="SpawnHolderSLIME" method="_on_wave_timer_timeout"]
+[connection signal="levelSwap" from="LevelManager" to="LevelSwap" method="_on_level_manager_level_swap"]
 [connection signal="timeout" from="LevelManager/Check" to="LevelManager" method="_on_check_timeout"]

@@ -5,6 +5,8 @@ var dmg = 0
 var knock_x = 0
 var knock_y = 0
 
+signal enemyShakescreen
+
 func hit(delta: float) -> void:
 	if player.is_crit == false:
 		dmg = 10	
@@ -22,7 +24,9 @@ func hit(delta: float) -> void:
 	print("Overlapping bodies: ", overlapping)
 	
 	for body in get_overlapping_bodies():
+		
 		if body.has_method("take_damage"):
+			emit_signal("enemyShakescreen")
 			body.take_damage(dmg, global_position, knock_x, knock_y) #passing in candy cane global position which enemy takes as attacker_position
 
 

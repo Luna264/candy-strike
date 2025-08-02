@@ -19,7 +19,6 @@ var is_crit = false
 var is_attacking = false
 var is_damaged = false
 var flash_in_progress = false
-var turningDirection = 0 #1 for right, 2 for left
 
 
 var friction = 500.0
@@ -75,21 +74,16 @@ func _process(delta: float) -> void:
 				else:
 					sprite_2d.flip_h = false # right
 		
-				if not sprite_2d.flip_h:
-					anim_player.play("c_attack_right")
-				else:
-					anim_player.play("c_attack_left")
+			if not sprite_2d.flip_h:
+				anim_player.play("c_attack_right")
+			else:
+				anim_player.play("c_attack_left")
 			
 			
 			attack.start()
 			cooldown_crit.start()
 			
 			
-	if not is_attacking:
-		if sprite_2d.flip_h:
-			anim_player.play("idle_left")
-		if not sprite_2d.flip_h:
-			anim_player.play("idle_right")
 		
 	if health <= 0:
 		queue_free()
@@ -162,8 +156,10 @@ func _physics_process(delta: float) -> void:
 
 		if direction == 1 and is_attacking == false:
 			sprite_2d.flip_h = false
+			anim_player.play("idle_right")
 		if direction == -1 and is_attacking == false:
 			sprite_2d.flip_h = true
+			anim_player.play("idle_left")
 	elif knockback_toggle == true:
 		direction = 0 #no moving when knockback is enabled
 
