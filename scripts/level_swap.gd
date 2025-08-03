@@ -16,15 +16,15 @@ func _process(delta: float) -> void:
 	
 	if is_active == false and is_starting == false:
 		animation_player.play("inactive")
-		print("inactive")
+
 		
 	if is_active == true and is_starting == false:
 		animation_player.play("active")
-		print("active")
+
 		
 	if is_active == false and is_starting == true:
 		animation_player.play("alive")
-		print("alive")
+
 
 func _on_area_entered(area: Node2D) -> void:
 	if area.is_in_group("player"):

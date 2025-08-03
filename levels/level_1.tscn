@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=12 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://dr2muauq4tijd" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_gwceb"]
@@ -7,10 +7,33 @@
 [ext_resource type="Script" uid="uid://dy5gn03cyk8v7" path="res://scripts/camera_2d.gd" id="6_5ot28"]
 [ext_resource type="Script" uid="uid://b23w3mfh8ex6c" path="res://scripts/level_manager.gd" id="6_btoec"]
 [ext_resource type="PackedScene" uid="uid://b2dc757t46rfw" path="res://scenes/level_swap.tscn" id="7_gwceb"]
+[ext_resource type="Texture2D" uid="uid://hbx21hdxsbub" path="res://assets/sprites/healthbarUnder.png" id="8_08mmt"]
+[ext_resource type="Texture2D" uid="uid://cqnhuei2j5uas" path="res://assets/sprites/healthbarProgress.png" id="9_5ot28"]
+[ext_resource type="Script" uid="uid://d22wusqsc3ni0" path="res://scripts/playerhealth.gd" id="10_aerfg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
 
 [node name="Level_1" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("player")]
+z_index = 2
+anchors_preset = -1
+anchor_left = -0.057
+anchor_top = 0.074
+anchor_right = -0.057
+anchor_bottom = 0.074
+offset_left = -116.336
+offset_top = -23.952
+offset_right = -44.336
+offset_bottom = 16.048
+scale = Vector2(1.55283, 1.55283)
+value = 100.0
+texture_under = ExtResource("8_08mmt")
+texture_progress = ExtResource("9_5ot28")
+script = ExtResource("10_aerfg")
+player = NodePath("../../player")
 
 [node name="player" parent="." instance=ExtResource("1_btoec")]
 position = Vector2(-162, 92)
@@ -42,38 +65,40 @@ position_smoothing_enabled = true
 script = ExtResource("6_5ot28")
 follow_node = NodePath("../player")
 
-[node name="SpawnHolderSLIME" type="Node2D" parent="."]
-position = Vector2(0, 2)
-script = ExtResource("5_n46q3")
+[node name="GameManagement" type="Node" parent="."]
 
-[node name="Spawner" type="Node2D" parent="SpawnHolderSLIME" groups=["SLIMEspawners"]]
-position = Vector2(109, 121)
+[node name="LevelSwap" parent="GameManagement" instance=ExtResource("7_gwceb")]
+position = Vector2(16, 66)
 
-[node name="Spawner2" type="Node2D" parent="SpawnHolderSLIME" groups=["SLIMEspawners"]]
-position = Vector2(-248, 6)
+[node name="LevelManager" type="Node2D" parent="GameManagement" groups=["level_manager"]]
+script = ExtResource("6_btoec")
 
-[node name="Spawner3" type="Node2D" parent="SpawnHolderSLIME" groups=["SLIMEspawners"]]
-position = Vector2(-26, 78)
+[node name="Check" type="Timer" parent="GameManagement/LevelManager"]
+wait_time = 0.5
+autostart = true
 
-[node name="WaveTimer" type="Timer" parent="."]
+[node name="WaveTimer" type="Timer" parent="GameManagement"]
 unique_name_in_owner = true
 wait_time = 0.6
 one_shot = true
 autostart = true
 
-[node name="LevelManager" type="Node2D" parent="." groups=["level_manager"]]
-script = ExtResource("6_btoec")
+[node name="SpawnHolderSLIME" type="Node2D" parent="GameManagement"]
+position = Vector2(0, 2)
+script = ExtResource("5_n46q3")
 
-[node name="Check" type="Timer" parent="LevelManager"]
-wait_time = 0.5
-autostart = true
+[node name="Spawner" type="Node2D" parent="GameManagement/SpawnHolderSLIME" groups=["SLIMEspawners"]]
+position = Vector2(109, 121)
 
-[node name="LevelSwap" parent="." instance=ExtResource("7_gwceb")]
-position = Vector2(2, 73)
+[node name="Spawner2" type="Node2D" parent="GameManagement/SpawnHolderSLIME" groups=["SLIMEspawners"]]
+position = Vector2(-248, 6)
+
+[node name="Spawner3" type="Node2D" parent="GameManagement/SpawnHolderSLIME" groups=["SLIMEspawners"]]
+position = Vector2(-26, 78)
 
 [connection signal="shakescreenplayer" from="player" to="Camera2D" method="_on_player_shakescreenplayer"]
 [connection signal="body_entered" from="player/candycane" to="player/candycane" method="attack_enemies"]
 [connection signal="enemyShakescreen" from="player/candycane" to="Camera2D" method="_on_candycane_enemy_shakescreen"]
-[connection signal="timeout" from="WaveTimer" to="SpawnHolderSLIME" method="_on_wave_timer_timeout"]
-[connection signal="levelSwap" from="LevelManager" to="LevelSwap" method="_on_level_manager_level_swap"]
-[connection signal="timeout" from="LevelManager/Check" to="LevelManager" method="_on_check_timeout"]
+[connection signal="levelSwap" from="GameManagement/LevelManager" to="GameManagement/LevelSwap" method="_on_level_manager_level_swap"]
+[connection signal="timeout" from="GameManagement/LevelManager/Check" to="GameManagement/LevelManager" method="_on_check_timeout"]
+[connection signal="timeout" from="GameManagement/WaveTimer" to="GameManagement/SpawnHolderSLIME" method="_on_wave_timer_timeout"]

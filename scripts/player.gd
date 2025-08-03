@@ -14,6 +14,7 @@ extends CharacterBody2D
 @onready var _player_animation_player: AnimationPlayer = $AnimationPlayer
 
 signal shakescreenplayer
+signal healthChanged
 
 var is_crit = false
 var is_attacking = false
@@ -29,7 +30,8 @@ var knockback = Vector2.ZERO
 var knockback_toggle = false
 var knockback_timer = 0.0
 
-var health = 150
+var health = 100
+var maxHealth = 100
 
 
 func _process(delta: float) -> void:
@@ -193,13 +195,12 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:           #take damage play
 		hit_timer.start()		
 		
 
-func _on_enemy_damage_output(damage_output) -> void: #take_damage function for player basically
-		
+func _on_slime_damage_output(damage_output) -> void: #take_damage frm slime
 	is_attacking = false 
 	is_damaged = true
-	
-	print("being attacked")
 	health = health - damage_output
+	healthChanged.emit()
+
 
 
 func update_animation(animation):
