@@ -37,7 +37,7 @@ var knockback = Vector2.ZERO
 var knockback_toggle = false
 var knockback_timer = 0.0
 
-var health = 12
+var health = 100
 var maxHealth = 100
 
 
@@ -112,7 +112,7 @@ var was_on_floor = false
 
 func _physics_process(delta: float) -> void:
 	
-	
+	print("knockback_timer:", knockback_timer, " knockback_toggle:", knockback_toggle, " velocity.x:", velocity.x)
 	
 	var direction := Input.get_axis("left", "right")
 	
@@ -125,9 +125,9 @@ func _physics_process(delta: float) -> void:
 		knockback_toggle = true
 		
 	if knockback_timer <= 0.0: #no knockback 
+		knockback_toggle = false	
 		knockback = Vector2.ZERO
-		velocity.x = move_toward(velocity.x, 0, friction * delta)
-		knockback_toggle = false		
+	
 		
 		
 	if not is_on_floor():
@@ -209,6 +209,7 @@ func _on_slime_damage_output(damage_output) -> void: #take_damage frm slime
 	is_attacking = false 
 	is_damaged = true
 	health = health - damage_output
+	hit_timer.start()
 	healthChanged.emit()
 
 
