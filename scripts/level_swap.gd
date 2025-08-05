@@ -5,7 +5,6 @@ signal nextLevel
 var is_active = false
 var is_starting = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var swap: Timer = $Swap
 var current_animation = ""
 
 

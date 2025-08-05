@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="candy strike"
-run/main_scene="uid://wpb33gohd6n1"
+run/main_scene="uid://brx6k5gbfq24t"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 
 [editor_plugins]
 

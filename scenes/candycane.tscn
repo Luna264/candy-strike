@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://djeboigret4lq"]
+[gd_scene load_steps=15 format=3 uid="uid://djeboigret4lq"]
 
 [ext_resource type="Script" uid="uid://b0i1ouivcfnef" path="res://scripts/candycane.gd" id="1_5t7kv"]
 [ext_resource type="Texture2D" uid="uid://b0a8uhc4gcgfd" path="res://assets/sprites/fruit.png" id="1_ijo3b"]
+[ext_resource type="Texture2D" uid="uid://brj1k7gty7kd8" path="res://assets/sprites/candycane.png" id="3_abuwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ad8d1"]
 size = Vector2(88.4317, 28.6724)
@@ -104,6 +105,42 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector2(1.89788, 1.68368)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Candycane:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Candycane:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Candycane:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-29.3903, -18.7029)]
+}
 
 [sub_resource type="Animation" id="Animation_5t7kv"]
 resource_name = "attackbase"
@@ -203,7 +240,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_pugop"]
 resource_name = "b_attack_left"
-length = 0.5
+length = 0.28
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -302,10 +339,46 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector2(1.89788, 1.47302)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Candycane:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Candycane:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.258127),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Candycane:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-29.3903, -18.7029)]
+}
 
 [sub_resource type="Animation" id="Animation_ad8d1"]
 resource_name = "b_attack_right"
-length = 0.5
+length = 0.28
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -342,37 +415,13 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.00510233, 0.00510233]
 }
-tracks/3/type = "value"
+tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Fruit:position")
+tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.29, 0.47),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(5, -12), Vector2(11, -11), Vector2(18, -13)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Fruit:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.47, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [2, 5]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0.0333333),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -380,29 +429,53 @@ tracks/5/keys = {
 "method": &"hit"
 }]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("CollisionShape2D:disabled")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Candycane:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Candycane:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.28),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Fruit:scale")
+tracks/7/path = NodePath("Candycane:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1.89788, 5.68603)]
+"values": [Vector2(-24.0466, -18.7029)]
 }
 
 [sub_resource type="Animation" id="Animation_w5gse"]
@@ -672,6 +745,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(1.89788, 2.15534)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Candycane:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_fg7qy"]
 resource_name = "idle_right"
@@ -748,6 +833,18 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(1.89788, 7.10461)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Candycane:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_abuwl"]
 _data = {
@@ -782,11 +879,19 @@ libraries = {
 autoplay = "idle_right"
 
 [node name="Fruit" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(11, -11)
 scale = Vector2(1.89788, 1.68368)
 texture = ExtResource("1_ijo3b")
 hframes = 4
 vframes = 4
+
+[node name="Candycane" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-29.3903, -18.7029)
+texture = ExtResource("3_abuwl")
+hframes = 8
+frame = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

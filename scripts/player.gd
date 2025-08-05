@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var cooldown_crit: Timer = $CooldownCrit
 @onready var hit_timer: Timer = $HitTimer
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var sprite_2d: Sprite2D = $Player
 
 @onready var candycane: Area2D = $candycane
 
