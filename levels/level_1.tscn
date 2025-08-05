@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=13 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://dr2muauq4tijd" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_gwceb"]
@@ -10,13 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://hbx21hdxsbub" path="res://assets/sprites/healthbarUnder.png" id="8_08mmt"]
 [ext_resource type="Texture2D" uid="uid://cqnhuei2j5uas" path="res://assets/sprites/healthbarProgress.png" id="9_5ot28"]
 [ext_resource type="Script" uid="uid://d22wusqsc3ni0" path="res://scripts/playerhealth.gd" id="10_aerfg"]
+[ext_resource type="Script" uid="uid://bxxxkbuwialt3" path="res://scripts/retry.gd" id="11_5ot28"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
 
 [node name="Level_1" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_btoec")]
-position = Vector2(-162, 92)
 collision_mask = 255
 
 [node name="candycane" parent="player" instance=ExtResource("2_gwceb")]
@@ -24,17 +24,23 @@ position = Vector2(19, 8)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="player"]
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="player/CanvasLayer" node_paths=PackedStringArray("player")]
-visible = false
+[node name="Control" type="Control" parent="player/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
 offset_left = 11.0
 offset_top = 13.0
-offset_right = 152.0
-offset_bottom = 101.0
+offset_right = 51.0
+offset_bottom = 53.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="player/CanvasLayer/Control" node_paths=PackedStringArray("player")]
+visible = false
+offset_right = 141.0
+offset_bottom = 88.0
 scale = Vector2(3.71961, 3.751)
 texture_under = ExtResource("8_08mmt")
 texture_progress = ExtResource("9_5ot28")
 script = ExtResource("10_aerfg")
-player = NodePath("../..")
+player = NodePath("../../..")
 
 [node name="floor" type="StaticBody2D" parent="."]
 
@@ -90,9 +96,45 @@ position = Vector2(-248, 6)
 [node name="Spawner3" type="Node2D" parent="SlimeSpawners/SpawnHolderSLIME" groups=["SLIMEspawners"]]
 position = Vector2(-26, 78)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+custom_minimum_size = Vector2(0, 2.61)
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.506
+anchor_bottom = 0.5
+offset_top = -1.305
+offset_right = -11.5201
+offset_bottom = 1.30499
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="you died" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -41.0
+offset_top = -59.695
+offset_right = 822.0
+offset_bottom = 53.305
+theme_override_font_sizes/font_size = 19
+text = "you died!"
+
+[node name="Retry" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = -95.0
+offset_top = -28.695
+offset_right = 107.0
+offset_bottom = 28.305
+theme_override_font_sizes/font_size = 29
+text = "retry"
+script = ExtResource("11_5ot28")
+
 [connection signal="shakescreenplayer" from="player" to="Camera2D" method="_on_player_shakescreenplayer"]
 [connection signal="body_entered" from="player/candycane" to="player/candycane" method="attack_enemies"]
 [connection signal="enemyShakescreen" from="player/candycane" to="Camera2D" method="_on_candycane_enemy_shakescreen"]
 [connection signal="levelSwap" from="LevelManager" to="LevelSwap" method="_on_level_manager_level_swap"]
 [connection signal="timeout" from="LevelManager/Check" to="LevelManager" method="_on_check_timeout"]
 [connection signal="timeout" from="SlimeSpawners/WaveTimer" to="SlimeSpawners/SpawnHolderSLIME" method="_on_wave_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/Control/Retry" to="CanvasLayer/Control/Retry" method="_on_pressed"]

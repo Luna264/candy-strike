@@ -12,6 +12,12 @@ extends CharacterBody2D
 
 @onready var anim_player = candycane.get_node("AnimationPlayer")
 @onready var _player_animation_player: AnimationPlayer = $AnimationPlayer
+@onready var die_timer: Timer = $DieTimer
+@onready var collision_shape_2d_hurtbox: CollisionShape2D = $hurtbox/CollisionShape2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var retry_screen: CanvasLayer = $"../CanvasLayer"
+
+
 
 signal shakescreenplayer
 signal healthChanged
@@ -20,6 +26,7 @@ var is_crit = false
 var is_attacking = false
 var is_damaged = false
 var flash_in_progress = false
+var dead = false
 
 
 var friction = 500.0
@@ -30,7 +37,7 @@ var knockback = Vector2.ZERO
 var knockback_toggle = false
 var knockback_timer = 0.0
 
-var health = 100
+var health = 12
 var maxHealth = 100
 
 
@@ -87,8 +94,10 @@ func _process(delta: float) -> void:
 			
 			
 		
-	if health <= 0:
-		queue_free()
+	if health <= 0 and not dead:
+		die()
+	if dead:
+		return
 
 func _on_attack_timeout() -> void:
 	is_attacking = false
@@ -117,6 +126,7 @@ func _physics_process(delta: float) -> void:
 		
 	if knockback_timer <= 0.0: #no knockback 
 		knockback = Vector2.ZERO
+		velocity.x = move_toward(velocity.x, 0, friction * delta)
 		knockback_toggle = false		
 		
 		
@@ -228,3 +238,18 @@ func _on_hit_timer_timeout() -> void:
 	is_attacking = false
 	is_damaged = false
 	flash_in_progress = false
+	knockback = Vector2.ZERO
+
+func die():
+	if dead:
+		return
+	dead = true
+	Engine.time_scale = 0.125
+	collision_shape_2d.disabled = true
+	collision_shape_2d_hurtbox.disabled = true
+	die_timer.start()
+
+func _on_die_timer_timeout() -> void:
+	Engine.time_scale = 1
+	queue_free()
+	retry_screen.visible = true
