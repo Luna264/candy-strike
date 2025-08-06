@@ -7,6 +7,10 @@ var is_shattering = false
 
 signal shatter
 
+func _ready() -> void:
+	global_position = Vector2(50, 106)
+
+
 func _physics_process(delta: float) -> void:
 	if is_breaking == true:
 		breaking_timer += delta
@@ -35,8 +39,3 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 
 func _on_shatter() -> void:
 	animation_player.play("shattering")
-
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "shattering":
-		queue_free()

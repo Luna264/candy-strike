@@ -102,7 +102,7 @@ func _process(delta: float) -> void:
 func _on_attack_timeout() -> void:
 	is_attacking = false
 	is_damaged = false
-	update_animation("RESET")
+	update_animation("idle")
 	if sprite_2d.flip_h:
 		anim_player.play("idle_left")
 	if not sprite_2d.flip_h:
@@ -111,6 +111,10 @@ func _on_attack_timeout() -> void:
 var was_on_floor = false
 
 func _physics_process(delta: float) -> void:
+	
+	if flash_in_progress == true:
+		update_animation("hit")
+	
 	
 	print("knockback_timer:", knockback_timer, " knockback_toggle:", knockback_toggle, " velocity.x:", velocity.x)
 	
