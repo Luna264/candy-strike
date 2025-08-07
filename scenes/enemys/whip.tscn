@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cu1w7icylyldk" path="res://scenes/enemys/whipChildren/base.tscn" id="2_xpmi8"]
 
 [node name="whipMain" instance=ExtResource("1_u0fn8")]
+z_index = 1
+scale = Vector2(1.00292, 1)
 
 [node name="whipBase" parent="." index="4" instance=ExtResource("2_xpmi8")]
 position = Vector2(0, -1)

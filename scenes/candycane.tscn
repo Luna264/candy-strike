@@ -859,9 +859,9 @@ _data = {
 &"idle_right": SubResource("Animation_fg7qy")
 }
 
-[node name="candycane" type="Area2D"]
+[node name="candycane" type="Area2D" groups=["candycane"]]
 position = Vector2(-891, 1)
-scale = Vector2(0.748545, 0.748545)
+scale = Vector2(1.60093, 1.60093)
 collision_layer = 2
 collision_mask = 255
 script = ExtResource("1_5t7kv")

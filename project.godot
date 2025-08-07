@@ -33,6 +33,7 @@ whip_animation_player=""
 detection=""
 SLIMEspawners=""
 level_manager=""
+candycane=""
 
 [input]
 

@@ -282,6 +282,8 @@ _data = {
 radius = 76.0
 
 [node name="chococake" type="CharacterBody2D" groups=["enemy"]]
+z_index = 1
+scale = Vector2(1, 0.987571)
 script = ExtResource("1_if2gg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -5,12 +5,17 @@ extends Camera2D
 @export var max_rot : float = 0.1 
 @export var follow_node : Node2D 
 
+@onready var player = get_tree().get_first_node_in_group("player")
+@onready var candycane = get_tree().get_first_node_in_group("candycane")
 
 
 var trauma : float = 0.0
 var trauma_power : int = 2 
 
 
+func _ready() -> void:
+	player.shakescreenplayer.connect(_on_player_shakescreenplayer)
+	candycane.enemyShakescreen.connect(_on_candycane_enemy_shakescreen)
 
 func _process(delta : float) -> void:
 	if follow_node: 

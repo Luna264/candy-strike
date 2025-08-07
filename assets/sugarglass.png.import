@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqnhuei2j5uas"
-path="res://.godot/imported/healthbarProgress.png-0cefa24fbf4cf153006fdbb94ca1395d.ctex"
+uid="uid://deby04kxwltvr"
+path="res://.godot/imported/sugarglass.png-91725a2afc6f207a88aafff45b69f482.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/healthbarProgress.png"
-dest_files=["res://.godot/imported/healthbarProgress.png-0cefa24fbf4cf153006fdbb94ca1395d.ctex"]
+source_file="res://assets/sugarglass.png"
+dest_files=["res://.godot/imported/sugarglass.png-91725a2afc6f207a88aafff45b69f482.ctex"]
 
 [params]
 

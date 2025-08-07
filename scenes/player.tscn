@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://dwhsjplpg355a" path="res://shaders/player.gdshader" id="2_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
-size = Vector2(29.1136, 33)
+size = Vector2(29.3234, 35.2508)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2els"]
 shader = ExtResource("2_qhqgy")
@@ -77,7 +77,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_fjrip"]
 resource_name = "attack"
-length = 0.5
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -168,10 +168,11 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
-size = Vector2(29, 33)
+size = Vector2(29.209, 35.2508)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-scale = Vector2(0.657506, 0.657506)
+z_index = 2
+scale = Vector2(0.737556, 0.737556)
 script = ExtResource("1_g2els")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
@@ -179,7 +180,7 @@ wait_time = 0.15
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -0.5)
+position = Vector2(0.604494, 0.625392)
 scale = Vector2(0.996098, 1)
 shape = SubResource("RectangleShape2D_g2els")
 debug_color = Color(0.827121, 0.00154134, 0.951467, 0.42)
@@ -214,7 +215,7 @@ one_shot = true
 position = Vector2(-0.696641, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
-position = Vector2(1.19664, -0.5)
+position = Vector2(1.30113, 0.625392)
 shape = SubResource("RectangleShape2D_qhqgy")
 debug_color = Color(0, 0.629523, 0.481748, 0.42)
 

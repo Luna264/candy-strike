@@ -1,20 +1,115 @@
-[gd_scene load_steps=13 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=14 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_gwceb"]
 [ext_resource type="PackedScene" uid="uid://cnwbmgldjbxaf" path="res://scenes/boundaryTemp.tscn" id="3_l53as"]
 [ext_resource type="Script" uid="uid://3plydfi27bmp" path="res://scripts/spawn_holder_slime.gd" id="5_n46q3"]
 [ext_resource type="Script" uid="uid://dy5gn03cyk8v7" path="res://scripts/camera_2d.gd" id="6_5ot28"]
+[ext_resource type="Texture2D" uid="uid://dix8dnnj7oodf" path="res://assets/sprites/healthbarUNDER.png" id="6_aerfg"]
 [ext_resource type="Script" uid="uid://b23w3mfh8ex6c" path="res://scripts/level_manager.gd" id="6_btoec"]
 [ext_resource type="PackedScene" uid="uid://b2dc757t46rfw" path="res://scenes/level_swap.tscn" id="7_gwceb"]
-[ext_resource type="Texture2D" uid="uid://hbx21hdxsbub" path="res://assets/sprites/healthbarUnder.png" id="8_08mmt"]
-[ext_resource type="Texture2D" uid="uid://cqnhuei2j5uas" path="res://assets/sprites/healthbarProgress.png" id="9_5ot28"]
+[ext_resource type="Texture2D" uid="uid://sboeb1b8nqkl" path="res://assets/sprites/healthbarOVER..png" id="7_nmsli"]
 [ext_resource type="Script" uid="uid://d22wusqsc3ni0" path="res://scripts/playerhealth.gd" id="10_aerfg"]
 [ext_resource type="Script" uid="uid://bxxxkbuwialt3" path="res://scripts/retry.gd" id="11_5ot28"]
+[ext_resource type="PackedScene" uid="uid://cv7u13y5ejaoy" path="res://scenes/enviornment/glassplatform.tscn" id="12_aerfg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
 
 [node name="Level_1" type="Node2D"]
+position = Vector2(-234, 5)
+
+[node name="gui" type="Node" parent="."]
+
+[node name="retry" type="CanvasLayer" parent="gui"]
+unique_name_in_owner = true
+visible = false
+
+[node name="Control" type="Control" parent="gui/retry"]
+custom_minimum_size = Vector2(0, 2.61)
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.506
+anchor_bottom = 0.5
+offset_left = -6.10352e-05
+offset_top = -1.30499
+offset_right = -0.00012207
+offset_bottom = 1.30499
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="you died" type="Label" parent="gui/retry/Control"]
+layout_mode = 0
+offset_left = -41.0
+offset_top = -59.695
+offset_right = 822.0
+offset_bottom = 53.305
+theme_override_font_sizes/font_size = 19
+text = "you died!"
+
+[node name="Retry" type="Button" parent="gui/retry/Control"]
+layout_mode = 0
+offset_left = -95.0
+offset_top = -28.695
+offset_right = 107.0
+offset_bottom = 28.305
+theme_override_font_sizes/font_size = 29
+text = "retry"
+script = ExtResource("11_5ot28")
+
+[node name="healthbar" type="CanvasLayer" parent="gui"]
+
+[node name="Control" type="Control" parent="gui/healthbar"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 51.0
+offset_bottom = 53.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="gui/healthbar/Control" node_paths=PackedStringArray("player")]
+layout_mode = 0
+offset_right = 141.0
+offset_bottom = 88.0
+scale = Vector2(3.71961, 3.751)
+texture_under = ExtResource("6_aerfg")
+texture_progress = ExtResource("7_nmsli")
+script = ExtResource("10_aerfg")
+player = NodePath("../../../../player")
+
+[node name="level" type="Node" parent="."]
+
+[node name="LevelSwap" parent="level" instance=ExtResource("7_gwceb")]
+position = Vector2(16, 66)
+
+[node name="LevelManager" type="Node2D" parent="level" groups=["level_manager"]]
+script = ExtResource("6_btoec")
+
+[node name="Check" type="Timer" parent="level/LevelManager"]
+wait_time = 0.5
+autostart = true
+
+[node name="SlimeSpawners" type="Node" parent="level"]
+
+[node name="WaveTimer" type="Timer" parent="level/SlimeSpawners"]
+unique_name_in_owner = true
+wait_time = 0.6
+one_shot = true
+autostart = true
+
+[node name="SpawnHolderSLIME" type="Node2D" parent="level/SlimeSpawners"]
+position = Vector2(0, 2)
+script = ExtResource("5_n46q3")
+
+[node name="Spawner" type="Node2D" parent="level/SlimeSpawners/SpawnHolderSLIME" groups=["SLIMEspawners"]]
+position = Vector2(109, 121)
+
+[node name="Spawner2" type="Node2D" parent="level/SlimeSpawners/SpawnHolderSLIME" groups=["SLIMEspawners"]]
+position = Vector2(-248, 6)
+
+[node name="Spawner3" type="Node2D" parent="level/SlimeSpawners/SpawnHolderSLIME" groups=["SLIMEspawners"]]
+position = Vector2(-26, 78)
 
 [node name="floor" type="StaticBody2D" parent="."]
 
@@ -31,110 +126,27 @@ position = Vector2(38, -17)
 position = Vector2(-134, -106)
 scale = Vector2(20.6867, 1.0855)
 
-[node name="LevelSwap" parent="." instance=ExtResource("7_gwceb")]
-position = Vector2(16, 66)
-
-[node name="LevelManager" type="Node2D" parent="." groups=["level_manager"]]
-script = ExtResource("6_btoec")
-
-[node name="Check" type="Timer" parent="LevelManager"]
-wait_time = 0.5
-autostart = true
-
-[node name="SlimeSpawners" type="Node" parent="."]
-
-[node name="WaveTimer" type="Timer" parent="SlimeSpawners"]
-unique_name_in_owner = true
-wait_time = 0.6
-one_shot = true
-autostart = true
-
-[node name="SpawnHolderSLIME" type="Node2D" parent="SlimeSpawners"]
-position = Vector2(0, 2)
-script = ExtResource("5_n46q3")
-
-[node name="Spawner" type="Node2D" parent="SlimeSpawners/SpawnHolderSLIME" groups=["SLIMEspawners"]]
-position = Vector2(109, 121)
-
-[node name="Spawner2" type="Node2D" parent="SlimeSpawners/SpawnHolderSLIME" groups=["SLIMEspawners"]]
-position = Vector2(-248, 6)
-
-[node name="Spawner3" type="Node2D" parent="SlimeSpawners/SpawnHolderSLIME" groups=["SLIMEspawners"]]
-position = Vector2(-26, 78)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-custom_minimum_size = Vector2(0, 2.61)
-layout_mode = 3
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.506
-anchor_bottom = 0.5
-offset_left = -6.10352e-05
-offset_top = -1.30499
-offset_right = -0.00012207
-offset_bottom = 1.30499
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="you died" type="Label" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = -41.0
-offset_top = -59.695
-offset_right = 822.0
-offset_bottom = 53.305
-theme_override_font_sizes/font_size = 19
-text = "you died!"
-
-[node name="Retry" type="Button" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = -95.0
-offset_top = -28.695
-offset_right = 107.0
-offset_bottom = 28.305
-theme_override_font_sizes/font_size = 29
-text = "retry"
-script = ExtResource("11_5ot28")
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer2"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 11.0
-offset_top = 13.0
-offset_right = 51.0
-offset_bottom = 53.0
-metadata/_edit_use_anchors_ = true
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer2/Control" node_paths=PackedStringArray("player")]
-layout_mode = 0
-offset_right = 141.0
-offset_bottom = 88.0
-scale = Vector2(3.71961, 3.751)
-texture_under = ExtResource("8_08mmt")
-texture_progress = ExtResource("9_5ot28")
-script = ExtResource("10_aerfg")
-player = NodePath("../../../player")
-
 [node name="player" parent="." instance=ExtResource("1_btoec")]
 position = Vector2(-169, 97)
+scale = Vector2(0.657506, 0.657506)
 
 [node name="candycane" parent="player" instance=ExtResource("2_gwceb")]
-position = Vector2(46, 9)
+position = Vector2(48.6688, 9.1254)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-position = Vector2(155.132, -34.9807)
-scale = Vector2(2.18319, 2.18319)
-zoom = Vector2(2.995, 2.995)
+position = Vector2(1.5209, -41.0643)
+rotation = -3.14159
+scale = Vector2(13.0643, -1.98949)
+zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 script = ExtResource("6_5ot28")
 
-[connection signal="levelSwap" from="LevelManager" to="LevelSwap" method="_on_level_manager_level_swap"]
-[connection signal="timeout" from="LevelManager/Check" to="LevelManager" method="_on_check_timeout"]
-[connection signal="timeout" from="SlimeSpawners/WaveTimer" to="SlimeSpawners/SpawnHolderSLIME" method="_on_wave_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/Control/Retry" to="CanvasLayer/Control/Retry" method="_on_pressed"]
+[node name="glassplatform" parent="." instance=ExtResource("12_aerfg")]
+position = Vector2(-91, 100)
+
+[connection signal="pressed" from="gui/retry/Control/Retry" to="gui/retry/Control/Retry" method="_on_pressed"]
+[connection signal="levelSwap" from="level/LevelManager" to="level/LevelSwap" method="_on_level_manager_level_swap"]
+[connection signal="timeout" from="level/LevelManager/Check" to="level/LevelManager" method="_on_check_timeout"]
+[connection signal="timeout" from="level/SlimeSpawners/WaveTimer" to="level/SlimeSpawners/SpawnHolderSLIME" method="_on_wave_timer_timeout"]
 [connection signal="shakescreenplayer" from="player" to="player/Camera2D" method="_on_player_shakescreenplayer"]
 [connection signal="enemyShakescreen" from="player/candycane" to="player/Camera2D" method="_on_candycane_enemy_shakescreen"]

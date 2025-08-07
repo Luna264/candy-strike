@@ -107,6 +107,7 @@ size = Vector2(14, 11)
 size = Vector2(16, 11.75)
 
 [node name="slime" type="CharacterBody2D" groups=["enemy"]]
+z_index = 1
 script = ExtResource("1_ya1je")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -127,7 +128,7 @@ autoplay = "idle"
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_md0e3")
 
-[node name="hitbox" type="Area2D" parent="."]
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(0, 4.875)

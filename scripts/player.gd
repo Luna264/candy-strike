@@ -16,9 +16,7 @@ extends CharacterBody2D
 @onready var die_timer: Timer = $DieTimer
 @onready var collision_shape_2d_hurtbox: CollisionShape2D = $hurtbox/CollisionShape2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
-@onready var retry_screen: CanvasLayer = $"../CanvasLayer"
-
-
+@onready var retry_screen: CanvasLayer = %retry
 
 
 signal shakescreenplayer
@@ -32,7 +30,7 @@ var dead = false
 
 
 var friction = 500.0
-const SPEED = 150.0
+const SPEED = 135.0
 const JUMP_VELOCITY = -300.0
 
 var knockback = Vector2.ZERO
@@ -182,7 +180,7 @@ func _physics_process(delta: float) -> void:
 	
 func _knockback(enemyPosition: Vector2):
 	var knockbackDirection = (global_position - enemyPosition).normalized() #same idea asin enemy script with direction
-	knockback.x = knockbackDirection.x * 200 #not setting velocity here becaause that is abad idea
+	knockback.x = knockbackDirection.x * 100 #not setting velocity here becaause that is abad idea
 	knockback_timer = 0.2 #how long knockback will last
 
 	
