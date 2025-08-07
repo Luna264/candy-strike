@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://wpb33gohd6n1"]
 
-[ext_resource type="PackedScene" uid="uid://dr2muauq4tijd" path="res://scenes/player.tscn" id="1_btoec"]
+[ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_gwceb"]
 [ext_resource type="PackedScene" uid="uid://cnwbmgldjbxaf" path="res://scenes/boundaryTemp.tscn" id="3_l53as"]
 [ext_resource type="Script" uid="uid://3plydfi27bmp" path="res://scripts/spawn_holder_slime.gd" id="5_n46q3"]
@@ -16,32 +16,6 @@
 
 [node name="Level_1" type="Node2D"]
 
-[node name="player" parent="." instance=ExtResource("1_btoec")]
-collision_mask = 255
-
-[node name="candycane" parent="player" instance=ExtResource("2_gwceb")]
-position = Vector2(19, 8)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="player"]
-
-[node name="Control" type="Control" parent="player/CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 11.0
-offset_top = 13.0
-offset_right = 51.0
-offset_bottom = 53.0
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="player/CanvasLayer/Control" node_paths=PackedStringArray("player")]
-visible = false
-offset_right = 141.0
-offset_bottom = 88.0
-scale = Vector2(3.71961, 3.751)
-texture_under = ExtResource("8_08mmt")
-texture_progress = ExtResource("9_5ot28")
-script = ExtResource("10_aerfg")
-player = NodePath("../../..")
-
 [node name="floor" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
@@ -56,14 +30,6 @@ position = Vector2(38, -17)
 [node name="boundary3" parent="walls" instance=ExtResource("3_l53as")]
 position = Vector2(-134, -106)
 scale = Vector2(20.6867, 1.0855)
-
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_node")]
-position = Vector2(-67, 74)
-scale = Vector2(1.43546, 1.43546)
-zoom = Vector2(2.995, 2.995)
-position_smoothing_enabled = true
-script = ExtResource("6_5ot28")
-follow_node = NodePath("../player")
 
 [node name="LevelSwap" parent="." instance=ExtResource("7_gwceb")]
 position = Vector2(16, 66)
@@ -106,8 +72,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.506
 anchor_bottom = 0.5
-offset_top = -1.305
-offset_right = -11.5201
+offset_left = -6.10352e-05
+offset_top = -1.30499
+offset_right = -0.00012207
 offset_bottom = 1.30499
 grow_horizontal = 2
 grow_vertical = 2
@@ -131,10 +98,43 @@ theme_override_font_sizes/font_size = 29
 text = "retry"
 script = ExtResource("11_5ot28")
 
-[connection signal="shakescreenplayer" from="player" to="Camera2D" method="_on_player_shakescreenplayer"]
-[connection signal="body_entered" from="player/candycane" to="player/candycane" method="attack_enemies"]
-[connection signal="enemyShakescreen" from="player/candycane" to="Camera2D" method="_on_candycane_enemy_shakescreen"]
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 51.0
+offset_bottom = 53.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer2/Control" node_paths=PackedStringArray("player")]
+layout_mode = 0
+offset_right = 141.0
+offset_bottom = 88.0
+scale = Vector2(3.71961, 3.751)
+texture_under = ExtResource("8_08mmt")
+texture_progress = ExtResource("9_5ot28")
+script = ExtResource("10_aerfg")
+player = NodePath("../../../player")
+
+[node name="player" parent="." instance=ExtResource("1_btoec")]
+position = Vector2(-169, 97)
+
+[node name="candycane" parent="player" instance=ExtResource("2_gwceb")]
+position = Vector2(46, 9)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(155.132, -34.9807)
+scale = Vector2(2.18319, 2.18319)
+zoom = Vector2(2.995, 2.995)
+position_smoothing_enabled = true
+script = ExtResource("6_5ot28")
+
 [connection signal="levelSwap" from="LevelManager" to="LevelSwap" method="_on_level_manager_level_swap"]
 [connection signal="timeout" from="LevelManager/Check" to="LevelManager" method="_on_check_timeout"]
 [connection signal="timeout" from="SlimeSpawners/WaveTimer" to="SlimeSpawners/SpawnHolderSLIME" method="_on_wave_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/Control/Retry" to="CanvasLayer/Control/Retry" method="_on_pressed"]
+[connection signal="shakescreenplayer" from="player" to="player/Camera2D" method="_on_player_shakescreenplayer"]
+[connection signal="enemyShakescreen" from="player/candycane" to="player/Camera2D" method="_on_candycane_enemy_shakescreen"]

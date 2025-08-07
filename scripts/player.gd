@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
-@onready var coyote_timer: Timer = $CoyoteTimer
 @onready var buffer_timer: Timer = $BufferTimer
+@onready var coyote_timer: Timer = $CoyoteTimer
 @onready var attack: Timer = $Attack
+
 @onready var cooldown_crit: Timer = $CooldownCrit
 @onready var hit_timer: Timer = $HitTimer
 
@@ -16,6 +17,7 @@ extends CharacterBody2D
 @onready var collision_shape_2d_hurtbox: CollisionShape2D = $hurtbox/CollisionShape2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var retry_screen: CanvasLayer = $"../CanvasLayer"
+
 
 
 
@@ -112,7 +114,6 @@ var was_on_floor = false
 
 func _physics_process(delta: float) -> void:
 	
-	print("knockback_timer:", knockback_timer, " knockback_toggle:", knockback_toggle, " velocity.x:", velocity.x)
 	
 	var direction := Input.get_axis("left", "right")
 	
@@ -252,5 +253,5 @@ func die():
 
 func _on_die_timer_timeout() -> void:
 	Engine.time_scale = 1
-	queue_free()
 	retry_screen.visible = true
+	queue_free()
