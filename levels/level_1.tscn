@@ -16,7 +16,6 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
 
 [node name="Level_1" type="Node2D"]
-position = Vector2(-234, 5)
 
 [node name="gui" type="Node" parent="."]
 
@@ -127,7 +126,7 @@ position = Vector2(-134, -106)
 scale = Vector2(20.6867, 1.0855)
 
 [node name="player" parent="." instance=ExtResource("1_btoec")]
-position = Vector2(-169, 97)
+position = Vector2(-173, 107)
 scale = Vector2(0.657506, 0.657506)
 
 [node name="candycane" parent="player" instance=ExtResource("2_gwceb")]
@@ -148,5 +147,4 @@ position = Vector2(-91, 100)
 [connection signal="levelSwap" from="level/LevelManager" to="level/LevelSwap" method="_on_level_manager_level_swap"]
 [connection signal="timeout" from="level/LevelManager/Check" to="level/LevelManager" method="_on_check_timeout"]
 [connection signal="timeout" from="level/SlimeSpawners/WaveTimer" to="level/SlimeSpawners/SpawnHolderSLIME" method="_on_wave_timer_timeout"]
-[connection signal="shakescreenplayer" from="player" to="player/Camera2D" method="_on_player_shakescreenplayer"]
 [connection signal="enemyShakescreen" from="player/candycane" to="player/Camera2D" method="_on_candycane_enemy_shakescreen"]

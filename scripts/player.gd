@@ -18,7 +18,6 @@ extends CharacterBody2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var retry_screen: CanvasLayer = %retry
 
-
 signal shakescreenplayer
 signal healthChanged
 
@@ -215,7 +214,6 @@ func _on_slime_damage_output(damage_output) -> void: #take_damage frm slime
 
 func update_animation(animation):
 	_player_animation_player.play(animation)
-
 
 func _on_animation_player_animation_finished(anim_name) -> void:
 	if anim_name == "hit":
