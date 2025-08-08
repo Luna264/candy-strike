@@ -74,7 +74,7 @@ func _process(delta: float) -> void:
 		else:
 			is_crit = true
 			is_attacking = true
-			update_animation("attack")
+			update_animation("attackCrit")
 			
 			if not Input.get_axis("left", "right") == 0:
 				if Input.get_axis("left", "right") < 0: # left

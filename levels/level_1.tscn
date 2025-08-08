@@ -16,6 +16,7 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
 
 [node name="Level_1" type="Node2D"]
+position = Vector2(-128, 12)
 
 [node name="gui" type="Node" parent="."]
 
@@ -80,7 +81,7 @@ player = NodePath("../../../../player")
 [node name="level" type="Node" parent="."]
 
 [node name="LevelSwap" parent="level" instance=ExtResource("7_gwceb")]
-position = Vector2(16, 66)
+position = Vector2(-196, 50)
 
 [node name="LevelManager" type="Node2D" parent="level" groups=["level_manager"]]
 script = ExtResource("6_btoec")
@@ -102,13 +103,13 @@ position = Vector2(0, 2)
 script = ExtResource("5_n46q3")
 
 [node name="Spawner" type="Node2D" parent="level/SlimeSpawners/SpawnHolderSLIME" groups=["SLIMEspawners"]]
-position = Vector2(109, 121)
+position = Vector2(-408, 121)
 
 [node name="Spawner2" type="Node2D" parent="level/SlimeSpawners/SpawnHolderSLIME" groups=["SLIMEspawners"]]
-position = Vector2(-248, 6)
+position = Vector2(-264, 118)
 
 [node name="Spawner3" type="Node2D" parent="level/SlimeSpawners/SpawnHolderSLIME" groups=["SLIMEspawners"]]
-position = Vector2(-26, 78)
+position = Vector2(-139, 97)
 
 [node name="floor" type="StaticBody2D" parent="."]
 
@@ -119,7 +120,7 @@ shape = SubResource("WorldBoundaryShape2D_uwrxv")
 [node name="walls" type="Node" parent="."]
 
 [node name="boundary2" parent="walls" instance=ExtResource("3_l53as")]
-position = Vector2(38, -17)
+position = Vector2(-420, 66)
 
 [node name="boundary3" parent="walls" instance=ExtResource("3_l53as")]
 position = Vector2(-134, -106)

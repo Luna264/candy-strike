@@ -83,7 +83,7 @@ func _physics_process(delta):
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name == "hurtbox":
-		emit_signal("damage_output", 10)	
+		emit_signal("damage_output", 4)	
 
 
 func _slime_jump() -> void:
