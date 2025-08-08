@@ -36,7 +36,7 @@ var knockback = Vector2.ZERO
 var knockback_toggle = false
 var knockback_timer = 0.0
 
-var health = 100
+var health = 12
 var maxHealth = 100
 
 
@@ -248,6 +248,6 @@ func die():
 	die_timer.start()
 
 func _on_die_timer_timeout() -> void:
-	Engine.time_scale = 1
 	retry_screen.visible = true
+	Engine.time_scale = 1
 	queue_free()
