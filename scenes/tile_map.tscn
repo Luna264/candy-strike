@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://de5x7838lwa7f" path="res://assets/sprites/tileset.png" id="1_tjuek"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_47enk"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tjuek"]
 texture = ExtResource("1_tjuek")
 8:1/0 = 0
 9:1/0 = 0
@@ -40,6 +40,7 @@ texture = ExtResource("1_tjuek")
 19:3/0 = 0
 20:3/0 = 0
 21:3/0 = 0
+8:4/0 = 0
 9:4/0 = 0
 10:4/0 = 0
 11:4/0 = 0
@@ -54,12 +55,12 @@ texture = ExtResource("1_tjuek")
 25:12/0 = 0
 28:12/0 = 0
 32:12/0 = 0
-8:4/0 = 0
 5:10/size_in_atlas = Vector2i(3, 3)
 5:10/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_jx7lj"]
-sources/0 = SubResource("TileSetAtlasSource_47enk")
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_tjuek")
 
 [node name="TileMapLayer" type="TileMapLayer"]
 tile_set = SubResource("TileSet_jx7lj")

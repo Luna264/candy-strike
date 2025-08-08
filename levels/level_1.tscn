@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=13 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_gwceb"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://sboeb1b8nqkl" path="res://assets/sprites/healthbarOVER..png" id="7_nmsli"]
 [ext_resource type="Script" uid="uid://d22wusqsc3ni0" path="res://scripts/playerhealth.gd" id="10_aerfg"]
 [ext_resource type="Script" uid="uid://bxxxkbuwialt3" path="res://scripts/retry.gd" id="11_5ot28"]
-[ext_resource type="PackedScene" uid="uid://cv7u13y5ejaoy" path="res://scenes/enviornment/glassplatform.tscn" id="12_aerfg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uwrxv"]
 
@@ -140,9 +139,6 @@ scale = Vector2(13.0643, -1.98949)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 script = ExtResource("6_5ot28")
-
-[node name="glassplatform" parent="." instance=ExtResource("12_aerfg")]
-position = Vector2(-91, 100)
 
 [connection signal="pressed" from="gui/retry/Control/Retry" to="gui/retry/Control/Retry" method="_on_pressed"]
 [connection signal="levelSwap" from="level/LevelManager" to="level/LevelSwap" method="_on_level_manager_level_swap"]
