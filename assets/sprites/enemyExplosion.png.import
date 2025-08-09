@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hp1bv51emrn5"
-path="res://.godot/imported/YIKES!..png-a463fe0a399c9cc020c11079b0146a4d.ctex"
+uid="uid://c2uxk8ch81dfy"
+path="res://.godot/imported/enemyExplosion.png-e48ac18daee33cb6f6838e317b1369bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/YIKES!..png"
-dest_files=["res://.godot/imported/YIKES!..png-a463fe0a399c9cc020c11079b0146a4d.ctex"]
+source_file="res://assets/sprites/enemyExplosion.png"
+dest_files=["res://.godot/imported/enemyExplosion.png-e48ac18daee33cb6f6838e317b1369bf.ctex"]
 
 [params]
 

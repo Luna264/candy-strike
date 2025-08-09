@@ -17,7 +17,7 @@ extends CharacterBody2D
 @onready var collision_shape_2d_hurtbox: CollisionShape2D = $hurtbox/CollisionShape2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var retry_screen: CanvasLayer = %retry
-
+@onready var footsteps: AudioStreamPlayer2D = %Footsteps
 signal shakescreenplayer
 signal healthChanged
 
@@ -36,9 +36,10 @@ var knockback = Vector2.ZERO
 var knockback_toggle = false
 var knockback_timer = 0.0
 
-var health = 12
+var health = 100
 var maxHealth = 100
 
+@onready var hurt: AudioStreamPlayer2D = %Hurt
 
 func _process(delta: float) -> void:
 	
@@ -86,7 +87,6 @@ func _process(delta: float) -> void:
 				anim_player.play("c_attack_right")
 			else:
 				anim_player.play("c_attack_left")
-			
 			
 			attack.start()
 			cooldown_crit.start()
@@ -185,6 +185,7 @@ func _knockback(enemyPosition: Vector2):
 	
 func _on_hurtbox_area_entered(area: Area2D) -> void:           #take damage player detection
 	if area.name == "hitbox" or area.is_in_group("enemy"):
+		hurt.play()
 		emit_signal("shakescreenplayer")
 		_knockback(area.get_parent().position)
 		

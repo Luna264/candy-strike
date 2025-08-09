@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = 150
+var health = 30
 @export var speed = -80.0
 @onready var player = get_tree().get_first_node_in_group("player")
 var friction = 500.0
@@ -13,7 +13,10 @@ var knockback_y_jump = -200
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attack_timer: Timer = $AttackTimer
 @onready var damage_timer: Timer = $DamageTimer
+@onready var die_sound: AudioStreamPlayer2D = %Die
+@onready var die_timer: Timer = $DieTimer
 
+var dead = false
 var is_attacking = false
 var is_damaged = false
 var flash_in_progress = false
@@ -26,13 +29,16 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	print(dead)
 	if not is_attacking and not is_damaged and not flash_in_progress:
 		animation_player.play("idle")
 
-	if health <= 0:
+	if health <= 0 and dead == false:
 		print("enemy dead")
 		get_tree().call_group("level", "enemy_death")
-		queue_free()
+		die()
+	if health <= 0 and dead == true:
+		return
 
 
 func take_damage_explode(dmg, attacker_position, knockback_x, knockback_y):
@@ -73,8 +79,6 @@ func _physics_process(delta):
 
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	elif velocity.y > 0:
-		velocity.y = 0 
 
 
 	velocity.x = move_toward(velocity.x, 0, friction * delta)
@@ -114,12 +118,14 @@ func face_player():
 func _on_attack_timer_timeout() -> void:
 	is_attacking = false
 	flash_in_progress = false
-	animation_player.play("RESET")
+	if dead == false:
+		animation_player.play("idle")
 	
 func _on_damage_timer_timeout() -> void:
 	is_damaged = false
 	flash_in_progress = false
-	animation_player.play("RESET")
+	if dead == false:
+		animation_player.play("idle")
 
 func flash():
 	if flash_in_progress:
@@ -132,3 +138,15 @@ func flash():
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "hit":
 		flash_in_progress = false
+		
+		
+func die():
+	if dead:
+		return
+	dead = true
+	die_sound.play()
+	animation_player.play("dead")
+	die_timer.start()
+
+func _on_die_timer_timeout() -> void:
+	queue_free()

@@ -1,8 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://djeboigret4lq"]
+[gd_scene load_steps=18 format=3 uid="uid://djeboigret4lq"]
 
 [ext_resource type="Script" uid="uid://b0i1ouivcfnef" path="res://scripts/candycane.gd" id="1_5t7kv"]
 [ext_resource type="Texture2D" uid="uid://b0a8uhc4gcgfd" path="res://assets/sprites/fruit.png" id="1_ijo3b"]
 [ext_resource type="Texture2D" uid="uid://brj1k7gty7kd8" path="res://assets/sprites/candycane.png" id="3_abuwl"]
+[ext_resource type="PackedScene" uid="uid://d4jmbagc8mcv0" path="res://scenes/audio_stream_player_2d.tscn" id="4_u8af2"]
+[ext_resource type="AudioStream" uid="uid://bp12i4fhvm01w" path="res://assets/audio/slash.wav" id="5_fg7qy"]
+[ext_resource type="AudioStream" uid="uid://7ukurqcasrlj" path="res://assets/audio/slashCrit.wav" id="6_58h82"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ad8d1"]
 size = Vector2(62.4836, 43.5596)
@@ -375,6 +378,20 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector2(-29.3903, -18.7029)]
 }
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Slash")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_ad8d1"]
 resource_name = "b_attack_right"
@@ -476,6 +493,20 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-24.0466, -18.7029)]
+}
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Slash")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_w5gse"]
@@ -615,6 +646,20 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector2(-30.4637, -14.8478)]
 }
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("SlashCrit")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_anyp5"]
 resource_name = "c_attack_right"
@@ -752,6 +797,20 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-30.4637, -13.5985)]
+}
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("SlashCrit")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_58h82"]
@@ -963,5 +1022,19 @@ position = Vector2(-29.3903, -18.7029)
 texture = ExtResource("3_abuwl")
 hframes = 20
 frame = 1
+
+[node name="Slash" parent="." instance=ExtResource("4_u8af2")]
+unique_name_in_owner = true
+position = Vector2(-275, 94)
+stream = ExtResource("5_fg7qy")
+panning_strength = 0.0
+bus = &"Slash"
+
+[node name="SlashCrit" parent="." instance=ExtResource("4_u8af2")]
+unique_name_in_owner = true
+position = Vector2(-275, 94)
+stream = ExtResource("6_58h82")
+panning_strength = 0.0
+bus = &"SlashCrit"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cnxaur8wfvwfq"]
+[gd_scene load_steps=15 format=3 uid="uid://cnxaur8wfvwfq"]
 
 [ext_resource type="Script" uid="uid://1gwwpgejvn6f" path="res://scripts/enemy.gd" id="1_ya1je"]
 [ext_resource type="Shader" uid="uid://llhsmpsnall1" path="res://shaders/enemy.gdshader" id="2_pyd2g"]
 [ext_resource type="Texture2D" uid="uid://cxxgq5eo4idu2" path="res://assets/sprites/slime_purple.png" id="3_v8wig"]
+[ext_resource type="PackedScene" uid="uid://d4jmbagc8mcv0" path="res://scenes/audio_stream_player_2d.tscn" id="4_v8wig"]
+[ext_resource type="AudioStream" uid="uid://cou1kd5msxlov" path="res://assets/audio/die.wav" id="5_sat0y"]
+[ext_resource type="Texture2D" uid="uid://c2uxk8ch81dfy" path="res://assets/sprites/enemyExplosion.png" id="6_sat0y"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3w7v2"]
 resource_local_to_scene = true
@@ -48,6 +51,42 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnemyExplosion:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EnemyExplosion:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_c4w8v"]
 resource_name = "hit"
@@ -76,6 +115,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0, 1.0, 0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnemyExplosion:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_md0e3"]
 resource_name = "idle"
@@ -92,10 +155,87 @@ tracks/0/keys = {
 "update": 1,
 "values": [3, 5, 6]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemyExplosion:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:material:shader_parameter/flash_value")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_n41ox"]
+resource_name = "dead"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemyExplosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnemyExplosion:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5uy6h"]
 _data = {
 &"RESET": SubResource("Animation_4ra3w"),
+&"dead": SubResource("Animation_n41ox"),
 &"hit": SubResource("Animation_c4w8v"),
 &"idle": SubResource("Animation_md0e3")
 }
@@ -104,7 +244,7 @@ _data = {
 size = Vector2(14, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
-size = Vector2(16, 11.75)
+size = Vector2(12.75, 11.75)
 
 [node name="slime" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
@@ -131,7 +271,7 @@ shape = SubResource("RectangleShape2D_md0e3")
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(0, 4.875)
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_4ra3w")
 debug_color = Color(0.579367, 0.414971, 0.930006, 0.42)
 
@@ -146,7 +286,24 @@ one_shot = true
 wait_time = 0.4
 one_shot = true
 
+[node name="Die" parent="." instance=ExtResource("4_v8wig")]
+unique_name_in_owner = true
+position = Vector2(-275, 94)
+stream = ExtResource("5_sat0y")
+panning_strength = 0.0
+
+[node name="EnemyExplosion" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(5, -9)
+texture = ExtResource("6_sat0y")
+hframes = 6
+
+[node name="DieTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="DieTimer" to="." method="_on_die_timer_timeout"]

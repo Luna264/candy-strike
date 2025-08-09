@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=29 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="Texture2D" uid="uid://ft05d6wkqj0h" path="res://assets/sprites/bgretry.png" id="1_lrvbd"]
@@ -19,6 +19,10 @@
 [ext_resource type="Script" uid="uid://cva408nwtvr20" path="res://scripts/playerdeath.gd" id="8_7nvrk"]
 [ext_resource type="Script" uid="uid://d22wusqsc3ni0" path="res://scripts/playerhealth.gd" id="10_aerfg"]
 [ext_resource type="Script" uid="uid://bxxxkbuwialt3" path="res://scripts/retry.gd" id="11_5ot28"]
+[ext_resource type="PackedScene" uid="uid://d4jmbagc8mcv0" path="res://scenes/audio_stream_player_2d.tscn" id="20_jkxa6"]
+[ext_resource type="AudioStream" uid="uid://3y2413avn6od" path="res://assets/audio/crit.wav" id="21_w75he"]
+[ext_resource type="AudioStream" uid="uid://dry1mjb3pt2rk" path="res://assets/audio/playerhurt.wav" id="22_udfhf"]
+[ext_resource type="AudioStream" uid="uid://cohungh0p6eqf" path="res://assets/audio/buttonpress.wav" id="23_i6od7"]
 
 [sub_resource type="Animation" id="Animation_jkxa6"]
 length = 0.001
@@ -225,7 +229,7 @@ position = Vector2(-134, -106)
 scale = Vector2(20.6867, 1.0855)
 
 [node name="player" parent="." instance=ExtResource("1_btoec")]
-position = Vector2(-173, 107)
+position = Vector2(-237, 104)
 scale = Vector2(0.657506, 0.657506)
 
 [node name="candycane" parent="player" instance=ExtResource("2_gwceb")]
@@ -239,6 +243,35 @@ zoom = Vector2(2.095, 2.095)
 position_smoothing_enabled = true
 script = ExtResource("6_5ot28")
 
+[node name="audio" type="Node" parent="."]
+
+[node name="BasicAttack" parent="audio" instance=ExtResource("20_jkxa6")]
+unique_name_in_owner = true
+position = Vector2(-152, 66)
+panning_strength = 0.0
+bus = &"BasicAttack"
+
+[node name="CritAttack" parent="audio" instance=ExtResource("20_jkxa6")]
+unique_name_in_owner = true
+position = Vector2(-126, 12)
+stream = ExtResource("21_w75he")
+panning_strength = 0.0
+bus = &"CritAttack"
+
+[node name="Hurt" parent="audio" instance=ExtResource("20_jkxa6")]
+unique_name_in_owner = true
+position = Vector2(-127, 17)
+stream = ExtResource("22_udfhf")
+panning_strength = 0.0
+bus = &"Hurt"
+
+[node name="ButtonPress" parent="audio" instance=ExtResource("20_jkxa6")]
+unique_name_in_owner = true
+position = Vector2(-49, 18)
+stream = ExtResource("23_i6od7")
+panning_strength = 0.0
+bus = &"ButtonPress"
+
 [connection signal="animation_finished" from="gui/retry/Control/Sprite2D/AnimationPlayer" to="gui/retry/Control/Sprite2D" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="gui/retry/Control/Sprite2D/wait" to="gui/retry/Control/Sprite2D" method="_on_wait_timeout"]
 [connection signal="pressed" from="gui/retry/Control/retry" to="gui/retry/Control/retry" method="_on_pressed"]
@@ -246,3 +279,4 @@ script = ExtResource("6_5ot28")
 [connection signal="timeout" from="level/LevelManager/Check" to="level/LevelManager" method="_on_check_timeout"]
 [connection signal="timeout" from="level/SlimeSpawners/WaveTimer" to="level/SlimeSpawners/SpawnHolderSLIME" method="_on_wave_timer_timeout"]
 [connection signal="enemyShakescreen" from="player/candycane" to="player/Camera2D" method="_on_candycane_enemy_shakescreen"]
+[connection signal="finished" from="audio/ButtonPress" to="gui/retry/Control/retry" method="_on_button_press_finished"]
