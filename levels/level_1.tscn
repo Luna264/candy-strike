@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=31 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="Texture2D" uid="uid://ft05d6wkqj0h" path="res://assets/sprites/bgretry.png" id="1_lrvbd"]
@@ -23,6 +23,8 @@
 [ext_resource type="AudioStream" uid="uid://3y2413avn6od" path="res://assets/audio/crit.wav" id="21_w75he"]
 [ext_resource type="AudioStream" uid="uid://dry1mjb3pt2rk" path="res://assets/audio/playerhurt.wav" id="22_udfhf"]
 [ext_resource type="AudioStream" uid="uid://cohungh0p6eqf" path="res://assets/audio/buttonpress.wav" id="23_i6od7"]
+[ext_resource type="PackedScene" uid="uid://cfkrk6ijkg2em" path="res://scenes/enviornment/bubblysoda.tscn" id="24_ryfpa"]
+[ext_resource type="PackedScene" uid="uid://4tn1vqo8i2rv" path="res://scenes/enviornment/bubblysodaXAXISedition.tscn" id="25_ntdhj"]
 
 [sub_resource type="Animation" id="Animation_jkxa6"]
 length = 0.001
@@ -216,7 +218,7 @@ position = Vector2(-139, 97)
 [node name="floor" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
-position = Vector2(-70, 118)
+position = Vector2(-72, 126)
 shape = SubResource("WorldBoundaryShape2D_uwrxv")
 
 [node name="walls" type="Node" parent="."]
@@ -271,6 +273,12 @@ position = Vector2(-49, 18)
 stream = ExtResource("23_i6od7")
 panning_strength = 0.0
 bus = &"ButtonPress"
+
+[node name="bubblysoda" parent="." instance=ExtResource("24_ryfpa")]
+position = Vector2(-120, 133)
+
+[node name="bubblysoda2" parent="." instance=ExtResource("25_ntdhj")]
+position = Vector2(-85, 75)
 
 [connection signal="animation_finished" from="gui/retry/Control/Sprite2D/AnimationPlayer" to="gui/retry/Control/Sprite2D" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="gui/retry/Control/Sprite2D/wait" to="gui/retry/Control/Sprite2D" method="_on_wait_timeout"]
