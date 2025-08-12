@@ -1,16 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://4tn1vqo8i2rv"]
+[gd_scene load_steps=9 format=3 uid="uid://4tn1vqo8i2rv"]
 
-[ext_resource type="Texture2D" uid="uid://dq0icahvjpahi" path="res://assets/sprites/bubbles.png" id="1_xbfas"]
-[ext_resource type="Texture2D" uid="uid://bs27jshpdviam" path="res://assets/sprites/soda.png" id="2_4duxa"]
-[ext_resource type="Script" uid="uid://no53kc8qmumq" path="res://scripts/bubblysodaXAXIS.gd" id="2_avfdl"]
-[ext_resource type="PackedScene" uid="uid://d4jmbagc8mcv0" path="res://scenes/audio_stream_player_2d.tscn" id="4_77pp8"]
-[ext_resource type="AudioStream" uid="uid://chfcdo8nfynvp" path="res://assets/audio/swoosh.wav" id="5_77pp8"]
+[ext_resource type="Texture2D" uid="uid://clfmb002e6t1l" path="res://assets/sprites/coin.png" id="1_avfdl"]
+[ext_resource type="Script" uid="uid://b87qxuk5jgop6" path="res://scripts/bubblysoda.gd" id="2_xbfas"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlhfm"]
 size = Vector2(33, 2.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5cl85"]
-size = Vector2(32, 70.9999)
+size = Vector2(32, 49)
 
 [sub_resource type="Animation" id="Animation_simyp"]
 length = 0.001
@@ -26,70 +23,9 @@ tracks/0/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Area2D/bubblebox:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -31.75)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Soda:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Bubbles:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Bubbles:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Area2D/bubblebox:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_qlhfm"]
 resource_name = "off"
-length = 0.5
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -103,22 +39,9 @@ tracks/0/keys = {
 "update": 1,
 "values": [true, true]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Soda:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
 
 [sub_resource type="Animation" id="Animation_5cl85"]
 resource_name = "on"
-length = 0.7
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -132,66 +55,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [false, false]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Area2D/bubblebox:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -37)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Bubbles:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Bubbles:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.466667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Soda:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.266667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Area2D/bubblebox:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3aold"]
 _data = {
@@ -203,27 +66,20 @@ _data = {
 [node name="bubblysoda" type="StaticBody2D"]
 rotation = -1.56876
 
-[node name="Bubbles" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(21, -1)
-texture = ExtResource("1_xbfas")
-hframes = 3
-
-[node name="Soda" type="Sprite2D" parent="."]
-position = Vector2(21, -1)
-texture = ExtResource("2_4duxa")
-hframes = 3
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3.375, 0.3125)
+texture = ExtResource("1_avfdl")
+hframes = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.25)
 shape = SubResource("RectangleShape2D_qlhfm")
 
 [node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("2_avfdl")
+script = ExtResource("2_xbfas")
 
 [node name="bubblebox" type="CollisionShape2D" parent="Area2D"]
-visible = false
-position = Vector2(0, -31.75)
+position = Vector2(0, -26.5)
 shape = SubResource("RectangleShape2D_5cl85")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D"]
@@ -236,12 +92,4 @@ libraries = {
 wait_time = 3.0
 autostart = true
 
-[node name="Swoosh" parent="." instance=ExtResource("4_77pp8")]
-unique_name_in_owner = true
-position = Vector2(-49, 18)
-stream = ExtResource("5_77pp8")
-panning_strength = 0.0
-bus = &"ButtonPress"
-
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="timeout" from="CooldownTimer" to="Area2D" method="_on_cooldown_timer_timeout"]
