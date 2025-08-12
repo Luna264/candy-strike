@@ -1,16 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://4tn1vqo8i2rv"]
+[gd_scene load_steps=12 format=3 uid="uid://dr011u87e1yw"]
 
-[ext_resource type="Texture2D" uid="uid://dq0icahvjpahi" path="res://assets/sprites/bubbles.png" id="1_xbfas"]
-[ext_resource type="Texture2D" uid="uid://bs27jshpdviam" path="res://assets/sprites/soda.png" id="2_4duxa"]
-[ext_resource type="Script" uid="uid://no53kc8qmumq" path="res://scripts/bubblysodaXAXIS.gd" id="2_avfdl"]
-[ext_resource type="PackedScene" uid="uid://d4jmbagc8mcv0" path="res://scenes/audio_stream_player_2d.tscn" id="4_77pp8"]
-[ext_resource type="AudioStream" uid="uid://chfcdo8nfynvp" path="res://assets/audio/swoosh.wav" id="5_77pp8"]
+[ext_resource type="Texture2D" uid="uid://dq0icahvjpahi" path="res://assets/sprites/bubbles.png" id="1_lkgca"]
+[ext_resource type="Texture2D" uid="uid://bs27jshpdviam" path="res://assets/sprites/soda.png" id="2_gus8g"]
+[ext_resource type="Script" uid="uid://no53kc8qmumq" path="res://scripts/bubblysodaXAXIS.gd" id="3_lkgca"]
+[ext_resource type="PackedScene" uid="uid://d4jmbagc8mcv0" path="res://scenes/audio_stream_player_2d.tscn" id="4_fums0"]
+[ext_resource type="AudioStream" uid="uid://chfcdo8nfynvp" path="res://assets/audio/swoosh.wav" id="5_x8q2q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qlhfm"]
-size = Vector2(33, 2.5)
+size = Vector2(33, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5cl85"]
-size = Vector2(32, 70.9999)
+size = Vector2(32, 75)
 
 [sub_resource type="Animation" id="Animation_simyp"]
 length = 0.001
@@ -57,10 +57,10 @@ tracks/3/path = NodePath("Bubbles:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [false, false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -85,6 +85,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Soda:region_enabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Soda:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21, 35.46)]
 }
 
 [sub_resource type="Animation" id="Animation_qlhfm"]
@@ -114,6 +138,42 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bubbles:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Soda:region_enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Soda:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21, 35.46)]
 }
 
 [sub_resource type="Animation" id="Animation_5cl85"]
@@ -192,6 +252,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Soda:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(21, 35.46)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3aold"]
 _data = {
@@ -201,25 +273,27 @@ _data = {
 }
 
 [node name="bubblysoda" type="StaticBody2D"]
-rotation = -1.56876
+rotation = -1.57131
 
 [node name="Bubbles" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(21, -1)
-texture = ExtResource("1_xbfas")
+texture = ExtResource("1_lkgca")
 hframes = 3
 
 [node name="Soda" type="Sprite2D" parent="."]
-position = Vector2(21, -1)
-texture = ExtResource("2_4duxa")
+position = Vector2(21, 35.46)
+texture = ExtResource("2_gus8g")
 hframes = 3
+region_enabled = true
+region_rect = Rect2(0, 73, 750, 177)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.25)
+position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_qlhfm")
 
 [node name="Area2D" type="Area2D" parent="."]
-script = ExtResource("2_avfdl")
+script = ExtResource("3_lkgca")
 
 [node name="bubblebox" type="CollisionShape2D" parent="Area2D"]
 visible = false
@@ -236,12 +310,13 @@ libraries = {
 wait_time = 3.0
 autostart = true
 
-[node name="Swoosh" parent="." instance=ExtResource("4_77pp8")]
+[node name="Swoosh" parent="." instance=ExtResource("4_fums0")]
 unique_name_in_owner = true
 position = Vector2(-49, 18)
-stream = ExtResource("5_77pp8")
+stream = ExtResource("5_x8q2q")
 panning_strength = 0.0
 bus = &"ButtonPress"
 
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="timeout" from="CooldownTimer" to="Area2D" method="_on_cooldown_timer_timeout"]

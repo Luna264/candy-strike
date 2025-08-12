@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://du5r2o4l7b30o"]
+
+[ext_resource type="Texture2D" uid="uid://bvshcblvh0eyo" path="res://assets/sprites/cookiebig.png" id="1_7t7vp"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_7t7vp")
