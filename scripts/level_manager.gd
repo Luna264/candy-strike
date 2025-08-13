@@ -8,9 +8,8 @@ signal levelSwap
 var level_over = false
 
 func _on_check_timeout() -> void:
-	if totalDeaths >= 1 and not level_over:
+	if totalDeaths >= 4 and not level_over:
 		if level_over == true:
 			return
 		else:
 			emit_signal("levelSwap")
-			var level_over = true

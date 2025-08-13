@@ -9,12 +9,12 @@ var knockback_x_jump = 200
 var knockback_y_jump = -200
 
 @onready var jump_timer: Timer = $JumpTimer
-@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attack_timer: Timer = $AttackTimer
 @onready var damage_timer: Timer = $DamageTimer
 @onready var die_sound: AudioStreamPlayer2D = %Die
 @onready var die_timer: Timer = $DieTimer
+@onready var sprite_2d: Sprite2D = $Marshmellowslime
 
 var dead = false
 var is_attacking = false
@@ -30,7 +30,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	print(dead)
-	if not is_attacking and not is_damaged and not flash_in_progress:
+	if not is_attacking and not is_damaged and not flash_in_progress and not dead:
 		animation_player.play("idle")
 
 	if health <= 0 and dead == false:
@@ -98,6 +98,7 @@ func _slime_jump() -> void:
 	if is_damaged:
 		return
 	is_attacking = true
+	animation_player.play("jump")
 	face_player()
 	var direction = (player.global_position - global_position).normalized()
 	velocity.x = direction.x * knockback_x_jump
@@ -112,7 +113,7 @@ func _on_jump_timer_timeout() -> void:
 
 func face_player():
 	if player:
-		sprite_2d.flip_h = player.global_position.x < global_position.x
+		sprite_2d.flip_h = player.global_position.x > global_position.x
 
 
 func _on_attack_timer_timeout() -> void:
@@ -124,7 +125,7 @@ func _on_attack_timer_timeout() -> void:
 func _on_damage_timer_timeout() -> void:
 	is_damaged = false
 	flash_in_progress = false
-	if dead == false:
+	if dead == false and is_attacking == false:
 		animation_player.play("idle")
 
 func flash():

@@ -1,14 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://cnxaur8wfvwfq"]
+[gd_scene load_steps=16 format=3 uid="uid://cnxaur8wfvwfq"]
 
 [ext_resource type="Script" uid="uid://1gwwpgejvn6f" path="res://scripts/enemy.gd" id="1_ya1je"]
 [ext_resource type="Shader" uid="uid://llhsmpsnall1" path="res://shaders/enemy.gdshader" id="2_pyd2g"]
-[ext_resource type="Texture2D" uid="uid://cxxgq5eo4idu2" path="res://assets/sprites/slime_purple.png" id="3_v8wig"]
+[ext_resource type="Texture2D" uid="uid://b0pl04ylqlhgn" path="res://assets/sprites/marshmellowslime.png" id="2_v8wig"]
 [ext_resource type="PackedScene" uid="uid://d4jmbagc8mcv0" path="res://scenes/audio_stream_player_2d.tscn" id="4_v8wig"]
 [ext_resource type="AudioStream" uid="uid://cou1kd5msxlov" path="res://assets/audio/die.wav" id="5_sat0y"]
 [ext_resource type="Texture2D" uid="uid://c2uxk8ch81dfy" path="res://assets/sprites/enemyExplosion.png" id="6_sat0y"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3w7v2"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sat0y"]
 shader = ExtResource("2_pyd2g")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
@@ -18,74 +17,62 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("EnemyExplosion:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [3]
+"values": [false, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:material")
+tracks/1/path = NodePath("EnemyExplosion:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [SubResource("ShaderMaterial_3w7v2")]
+"values": [0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:material:shader_parameter/flash_value")
+tracks/2/path = NodePath("Marshmellowslime:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+"update": 1,
+"values": [0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("EnemyExplosion:visible")
+tracks/3/path = NodePath("Marshmellowslime:material:shader_parameter/flash_value")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.001),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, false]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("EnemyExplosion:frame")
+tracks/4/path = NodePath("Marshmellowslime:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2D:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_n41ox"]
@@ -118,7 +105,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/path = NodePath("Marshmellowslime:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -130,47 +117,47 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_c4w8v"]
 resource_name = "hit"
-length = 0.3
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material")
+tracks/0/path = NodePath("EnemyExplosion:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:material:shader_parameter/flash_value")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.266667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("EnemyExplosion:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marshmellowslime:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marshmellowslime:material:shader_parameter/flash_value")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/path = NodePath("Marshmellowslime:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -182,35 +169,36 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_md0e3"]
 resource_name = "idle"
-length = 0.24
+length = 0.6
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("EnemyExplosion:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [3, 5, 6]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("EnemyExplosion:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marshmellowslime:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.233333, 0.333333, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/path = NodePath("Marshmellowslime:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -219,17 +207,21 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:material:shader_parameter/flash_value")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
+
+[sub_resource type="Animation" id="Animation_sat0y"]
+resource_name = "jump"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marshmellowslime:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [5, 6, 7]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5uy6h"]
@@ -237,26 +229,27 @@ _data = {
 &"RESET": SubResource("Animation_4ra3w"),
 &"dead": SubResource("Animation_n41ox"),
 &"hit": SubResource("Animation_c4w8v"),
-&"idle": SubResource("Animation_md0e3")
+&"idle": SubResource("Animation_md0e3"),
+&"jump": SubResource("Animation_sat0y")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
-size = Vector2(14, 11)
+size = Vector2(14, 12.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
-size = Vector2(12.75, 11.75)
+size = Vector2(16, 12.875)
 
 [node name="slime" type="CharacterBody2D" groups=["enemy"]]
 z_index = 1
 script = ExtResource("1_ya1je")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_3w7v2")
-position = Vector2(0, -1)
-texture = ExtResource("3_v8wig")
-hframes = 4
-vframes = 3
-frame = 3
+[node name="Marshmellowslime" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_sat0y")
+position = Vector2(0, -7)
+scale = Vector2(0.745409, 0.745409)
+texture = ExtResource("2_v8wig")
+hframes = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -265,13 +258,15 @@ libraries = {
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
+visible = false
+position = Vector2(0, 4.875)
 shape = SubResource("RectangleShape2D_md0e3")
 
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(0, 5)
+position = Vector2(0, 4.4375)
 shape = SubResource("RectangleShape2D_4ra3w")
 debug_color = Color(0.579367, 0.414971, 0.930006, 0.42)
 

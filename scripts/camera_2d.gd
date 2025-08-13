@@ -14,8 +14,10 @@ var trauma_power : int = 2
 
 
 func _ready() -> void:
-	player.shakescreenplayer.connect(_on_player_shakescreenplayer)
-	candycane.enemyShakescreen.connect(_on_candycane_enemy_shakescreen)
+	if not player.shakescreenplayer.is_connected(_on_player_shakescreenplayer):
+		player.shakescreenplayer.connect(_on_player_shakescreenplayer)
+	if not candycane.enemyShakescreen.is_connected(_on_candycane_enemy_shakescreen):
+		candycane.enemyShakescreen.connect(_on_candycane_enemy_shakescreen)
 
 func _process(delta : float) -> void:
 	if follow_node: 
