@@ -117,7 +117,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_c4w8v"]
 resource_name = "hit"
-length = 0.2
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -149,7 +149,7 @@ tracks/2/path = NodePath("Marshmellowslime:material:shader_parameter/flash_value
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.133333),
+"times": PackedFloat32Array(0, 0.0333333, 0.266667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 0.0]
@@ -274,11 +274,11 @@ debug_color = Color(0.579367, 0.414971, 0.930006, 0.42)
 autostart = true
 
 [node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.6
 one_shot = true
 
 [node name="DamageTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.3
 one_shot = true
 
 [node name="Die" parent="." instance=ExtResource("4_v8wig")]

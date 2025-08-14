@@ -29,125 +29,87 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	print(dead)
-	if not is_attacking and not is_damaged and not flash_in_progress and not dead:
-		animation_player.play("idle")
+	if dead:
+		return
 
-	if health <= 0 and dead == false:
-		print("enemy dead")
+	if is_damaged or flash_in_progress:
+		update_animation("hit")
+	elif is_attacking:
+		update_animation("jump")
+	else:
+		update_animation("idle")
+
+	if health <= 0 and not dead:
 		get_tree().call_group("level", "enemy_death")
 		die()
-	if health <= 0 and dead == true:
-		return
-
-
-func take_damage_explode(dmg, attacker_position, knockback_x, knockback_y):
-	shakescreen.emit()
-	if is_damaged:
-		return 
-	if flash_in_progress:
-		return
-	
-	is_damaged = true
-	damage_timer.start()
-	flash()
-	health -= dmg
-
-	var direction = (global_position - attacker_position).normalized()
-	velocity.x = direction.x * knockback_x
-	velocity.y = knockback_y
 
 func take_damage(dmg, attacker_position, knockback_x, knockback_y):
-	shakescreen.emit()
-	if is_damaged:
-		return 
-	if flash_in_progress:
+	if is_damaged or flash_in_progress:
 		return
-	
+
+	shakescreen.emit()
 	is_damaged = true
+	flash_in_progress = true
 	damage_timer.start()
-	flash()
 	health -= dmg
 
-#knockback
 	var direction = (global_position - attacker_position).normalized()
 	velocity.x = direction.x * knockback_x
 	velocity.y = knockback_y
 
+func take_damage_explode(dmg, attacker_position, knockback_x, knockback_y):
+	take_damage(dmg, attacker_position, knockback_x, knockback_y)
 
 func _physics_process(delta):
-
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-
 	velocity.x = move_toward(velocity.x, 0, friction * delta)
 	move_and_slide()
 
-
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name == "hurtbox":
-		emit_signal("damage_output", 4)	
-
+		emit_signal("damage_output", 4)
 
 func _slime_jump() -> void:
-	if flash_in_progress:
-		return
-	if is_attacking:
-		return
-	if is_damaged:
+	if is_attacking or is_damaged or flash_in_progress:
 		return
 	is_attacking = true
-	animation_player.play("jump")
 	face_player()
 	var direction = (player.global_position - global_position).normalized()
 	velocity.x = direction.x * knockback_x_jump
 	velocity.y = knockback_y_jump
 	attack_timer.start()
 
-
 func _on_jump_timer_timeout() -> void:
-	if player:
+	if player and not flash_in_progress:
 		_slime_jump()
-
 
 func face_player():
 	if player:
 		sprite_2d.flip_h = player.global_position.x > global_position.x
 
-
 func _on_attack_timer_timeout() -> void:
 	is_attacking = false
-	flash_in_progress = false
-	if dead == false:
-		animation_player.play("idle")
-	
+
 func _on_damage_timer_timeout() -> void:
 	is_damaged = false
 	flash_in_progress = false
-	if dead == false and is_attacking == false:
-		animation_player.play("idle")
 
 func flash():
 	if flash_in_progress:
-		return 
+		return
 	flash_in_progress = true
-	
-	animation_player.play("hit")
-	
-	
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "hit":
-		flash_in_progress = false
-		
-		
+
 func die():
 	if dead:
 		return
 	dead = true
+	update_animation("dead")
 	die_sound.play()
-	animation_player.play("dead")
 	die_timer.start()
 
 func _on_die_timer_timeout() -> void:
 	queue_free()
+
+func update_animation(animation):
+	animation_player.play(animation)

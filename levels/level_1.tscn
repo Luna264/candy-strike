@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=34 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="Texture2D" uid="uid://ft05d6wkqj0h" path="res://assets/sprites/bgretry.png" id="1_lrvbd"]
@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://cohungh0p6eqf" path="res://assets/audio/buttonpress.wav" id="23_i6od7"]
 [ext_resource type="PackedScene" uid="uid://cnxaur8wfvwfq" path="res://scenes/enemys/slime.tscn" id="25_ntdhj"]
 [ext_resource type="Texture2D" uid="uid://de5x7838lwa7f" path="res://assets/sprites/tileset.png" id="26_0fu15"]
+[ext_resource type="PackedScene" uid="uid://dud5pfmal615j" path="res://scenes/enemys/flyingcloud.tscn" id="26_4knja"]
 
 [sub_resource type="Animation" id="Animation_jkxa6"]
 length = 0.001
@@ -420,6 +421,9 @@ tile_set = SubResource("TileSet_voubc")
 
 [node name="slime" parent="." instance=ExtResource("25_ntdhj")]
 position = Vector2(-115, 106)
+
+[node name="flyingcloud" parent="." instance=ExtResource("26_4knja")]
+position = Vector2(-129, 81)
 
 [connection signal="animation_finished" from="gui/retry/Control/Sprite2D/AnimationPlayer" to="gui/retry/Control/Sprite2D" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="gui/retry/Control/Sprite2D/wait" to="gui/retry/Control/Sprite2D" method="_on_wait_timeout"]

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = 150
+var health = 25
 @export var speed = 80.0
 @onready var player = get_tree().get_first_node_in_group("player")
 var friction = 500.0
@@ -8,17 +8,21 @@ var damageoutput = 150
 var knockback_x_jump = 200
 var knockback_y_jump = -200
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var damage_timer: Timer = $DamageTimer
 @onready var shoot_timer: Timer = $ShootTimer
 @export var bullet_scene: PackedScene
 @onready var attack_timer: Timer = $AttackTimer
+@onready var die_sound: AudioStreamPlayer2D = %Die
+@onready var die_timer: Timer = $DieTimer
+@onready var sprite_2d: Sprite2D = $Cloud
 
 
 var is_attacking = false
 var is_damaged = false
 var flash_in_progress = false
+var dead = false
 
 signal damage_output
 signal shakescreen
@@ -28,13 +32,14 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if not is_attacking and not is_damaged and not flash_in_progress:
+	if not is_attacking and not is_damaged and not flash_in_progress and not dead:
 		animation_player.play("idle")
+		sprite_2d.frame = 0
 
 	if health <= 0:
 		print("enemy dead")
 		get_tree().call_group("level", "enemy_death")
-		queue_free()
+		die()
 
 
 func take_damage(dmg, attacker_position, knockback_x, knockback_y):
@@ -54,8 +59,6 @@ func take_damage(dmg, attacker_position, knockback_x, knockback_y):
 
 
 func _physics_process(delta):
-	if not is_attacking and not is_damaged:
-		animation_player.play("idle")
 		
 	if not is_damaged:
 		
@@ -64,12 +67,11 @@ func _physics_process(delta):
 		
 		var direction = (player.global_position - global_position)
 		var distance = direction.length()
-		var move_direction = Vector2.ZERO
 
 		if distance > 90:
 			velocity = direction.normalized() * speed
 		
-		elif distance < 40:
+		elif distance < 70:
 			velocity = direction.normalized() * -speed
 		
 		else:
@@ -90,7 +92,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 
 func face_player():
 	if player:
-		sprite_2d.flip_h = player.global_position.x < global_position.x
+		sprite_2d.flip_h = player.global_position.x > global_position.x
 
 
 
@@ -107,15 +109,17 @@ func flash():
 func _on_damage_timer_timeout() -> void:
 	is_damaged = false
 	flash_in_progress = false
-	animation_player.play("RESET")
+	animation_player.play("idle")
 
 func shoot():
 	if flash_in_progress:
 		return
 	if is_attacking:
 		return
+	if dead:
+		return
 	is_attacking = true
-	animation_player.play("attack")
+	sprite_2d.frame = 1
 	attack_timer.start()
 	
 	var bullet = bullet_scene.instantiate()
@@ -124,17 +128,30 @@ func shoot():
 
 	var direction = (player.global_position - global_position).normalized()
 	bullet.velocity = direction * 100
-
 	
-
+	randomize()
+	var size = randf_range(0.7, 1.5)
+	bullet.scale = Vector2(size, size)
 	
+	
+func die():
+	if dead:
+		return
+	dead = true
+	die_sound.play()
+	animation_player.play("dead")
+	die_timer.start()
+
+
+func _on_die_timer_timeout() -> void:
+	queue_free()
 
 func _on_shoot_timer_timeout() -> void:
 	shoot()
 	
 
 
-func _on_attack_timer_timeout() -> void:
+func _on_attack_timer_timeout() -> void: 
 	is_attacking = false
 	is_damaged = false
 	
