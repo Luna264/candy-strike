@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 		animation_player.play("idle")
 		sprite_2d.frame = 0
 
-	if health <= 0:
+	if health <= 0 and not dead:
 		print("enemy dead")
 		get_tree().call_group("level", "enemy_death")
 		die()
@@ -123,9 +123,13 @@ func shoot():
 		sprite_2d.frame = 1
 		attack_timer.start()
 		
+		
+		
 		var bullet = bullet_scene.instantiate()
 		get_tree().current_scene.add_child(bullet)
 		bullet.global_position = global_position
+		if player and not bullet.damage_output.is_connected(player._on_bullet_damage_output):
+			bullet.damage_output.connect(player._on_bullet_damage_output)
 
 		var direction = (player.global_position - global_position).normalized()
 		bullet.velocity = direction * 100
@@ -133,6 +137,8 @@ func shoot():
 		randomize()
 		var size = randf_range(0.7, 1.5)
 		bullet.scale = Vector2(size, size)
+		
+		
 		
 	
 func die():

@@ -80,4 +80,5 @@ libraries = {
 }
 autoplay = "idle"
 
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="AliveTimer" to="." method="_on_alive_timer_timeout"]

@@ -26,15 +26,16 @@ var is_jumping = false
 @onready var jump_timer: Timer = $JumpTimer
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	
-	if not is_damaged and not is_exploding and not is_jumping:
-		var direction = (player.global_position - global_position).normalized()
-		velocity.x = speed * direction.x
-	face_player()
-	
-	move_and_slide()
+	if player:
+		if not is_on_floor():
+			velocity += get_gravity() * delta
+		
+		if not is_damaged and not is_exploding and not is_jumping:
+			var direction = (player.global_position - global_position).normalized()
+			velocity.x = speed * direction.x
+		face_player()
+		
+		move_and_slide()
 
 
 func face_player():
@@ -85,7 +86,7 @@ func _process(delta: float) -> void:
 		
 	elif detector.player_is == false:
 		first_stage = false
-		explode_timer = 0.0
+		explode_timer = 0.5
 	else:
 		explode_timer = max(0, explode_timer - delta)
 		

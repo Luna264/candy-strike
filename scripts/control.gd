@@ -8,3 +8,4 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if retry.visible == true:
 		visible = false
+		

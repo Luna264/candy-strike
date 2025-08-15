@@ -211,7 +211,19 @@ func _on_slime_damage_output(damage_output) -> void: #take_damage frm slime
 	hit_timer.start()
 	healthChanged.emit()
 
+func _on_cloud_damage_output(damage_output):
+	is_attacking = false 
+	is_damaged = true
+	health = health - damage_output
+	hit_timer.start()
+	healthChanged.emit()
 
+func _on_bullet_damage_output(damage_output) -> void: #take_damage frm slime
+	is_attacking = false 
+	is_damaged = true
+	health = health - damage_output
+	hit_timer.start()
+	healthChanged.emit()
 
 func update_animation(animation):
 	_player_animation_player.play(animation)

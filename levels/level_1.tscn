@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=34 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="Texture2D" uid="uid://ft05d6wkqj0h" path="res://assets/sprites/bgretry.png" id="1_lrvbd"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_gwceb"]
 [ext_resource type="PackedScene" uid="uid://cnwbmgldjbxaf" path="res://scenes/boundaryTemp.tscn" id="3_l53as"]
 [ext_resource type="Texture2D" uid="uid://bulq0wcqo4jsy" path="res://assets/sprites/YOKLES.png" id="5_bgw3c"]
-[ext_resource type="Script" uid="uid://3plydfi27bmp" path="res://scripts/spawn_holder_slime.gd" id="5_n46q3"]
 [ext_resource type="Texture2D" uid="uid://w6p5tc1ssfsl" path="res://assets/sprites/retryButtonNORMAL..png" id="5_oqlok"]
 [ext_resource type="AudioStream" uid="uid://pfnhrnf8dpco" path="res://assets/audio/wah-wah-sound-effect.mp3" id="5_voubc"]
 [ext_resource type="Script" uid="uid://dy5gn03cyk8v7" path="res://scripts/camera_2d.gd" id="6_5ot28"]
@@ -20,13 +19,12 @@
 [ext_resource type="Script" uid="uid://cva408nwtvr20" path="res://scripts/playerdeath.gd" id="8_7nvrk"]
 [ext_resource type="Script" uid="uid://d22wusqsc3ni0" path="res://scripts/playerhealth.gd" id="10_aerfg"]
 [ext_resource type="Script" uid="uid://bxxxkbuwialt3" path="res://scripts/retry.gd" id="11_5ot28"]
+[ext_resource type="PackedScene" uid="uid://dfb26hk2p4fvb" path="res://scenes/enemys/chococake.tscn" id="19_ohjdc"]
 [ext_resource type="PackedScene" uid="uid://d4jmbagc8mcv0" path="res://scenes/audio_stream_player_2d.tscn" id="20_jkxa6"]
 [ext_resource type="AudioStream" uid="uid://3y2413avn6od" path="res://assets/audio/crit.wav" id="21_w75he"]
 [ext_resource type="AudioStream" uid="uid://dry1mjb3pt2rk" path="res://assets/audio/playerhurt.wav" id="22_udfhf"]
 [ext_resource type="AudioStream" uid="uid://cohungh0p6eqf" path="res://assets/audio/buttonpress.wav" id="23_i6od7"]
-[ext_resource type="PackedScene" uid="uid://cnxaur8wfvwfq" path="res://scenes/enemys/slime.tscn" id="25_ntdhj"]
 [ext_resource type="Texture2D" uid="uid://de5x7838lwa7f" path="res://assets/sprites/tileset.png" id="26_0fu15"]
-[ext_resource type="PackedScene" uid="uid://dud5pfmal615j" path="res://scenes/enemys/flyingcloud.tscn" id="26_4knja"]
 [ext_resource type="PackedScene" uid="uid://bgfng7p1iiq4d" path="res://music.tscn" id="27_4knja"]
 
 [sub_resource type="Animation" id="Animation_jkxa6"]
@@ -338,27 +336,6 @@ script = ExtResource("6_btoec")
 wait_time = 0.5
 autostart = true
 
-[node name="SlimeSpawners" type="Node" parent="level"]
-
-[node name="WaveTimer" type="Timer" parent="level/SlimeSpawners"]
-unique_name_in_owner = true
-wait_time = 0.6
-one_shot = true
-autostart = true
-
-[node name="SpawnHolderSLIME" type="Node2D" parent="level/SlimeSpawners"]
-position = Vector2(0, 2)
-script = ExtResource("5_n46q3")
-
-[node name="Spawner" type="Node2D" parent="level/SlimeSpawners/SpawnHolderSLIME" groups=["SLIMEspawners"]]
-position = Vector2(-408, 121)
-
-[node name="Spawner2" type="Node2D" parent="level/SlimeSpawners/SpawnHolderSLIME" groups=["SLIMEspawners"]]
-position = Vector2(-264, 118)
-
-[node name="Spawner3" type="Node2D" parent="level/SlimeSpawners/SpawnHolderSLIME" groups=["SLIMEspawners"]]
-position = Vector2(-139, 97)
-
 [node name="floor" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
@@ -431,17 +408,13 @@ tile_set = SubResource("TileSet_voubc")
 [node name="main" type="TileMapLayer" parent="tilemaps"]
 tile_set = SubResource("TileSet_voubc")
 
-[node name="slime" parent="." instance=ExtResource("25_ntdhj")]
-position = Vector2(-115, 106)
-
-[node name="flyingcloud" parent="." instance=ExtResource("26_4knja")]
-position = Vector2(-129, 81)
+[node name="chococake" parent="." instance=ExtResource("19_ohjdc")]
+position = Vector2(-115, 102)
 
 [connection signal="animation_finished" from="gui/retry/Control/Sprite2D/AnimationPlayer" to="gui/retry/Control/Sprite2D" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="gui/retry/Control/Sprite2D/wait" to="gui/retry/Control/Sprite2D" method="_on_wait_timeout"]
 [connection signal="pressed" from="gui/retry/Control/retry" to="gui/retry/Control/retry" method="_on_pressed"]
 [connection signal="levelSwap" from="level/LevelManager" to="level/LevelSwap" method="_on_level_manager_level_swap"]
 [connection signal="timeout" from="level/LevelManager/Check" to="level/LevelManager" method="_on_check_timeout"]
-[connection signal="timeout" from="level/SlimeSpawners/WaveTimer" to="level/SlimeSpawners/SpawnHolderSLIME" method="_on_wave_timer_timeout"]
 [connection signal="enemyShakescreen" from="player/candycane" to="player/Camera2D" method="_on_candycane_enemy_shakescreen"]
 [connection signal="finished" from="audio/ButtonPress" to="gui/retry/Control/retry" method="_on_button_press_finished"]
