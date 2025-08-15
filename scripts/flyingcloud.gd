@@ -103,13 +103,12 @@ func flash():
 	flash_in_progress = true
 	
 	animation_player.play("hit")
-	damage_timer.start()
+
 
 
 func _on_damage_timer_timeout() -> void:
 	is_damaged = false
 	flash_in_progress = false
-	animation_player.play("idle")
 
 func shoot():
 	if player:

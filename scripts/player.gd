@@ -36,7 +36,7 @@ var knockback = Vector2.ZERO
 var knockback_toggle = false
 var knockback_timer = 0.0
 
-var health = 12
+var health = 100
 var maxHealth = 100
 
 @onready var hurt: AudioStreamPlayer2D = %Hurt
@@ -218,7 +218,22 @@ func _on_cloud_damage_output(damage_output):
 	hit_timer.start()
 	healthChanged.emit()
 
-func _on_bullet_damage_output(damage_output) -> void: #take_damage frm slime
+func _on_bullet_damage_output(damage_output) -> void:
+	is_attacking = false 
+	is_damaged = true
+	health = health - damage_output
+	hit_timer.start()
+	healthChanged.emit()
+
+func _on_base_damage_output(damage_output) -> void: 
+	is_attacking = false 
+	is_damaged = true
+	health = health - damage_output
+	hit_timer.start()
+	healthChanged.emit()
+
+
+func _on_whip_damage_output(damage_output) -> void: 
 	is_attacking = false 
 	is_damaged = true
 	health = health - damage_output

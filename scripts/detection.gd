@@ -2,8 +2,8 @@ extends Area2D
 
 signal attack
 var player_is = false
-@onready var attack_timer: Timer = $AttackTimer
 signal stopAttack
+@onready var attack_timer: Timer = $AttackTimer
 
 func _ready() -> void:
 	pass

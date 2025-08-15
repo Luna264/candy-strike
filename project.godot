@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Music="*res://music.tscn"
 
+[debug]
+
+gdscript/warnings/enable=false
+
 [display]
 
 window/size/viewport_width=640
