@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=36 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="Texture2D" uid="uid://ft05d6wkqj0h" path="res://assets/sprites/bgretry.png" id="1_lrvbd"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bulq0wcqo4jsy" path="res://assets/sprites/YOKLES.png" id="5_bgw3c"]
 [ext_resource type="Script" uid="uid://3plydfi27bmp" path="res://scripts/spawn_holder_slime.gd" id="5_n46q3"]
 [ext_resource type="Texture2D" uid="uid://w6p5tc1ssfsl" path="res://assets/sprites/retryButtonNORMAL..png" id="5_oqlok"]
+[ext_resource type="AudioStream" uid="uid://pfnhrnf8dpco" path="res://assets/audio/wah-wah-sound-effect.mp3" id="5_voubc"]
 [ext_resource type="Script" uid="uid://dy5gn03cyk8v7" path="res://scripts/camera_2d.gd" id="6_5ot28"]
 [ext_resource type="Texture2D" uid="uid://bkblep1jmlydw" path="res://assets/sprites/retryButtonPRESSED.png" id="6_7nvrk"]
 [ext_resource type="Texture2D" uid="uid://dix8dnnj7oodf" path="res://assets/sprites/healthbarUNDER.png" id="6_aerfg"]
@@ -26,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://cnxaur8wfvwfq" path="res://scenes/enemys/slime.tscn" id="25_ntdhj"]
 [ext_resource type="Texture2D" uid="uid://de5x7838lwa7f" path="res://assets/sprites/tileset.png" id="26_0fu15"]
 [ext_resource type="PackedScene" uid="uid://dud5pfmal615j" path="res://scenes/enemys/flyingcloud.tscn" id="26_4knja"]
+[ext_resource type="PackedScene" uid="uid://bgfng7p1iiq4d" path="res://music.tscn" id="27_4knja"]
 
 [sub_resource type="Animation" id="Animation_jkxa6"]
 length = 0.001
@@ -279,6 +281,11 @@ libraries = {
 [node name="wait" type="Timer" parent="gui/retry/Control/Sprite2D"]
 one_shot = true
 
+[node name="wahwah" type="AudioStreamPlayer2D" parent="gui/retry/Control/Sprite2D"]
+position = Vector2(-374, -209)
+stream = ExtResource("5_voubc")
+volume_db = -0.155
+
 [node name="retry" type="TextureButton" parent="gui/retry/Control"]
 layout_mode = 0
 offset_left = -313.0
@@ -381,6 +388,11 @@ scale = Vector2(13.0643, -1.98949)
 zoom = Vector2(2.095, 2.095)
 position_smoothing_enabled = true
 script = ExtResource("6_5ot28")
+
+[node name="Music" parent="player" instance=ExtResource("27_4knja")]
+position = Vector2(3.04181, -30.418)
+scale = Vector2(1.5209, 1.5209)
+autoplay = true
 
 [node name="audio" type="Node" parent="."]
 

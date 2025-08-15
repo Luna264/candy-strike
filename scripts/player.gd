@@ -36,7 +36,7 @@ var knockback = Vector2.ZERO
 var knockback_toggle = false
 var knockback_timer = 0.0
 
-var health = 100
+var health = 12
 var maxHealth = 100
 
 @onready var hurt: AudioStreamPlayer2D = %Hurt

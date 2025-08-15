@@ -61,23 +61,23 @@ func take_damage(dmg, attacker_position, knockback_x, knockback_y):
 func _physics_process(delta):
 		
 	if not is_damaged:
+		if player:
+			if is_on_floor():
+				velocity.y = 300
 		
-		if is_on_floor():
-			velocity.y = 300
-		
-		var direction = (player.global_position - global_position)
-		var distance = direction.length()
+			var direction = (player.global_position - global_position)
+			var distance = direction.length()
 
-		if distance > 90:
-			velocity = direction.normalized() * speed
+			if distance > 90:
+				velocity = direction.normalized() * speed
 		
-		elif distance < 70:
-			velocity = direction.normalized() * -speed
+			elif distance < 70:
+				velocity = direction.normalized() * -speed
 		
-		else:
-			velocity = Vector2.ZERO 
-	move_and_slide()
-	face_player()
+			else:
+				velocity = Vector2.ZERO 
+		move_and_slide()
+		face_player()
 
 
 
@@ -112,27 +112,28 @@ func _on_damage_timer_timeout() -> void:
 	animation_player.play("idle")
 
 func shoot():
-	if flash_in_progress:
-		return
-	if is_attacking:
-		return
-	if dead:
-		return
-	is_attacking = true
-	sprite_2d.frame = 1
-	attack_timer.start()
-	
-	var bullet = bullet_scene.instantiate()
-	get_tree().current_scene.add_child(bullet)
-	bullet.global_position = global_position
+	if player:
+		if flash_in_progress:
+			return
+		if is_attacking:
+			return
+		if dead:
+			return
+		is_attacking = true
+		sprite_2d.frame = 1
+		attack_timer.start()
+		
+		var bullet = bullet_scene.instantiate()
+		get_tree().current_scene.add_child(bullet)
+		bullet.global_position = global_position
 
-	var direction = (player.global_position - global_position).normalized()
-	bullet.velocity = direction * 100
-	
-	randomize()
-	var size = randf_range(0.7, 1.5)
-	bullet.scale = Vector2(size, size)
-	
+		var direction = (player.global_position - global_position).normalized()
+		bullet.velocity = direction * 100
+		
+		randomize()
+		var size = randf_range(0.7, 1.5)
+		bullet.scale = Vector2(size, size)
+		
 	
 func die():
 	if dead:
