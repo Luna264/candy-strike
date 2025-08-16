@@ -17,7 +17,7 @@ var knockback_y_jump = -200
 @onready var die_sound: AudioStreamPlayer2D = %Die
 @onready var die_timer: Timer = $DieTimer
 @onready var sprite_2d: Sprite2D = $Cloud
-
+var spawner = null
 
 var is_attacking = false
 var is_damaged = false
@@ -37,8 +37,7 @@ func _process(delta: float) -> void:
 		sprite_2d.frame = 0
 
 	if health <= 0 and not dead:
-		print("enemy dead")
-		get_tree().call_group("level", "enemy_death")
+		spawner.enemy_death()
 		die()
 
 

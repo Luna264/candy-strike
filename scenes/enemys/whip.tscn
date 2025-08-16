@@ -472,6 +472,7 @@ tracks/13/keys = {
 
 [sub_resource type="Animation" id="Animation_jopwe"]
 resource_name = "idle"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1111,7 +1112,7 @@ script = ExtResource("1_63q64")
 material = SubResource("ShaderMaterial_gh2eh")
 texture = ExtResource("3_jrsax")
 hframes = 25
-frame = 21
+frame = 1
 
 [node name="DamageTimer" type="Timer" parent="."]
 wait_time = 0.5

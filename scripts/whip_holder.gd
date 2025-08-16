@@ -1,11 +1,11 @@
 extends Node2D
 
 @onready var current_level = 1
-@onready var max_level = 2
+@onready var max_level = 3
 @onready var level_manager = get_tree().get_first_node_in_group("level_manager")
 @onready var enemy_dict = { # level : enemy count
 	1: 1,
-	2: 1
+	2: 1,
 }
 @onready var enemy_scene = preload("res://scenes/enemys/whiP.tscn")
 @onready var rand = RandomNumberGenerator.new()
@@ -23,6 +23,7 @@ func enemy_death():
 	dead_enemies += 1
 	level_manager.totalDeaths += 1
 	if dead_enemies == enemy_dict.get(current_level, 0) and not level_manager.level_over:
+		print("DEAD WHIP", dead_enemies)
 		wave_timer.start()
 		dead_enemies = 0
 
@@ -35,6 +36,7 @@ func spawn_enemies():
 				var spawn_num = rand.randi_range(0, spawn_length)
 				var spawn_position = get_child(spawn_num).position
 				new_enemy.position = spawn_position
+				new_enemy.spawner = self
 				add_child(new_enemy)
 
 				
@@ -45,13 +47,14 @@ func spawn_enemies():
 func update_level(level):
 	spawn_enemies()
 
-func _on_wave_timer_timeout() -> void:
+
+func _on_wave_timer_whip_timeout() -> void:
+	print(current_level)
 	if not level_manager.level_over:
 		print("whip finished level:", current_level)
 
 		if current_level >= max_level:
 			print("all levels finished")
-			level_manager.level_over = true
 			return
 
 		current_level += 1

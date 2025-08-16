@@ -13,8 +13,10 @@ var knockback_y_jump = -200
 @onready var die_timer: Timer = $DieTimer
 @onready var die_sound: AudioStreamPlayer2D = %Die
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var whip_holder: Node2D = $DONOTDELETE/WhipHolder
+@onready var whip_holder_left_facing: Node2D = $DONOTDELETE/WhipHolderLeftFacing
 
-
+var spawner = null
 var is_damaged = false
 var flash_in_progress = false
 var dead = false
@@ -32,9 +34,8 @@ func _process(delta: float) -> void:
 	if not is_damaged and not flash_in_progress and not dead:
 		animation_player.play("idle")
 		
-	if health <= 0:
-		print("enemy dead")
-		get_tree().call_group("level", "enemy_death")
+	if health <= 0 and not dead:
+		spawner.enemy_death()
 		die()
 
 

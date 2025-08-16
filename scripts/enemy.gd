@@ -15,6 +15,7 @@ var knockback_y_jump = -200
 @onready var die_sound: AudioStreamPlayer2D = %Die
 @onready var die_timer: Timer = $DieTimer
 @onready var sprite_2d: Sprite2D = $Marshmellowslime
+var spawner = null
 
 var dead = false
 var is_attacking = false
@@ -40,7 +41,7 @@ func _process(delta: float) -> void:
 		update_animation("idle")
 
 	if health <= 0 and not dead:
-		get_tree().call_group("level", "enemy_death")
+		spawner.enemy_death()
 		die()
 
 func take_damage(dmg, attacker_position, knockback_x, knockback_y):

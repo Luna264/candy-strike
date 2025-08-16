@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var current_level = 1
-@onready var max_level = 2
+@onready var max_level = 3
 @onready var level_manager = get_tree().get_first_node_in_group("level_manager")
 @onready var enemy_dict = { # level : enemy count
 	1: 1,
@@ -35,8 +35,9 @@ func spawn_enemies():
 			var spawn_position = get_child(spawn_num).position
 
 			new_enemy.position = spawn_position
+			new_enemy.spawner = self
 			add_child(new_enemy)
-
+				
 			if player and not new_enemy.damage_output.is_connected(player._on_slime_damage_output):
 				new_enemy.damage_output.connect(player._on_slime_damage_output)
 			
@@ -53,7 +54,6 @@ func _on_wave_timer_timeout() -> void:
 
 		if current_level >= max_level:
 			print("all levels finished")
-			level_manager.level_over = true
 			return
 
 		current_level += 1

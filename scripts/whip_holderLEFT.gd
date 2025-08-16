@@ -1,11 +1,11 @@
 extends Node2D
 
 @onready var current_level = 1
-@onready var max_level = 2
+@onready var max_level = 3
 @onready var level_manager = get_tree().get_first_node_in_group("level_manager")
 @onready var enemy_dict = { # level : enemy count
 	1: 1,
-	2: 2
+	2: 1
 }
 @onready var enemy_scene = preload("res://scenes/enemys/whiP.tscn")
 @onready var rand = RandomNumberGenerator.new()
@@ -34,7 +34,7 @@ func spawn_enemies():
 				var spawn_length = get_child_count() - 1
 				var spawn_num = rand.randi_range(0, spawn_length)
 				var spawn_position = get_child(spawn_num).position
-
+				new_enemy.spawner = self
 				new_enemy.position = spawn_position
 				add_child(new_enemy)
 				new_enemy.scale = Vector2(-1, 1)
@@ -47,13 +47,12 @@ func spawn_enemies():
 func update_level(level):
 	spawn_enemies()
 
-func _on_wave_timer_timeout() -> void:
+func _on_wave_timer_whip_timeout() -> void:
 	if not level_manager.level_over:
 		print("Clouds finished level:", current_level)
 
 		if current_level >= max_level:
 			print("all levels finished")
-			level_manager.level_over = true
 			return
 
 		current_level += 1
