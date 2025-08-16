@@ -1219,7 +1219,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_fp2sq")
 }
 
-[node name="hitbox" type="Area2D" parent="whip"]
+[node name="hitbox" type="Area2D" parent="whip" groups=["whip"]]
 position = Vector2(29, -10)
 rotation = -2.17386
 scale = Vector2(1.39856, -1.16083)

@@ -21,6 +21,8 @@ extends CharacterBody2D
 signal shakescreenplayer
 signal healthChanged
 
+
+var is_whip = false
 var is_crit = false
 var is_attacking = false
 var is_damaged = false
@@ -125,7 +127,7 @@ func _physics_process(delta: float) -> void:
 	if knockback_timer <= 0.0: #no knockback 
 		knockback_toggle = false	
 		knockback = Vector2.ZERO
-	
+		is_whip = false
 		
 		
 	if not is_on_floor():
@@ -178,16 +180,24 @@ func _physics_process(delta: float) -> void:
 		
 	
 func _knockback(enemyPosition: Vector2):
-	var knockbackDirection = (global_position - enemyPosition).normalized() #same idea asin enemy script with direction
-	knockback.x = knockbackDirection.x * 100 #not setting velocity here becaause that is abad idea
-	knockback_timer = 0.2 #how long knockback will last
+	if is_whip == true:
+		var knockbackDirection = (global_position - enemyPosition).normalized()
+		knockback.x = knockbackDirection.x * -100#not setting velocity here becaause that is abad idea
+		knockback_timer = 0.2 #how long knockback will last
+	else:
+		var knockbackDirection = (global_position - enemyPosition).normalized() #same idea asin enemy script with direction
+		knockback.x = knockbackDirection.x * 100 #not setting velocity here becaause that is abad idea
+		knockback_timer = 0.2 #how long knockback will last
 
 	
 func _on_hurtbox_area_entered(area: Area2D) -> void:           #take damage player detection
 	if area.name == "hitbox" or area.is_in_group("enemy"):
 		hurt.play()
 		emit_signal("shakescreenplayer")
-		_knockback(area.get_parent().position)
+		if area.is_in_group("whip"):
+			is_whip = true
+		else:
+			_knockback(area.position)
 		
 		if is_attacking:
 			return
