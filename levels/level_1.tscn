@@ -419,6 +419,11 @@ unique_name_in_owner = true
 wait_time = 0.3
 one_shot = true
 
+[node name="WaveTimerWhip" type="Timer" parent="DONOTDELETE"]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
 [node name="SpawnHolderSlime" type="Node2D" parent="DONOTDELETE"]
 position = Vector2(29, -27)
 script = ExtResource("27_voubc")
@@ -455,8 +460,8 @@ position = Vector2(-440, 22)
 position = Vector2(30, -26)
 script = ExtResource("29_0x1rk")
 
-[node name="Spawner" type="Node2D" parent="DONOTDELETE/WhipHolder"]
-position = Vector2(-515, 145)
+[node name="Spawner2" type="Node2D" parent="DONOTDELETE/WhipHolder"]
+position = Vector2(-517, 125)
 
 [node name="WhipHolderLeftFacing" type="Node2D" parent="DONOTDELETE"]
 position = Vector2(29, -27)
@@ -464,7 +469,7 @@ script = ExtResource("29_pnpm1")
 
 [node name="Spawner2" type="Node2D" parent="DONOTDELETE/WhipHolderLeftFacing"]
 modulate = Color(0, 1, 1, 1)
-position = Vector2(-273, 139)
+position = Vector2(-274, 135)
 
 [connection signal="animation_finished" from="gui/retry/Control/Sprite2D/AnimationPlayer" to="gui/retry/Control/Sprite2D" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="gui/retry/Control/Sprite2D/wait" to="gui/retry/Control/Sprite2D" method="_on_wait_timeout"]
@@ -474,3 +479,4 @@ position = Vector2(-273, 139)
 [connection signal="enemyShakescreen" from="player/candycane" to="player/Camera2D" method="_on_candycane_enemy_shakescreen"]
 [connection signal="finished" from="audio/ButtonPress" to="gui/retry/Control/retry" method="_on_button_press_finished"]
 [connection signal="timeout" from="DONOTDELETE/WaveTimer" to="DONOTDELETE/SpawnHolderSlime" method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="DONOTDELETE/WaveTimerWhip" to="DONOTDELETE/SpawnHolderSlime" method="_on_wave_timer_timeout"]

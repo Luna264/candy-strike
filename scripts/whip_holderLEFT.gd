@@ -11,7 +11,7 @@ extends Node2D
 @onready var rand = RandomNumberGenerator.new()
 @onready var dead_enemies = 0
 
-@onready var wave_timer = get_node("%WaveTimer")
+@onready var wave_timer = get_node("%WaveTimerWhip")
 @onready var player = get_tree().get_first_node_in_group("player")
 
 func _ready():

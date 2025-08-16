@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="candy strike"
-run/main_scene="uid://brx6k5gbfq24t"
+run/main_scene="uid://wpb33gohd6n1"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,6 +22,8 @@ Music="*res://music.tscn"
 [debug]
 
 gdscript/warnings/enable=false
+gdscript/warnings/exclude_addons=false
+shader_language/warnings/enable=false
 
 [display]
 

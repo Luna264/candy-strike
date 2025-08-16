@@ -63,7 +63,7 @@ func _physics_process(delta):
 	if not is_damaged:
 		if player:
 			if is_on_floor():
-				velocity.y = 300
+				velocity.y = -300
 		
 			var direction = (player.global_position - global_position)
 			var distance = direction.length()
@@ -76,6 +76,8 @@ func _physics_process(delta):
 		
 			else:
 				velocity = Vector2.ZERO 
+			
+			
 		move_and_slide()
 		face_player()
 

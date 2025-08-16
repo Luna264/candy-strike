@@ -26,7 +26,7 @@ signal shakescreen
 
 func _ready() -> void:
 	sprite_2d.material = sprite_2d.material.duplicate()
-
+	jump_timer.start(randi_range(1,3))
 
 func _process(delta: float) -> void:
 	if dead:
