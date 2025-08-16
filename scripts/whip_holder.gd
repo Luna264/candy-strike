@@ -7,7 +7,7 @@ extends Node2D
 	1: 1,
 	2: 2
 }
-@onready var enemy_scene = preload("res://scenes/enemys/slime.tscn")
+@onready var enemy_scene = preload("res://scenes/enemys/whiP.tscn")
 @onready var rand = RandomNumberGenerator.new()
 @onready var dead_enemies = 0
 
@@ -27,20 +27,19 @@ func enemy_death():
 		dead_enemies = 0
 
 func spawn_enemies():
-	if enemy_dict.has(current_level):
-		for i in range(enemy_dict[current_level]):
-			var new_enemy = enemy_scene.instantiate()
-			var spawn_length = get_child_count() - 1
-			var spawn_num = rand.randi_range(0, spawn_length)
-			var spawn_position = get_child(spawn_num).position
+	if not level_manager.level_over:
+		if enemy_dict.has(current_level):
+			for i in range(enemy_dict[current_level]):
+				var new_enemy = enemy_scene.instantiate()
+				var spawn_length = get_child_count() - 1
+				var spawn_num = rand.randi_range(0, spawn_length)
+				var spawn_position = get_child(spawn_num).position
 
-			new_enemy.position = spawn_position
-			add_child(new_enemy)
+				new_enemy.position = spawn_position
+				add_child(new_enemy)
 
-			if player and not new_enemy.damage_output.is_connected(player._on_slime_damage_output):
-				new_enemy.damage_output.connect(player._on_slime_damage_output)
-			
-			await get_tree().create_timer(2.0).timeout
+				
+				await get_tree().create_timer(2.0).timeout
 	else:
 		print("LEVEL OVER! not spawning anymore")
 
@@ -49,7 +48,7 @@ func update_level(level):
 
 func _on_wave_timer_timeout() -> void:
 	if not level_manager.level_over:
-		print("finished level:", current_level)
+		print("Clouds finished level:", current_level)
 
 		if current_level >= max_level:
 			print("all levels finished")

@@ -8,11 +8,11 @@ var damageoutput = 150
 var knockback_x_jump = 200
 var knockback_y_jump = -200
 
-@onready var animation_player: AnimationPlayer = get_tree().get_first_node_in_group("base_animation_player")
 @onready var sprite_2d: Sprite2D = $Orb
 @onready var damage_timer: Timer = $DamageTimer
 @onready var die_timer: Timer = $DieTimer
 @onready var die_sound: AudioStreamPlayer2D = %Die
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 var is_damaged = false
@@ -29,7 +29,7 @@ func _ready() -> void:
 	animation_player.play("idle")
 
 func _process(delta: float) -> void:
-	if not is_damaged and not flash_in_progress:
+	if not is_damaged and not flash_in_progress and not dead:
 		animation_player.play("idle")
 		
 	if health <= 0:
@@ -39,7 +39,6 @@ func _process(delta: float) -> void:
 
 
 func take_damage(dmg, attacker_position, knockback_x, knockback_y):
-	print("H")
 	damage_timer.start()
 	emit_signal("shakescreen")
 	if is_damaged or flash_in_progress:
@@ -54,14 +53,13 @@ func take_damage(dmg, attacker_position, knockback_x, knockback_y):
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name == "hurtbox":
-		emit_signal("damage_output", 10)
+		emit_signal("damage_output", 0.3)
 
 
 	
 func _on_damage_timer_timeout() -> void:
 	is_damaged = false
 	flash_in_progress = false
-	print("END FLASH")
 
 func flash():
 	if flash_in_progress:
@@ -69,7 +67,6 @@ func flash():
 	animation_player.play("hit")
 	flash_in_progress = true
 	is_damaged = true
-	print("START FLASH")
 	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "hit":

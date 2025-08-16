@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=37 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="Texture2D" uid="uid://ft05d6wkqj0h" path="res://assets/sprites/bgretry.png" id="1_lrvbd"]
@@ -24,8 +24,11 @@
 [ext_resource type="AudioStream" uid="uid://dry1mjb3pt2rk" path="res://assets/audio/playerhurt.wav" id="22_udfhf"]
 [ext_resource type="AudioStream" uid="uid://cohungh0p6eqf" path="res://assets/audio/buttonpress.wav" id="23_i6od7"]
 [ext_resource type="Texture2D" uid="uid://de5x7838lwa7f" path="res://assets/sprites/tileset.png" id="26_0fu15"]
-[ext_resource type="PackedScene" uid="uid://bcrbv56fl72ak" path="res://scenes/whiP.tscn" id="26_4knja"]
 [ext_resource type="PackedScene" uid="uid://bgfng7p1iiq4d" path="res://music.tscn" id="27_4knja"]
+[ext_resource type="Script" uid="uid://3plydfi27bmp" path="res://scripts/spawn_holder_slime.gd" id="27_voubc"]
+[ext_resource type="Script" uid="uid://dlq6ppx3aenyu" path="res://scripts/cloud_holder.gd" id="28_voubc"]
+[ext_resource type="Script" uid="uid://chg0wdfhyuoix" path="res://scripts/whip_holder.gd" id="29_0x1rk"]
+[ext_resource type="Script" uid="uid://dedffkykiudfg" path="res://scripts/whip_holderLEFT.gd" id="29_pnpm1"]
 
 [sub_resource type="Animation" id="Animation_jkxa6"]
 length = 0.001
@@ -221,6 +224,7 @@ sources/0 = SubResource("TileSetAtlasSource_4knja")
 
 [node name="Level_1" type="Node2D"]
 position = Vector2(-128, 12)
+metadata/_edit_horizontal_guides_ = [-9.0]
 
 [node name="gui" type="Node" parent="."]
 
@@ -408,8 +412,59 @@ tile_set = SubResource("TileSet_voubc")
 [node name="main" type="TileMapLayer" parent="tilemaps"]
 tile_set = SubResource("TileSet_voubc")
 
-[node name="whipbase" parent="." instance=ExtResource("26_4knja")]
-position = Vector2(-300, 100)
+[node name="DONOTDELETE" type="Node" parent="."]
+
+[node name="WaveTimer" type="Timer" parent="DONOTDELETE"]
+unique_name_in_owner = true
+wait_time = 0.3
+one_shot = true
+
+[node name="SpawnHolderSlime" type="Node2D" parent="DONOTDELETE"]
+position = Vector2(29, -27)
+script = ExtResource("27_voubc")
+
+[node name="Spawner" type="Node2D" parent="DONOTDELETE/SpawnHolderSlime"]
+position = Vector2(-235, 39)
+
+[node name="Spawner2" type="Node2D" parent="DONOTDELETE/SpawnHolderSlime"]
+position = Vector2(-255, 125)
+
+[node name="Spawner3" type="Node2D" parent="DONOTDELETE/SpawnHolderSlime"]
+position = Vector2(-324, 96)
+
+[node name="Spawner4" type="Node2D" parent="DONOTDELETE/SpawnHolderSlime"]
+position = Vector2(-440, 22)
+
+[node name="CloudHolder" type="Node2D" parent="DONOTDELETE"]
+position = Vector2(29, -27)
+script = ExtResource("28_voubc")
+
+[node name="Spawner" type="Node2D" parent="DONOTDELETE/CloudHolder"]
+position = Vector2(-235, 39)
+
+[node name="Spawner2" type="Node2D" parent="DONOTDELETE/CloudHolder"]
+position = Vector2(-255, 125)
+
+[node name="Spawner3" type="Node2D" parent="DONOTDELETE/CloudHolder"]
+position = Vector2(-324, 96)
+
+[node name="Spawner4" type="Node2D" parent="DONOTDELETE/CloudHolder"]
+position = Vector2(-440, 22)
+
+[node name="WhipHolder" type="Node2D" parent="DONOTDELETE"]
+position = Vector2(30, -26)
+script = ExtResource("29_0x1rk")
+
+[node name="Spawner" type="Node2D" parent="DONOTDELETE/WhipHolder"]
+position = Vector2(-515, 145)
+
+[node name="WhipHolderLeftFacing" type="Node2D" parent="DONOTDELETE"]
+position = Vector2(29, -27)
+script = ExtResource("29_pnpm1")
+
+[node name="Spawner2" type="Node2D" parent="DONOTDELETE/WhipHolderLeftFacing"]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(-273, 139)
 
 [connection signal="animation_finished" from="gui/retry/Control/Sprite2D/AnimationPlayer" to="gui/retry/Control/Sprite2D" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="gui/retry/Control/Sprite2D/wait" to="gui/retry/Control/Sprite2D" method="_on_wait_timeout"]
@@ -418,3 +473,4 @@ position = Vector2(-300, 100)
 [connection signal="timeout" from="level/LevelManager/Check" to="level/LevelManager" method="_on_check_timeout"]
 [connection signal="enemyShakescreen" from="player/candycane" to="player/Camera2D" method="_on_candycane_enemy_shakescreen"]
 [connection signal="finished" from="audio/ButtonPress" to="gui/retry/Control/retry" method="_on_button_press_finished"]
+[connection signal="timeout" from="DONOTDELETE/WaveTimer" to="DONOTDELETE/SpawnHolderSlime" method="_on_wave_timer_timeout"]

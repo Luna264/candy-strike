@@ -1,6 +1,5 @@
 extends Area2D
 
-var health = 150
 @export var speed = -80.0
 @export var whipBase : Node2D 
 @onready var player = get_tree().get_first_node_in_group("player")
@@ -34,4 +33,4 @@ func _on_detection_stop_attack() -> void:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name == "hurtbox":
-		emit_signal("damage_output", 3)
+		emit_signal("damage_output", 0.3)
