@@ -226,7 +226,9 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-z_index = 2
+z_index = 5
+collision_layer = 2
+collision_mask = 255
 script = ExtResource("1_g2els")
 
 [node name="CoyoteTimer" type="Timer" parent="."]

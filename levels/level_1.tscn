@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=36 format=3 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="Texture2D" uid="uid://ft05d6wkqj0h" path="res://assets/sprites/bgretry.png" id="1_lrvbd"]
@@ -25,10 +25,9 @@
 [ext_resource type="AudioStream" uid="uid://cohungh0p6eqf" path="res://assets/audio/buttonpress.wav" id="23_i6od7"]
 [ext_resource type="Texture2D" uid="uid://de5x7838lwa7f" path="res://assets/sprites/tileset.png" id="26_0fu15"]
 [ext_resource type="PackedScene" uid="uid://bgfng7p1iiq4d" path="res://music.tscn" id="27_4knja"]
+[ext_resource type="Script" uid="uid://yfxm8if4bbad" path="res://scripts/choco_cake_holder.gd" id="27_pnpm1"]
 [ext_resource type="Script" uid="uid://3plydfi27bmp" path="res://scripts/spawn_holder_slime.gd" id="27_voubc"]
 [ext_resource type="Script" uid="uid://dlq6ppx3aenyu" path="res://scripts/cloud_holder.gd" id="28_voubc"]
-[ext_resource type="Script" uid="uid://chg0wdfhyuoix" path="res://scripts/whip_holder.gd" id="29_0x1rk"]
-[ext_resource type="Script" uid="uid://dedffkykiudfg" path="res://scripts/whip_holderLEFT.gd" id="29_pnpm1"]
 
 [sub_resource type="Animation" id="Animation_jkxa6"]
 length = 0.001
@@ -330,7 +329,7 @@ metadata/_edit_use_anchors_ = true
 [node name="level" type="Node" parent="."]
 
 [node name="LevelSwap" parent="level" instance=ExtResource("7_gwceb")]
-position = Vector2(-196, 50)
+position = Vector2(-271, 109)
 
 [node name="LevelManager" type="Node2D" parent="level" groups=["level_manager"]]
 unique_name_in_owner = true
@@ -341,6 +340,8 @@ wait_time = 0.5
 autostart = true
 
 [node name="floor" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
 position = Vector2(-224, 119)
@@ -350,10 +351,22 @@ shape = SubResource("WorldBoundaryShape2D_uwrxv")
 
 [node name="boundary2" parent="walls" instance=ExtResource("3_l53as")]
 position = Vector2(-420, 66)
+collision_layer = 4
+
+[node name="boundary4" parent="walls" instance=ExtResource("3_l53as")]
+position = Vector2(-597, 41)
+scale = Vector2(-0.545893, 24.4001)
+collision_layer = 4
+
+[node name="boundary5" parent="walls" instance=ExtResource("3_l53as")]
+position = Vector2(-116, 75)
+scale = Vector2(-0.545893, 24.4001)
+collision_layer = 4
 
 [node name="boundary3" parent="walls" instance=ExtResource("3_l53as")]
-position = Vector2(-134, -106)
+position = Vector2(-174, 29)
 scale = Vector2(20.6867, 1.0855)
+collision_layer = 4
 
 [node name="player" parent="." instance=ExtResource("1_btoec")]
 position = Vector2(-237, 104)
@@ -416,7 +429,12 @@ tile_set = SubResource("TileSet_voubc")
 
 [node name="WaveTimer" type="Timer" parent="DONOTDELETE"]
 unique_name_in_owner = true
-wait_time = 0.3
+wait_time = 0.6
+one_shot = true
+
+[node name="WaveTimerChoco" type="Timer" parent="DONOTDELETE"]
+unique_name_in_owner = true
+wait_time = 0.8
 one_shot = true
 
 [node name="WaveTimerWhip" type="Timer" parent="DONOTDELETE"]
@@ -425,11 +443,11 @@ wait_time = 3.0
 one_shot = true
 
 [node name="SpawnHolderSlime" type="Node2D" parent="DONOTDELETE"]
-position = Vector2(29, -27)
+position = Vector2(23, -16)
 script = ExtResource("27_voubc")
 
 [node name="Spawner" type="Node2D" parent="DONOTDELETE/SpawnHolderSlime"]
-position = Vector2(-235, 39)
+position = Vector2(-519, 117)
 
 [node name="Spawner2" type="Node2D" parent="DONOTDELETE/SpawnHolderSlime"]
 position = Vector2(-255, 125)
@@ -438,14 +456,24 @@ position = Vector2(-255, 125)
 position = Vector2(-324, 96)
 
 [node name="Spawner4" type="Node2D" parent="DONOTDELETE/SpawnHolderSlime"]
-position = Vector2(-440, 22)
+position = Vector2(-505, 111)
+
+[node name="ChocoCakeHolder" type="Node2D" parent="DONOTDELETE"]
+position = Vector2(29, -27)
+script = ExtResource("27_pnpm1")
+
+[node name="Spawner" type="Node2D" parent="DONOTDELETE/ChocoCakeHolder"]
+position = Vector2(-505, 90)
+
+[node name="Spawner2" type="Node2D" parent="DONOTDELETE/ChocoCakeHolder"]
+position = Vector2(-262, 136)
 
 [node name="CloudHolder" type="Node2D" parent="DONOTDELETE"]
 position = Vector2(29, -27)
 script = ExtResource("28_voubc")
 
 [node name="Spawner" type="Node2D" parent="DONOTDELETE/CloudHolder"]
-position = Vector2(-235, 39)
+position = Vector2(-321, 99)
 
 [node name="Spawner2" type="Node2D" parent="DONOTDELETE/CloudHolder"]
 position = Vector2(-255, 125)
@@ -454,29 +482,7 @@ position = Vector2(-255, 125)
 position = Vector2(-324, 96)
 
 [node name="Spawner4" type="Node2D" parent="DONOTDELETE/CloudHolder"]
-position = Vector2(-440, 22)
-
-[node name="WhipHolder" type="Node2D" parent="DONOTDELETE"]
-position = Vector2(30, -26)
-script = ExtResource("29_0x1rk")
-
-[node name="Spawner2" type="Node2D" parent="DONOTDELETE/WhipHolder"]
-position = Vector2(-517, 125)
-
-[node name="Spawner3" type="Node2D" parent="DONOTDELETE/WhipHolder"]
-position = Vector2(-505, 127)
-
-[node name="WhipHolderLeftFacing" type="Node2D" parent="DONOTDELETE"]
-position = Vector2(29, -27)
-script = ExtResource("29_pnpm1")
-
-[node name="Spawner2" type="Node2D" parent="DONOTDELETE/WhipHolderLeftFacing"]
-modulate = Color(0, 1, 1, 1)
-position = Vector2(-274, 135)
-
-[node name="Spawner3" type="Node2D" parent="DONOTDELETE/WhipHolderLeftFacing"]
-modulate = Color(0, 1, 1, 1)
-position = Vector2(-329, 139)
+position = Vector2(-515, 90)
 
 [connection signal="animation_finished" from="gui/retry/Control/Sprite2D/AnimationPlayer" to="gui/retry/Control/Sprite2D" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="gui/retry/Control/Sprite2D/wait" to="gui/retry/Control/Sprite2D" method="_on_wait_timeout"]
@@ -486,6 +492,6 @@ position = Vector2(-329, 139)
 [connection signal="enemyShakescreen" from="player/candycane" to="player/Camera2D" method="_on_candycane_enemy_shakescreen"]
 [connection signal="finished" from="audio/ButtonPress" to="gui/retry/Control/retry" method="_on_button_press_finished"]
 [connection signal="timeout" from="DONOTDELETE/WaveTimer" to="DONOTDELETE/SpawnHolderSlime" method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="DONOTDELETE/WaveTimer" to="DONOTDELETE/ChocoCakeHolder" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="DONOTDELETE/WaveTimer" to="DONOTDELETE/CloudHolder" method="_on_wave_timer_timeout"]
-[connection signal="timeout" from="DONOTDELETE/WaveTimerWhip" to="DONOTDELETE/WhipHolder" method="_on_wave_timer_whip_timeout"]
-[connection signal="timeout" from="DONOTDELETE/WaveTimerWhip" to="DONOTDELETE/WhipHolderLeftFacing" method="_on_wave_timer_whip_timeout"]
+[connection signal="timeout" from="DONOTDELETE/WaveTimerChoco" to="DONOTDELETE/ChocoCakeHolder" method="_on_wave_timer_choco_timeout"]

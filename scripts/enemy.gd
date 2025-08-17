@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = 30
+var health = 10
 @export var speed = -80.0
 @onready var player = get_tree().get_first_node_in_group("player")
 var friction = 500.0

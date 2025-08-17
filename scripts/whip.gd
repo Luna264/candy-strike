@@ -13,8 +13,6 @@ var knockback_y_jump = -200
 @onready var die_timer: Timer = $DieTimer
 @onready var die_sound: AudioStreamPlayer2D = %Die
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var whip_holder: Node2D = $DONOTDELETE/WhipHolder
-@onready var whip_holder_left_facing: Node2D = $DONOTDELETE/WhipHolderLeftFacing
 
 var spawner = null
 var is_damaged = false

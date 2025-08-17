@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = 25
+var health = 10
 @export var speed = 80.0
 @onready var player = get_tree().get_first_node_in_group("player")
 var friction = 500.0
@@ -28,6 +28,8 @@ signal damage_output
 signal shakescreen
 
 func _ready() -> void:
+	randomize()
+	var speed = randf_range(10, 100)
 	sprite_2d.material = sprite_2d.material.duplicate()
 
 
@@ -58,7 +60,6 @@ func take_damage(dmg, attacker_position, knockback_x, knockback_y):
 
 
 func _physics_process(delta):
-		
 	if not is_damaged:
 		if player:
 			if is_on_floor():
@@ -75,6 +76,7 @@ func _physics_process(delta):
 		
 			else:
 				velocity = Vector2.ZERO 
+				
 			
 			
 		move_and_slide()
@@ -112,6 +114,9 @@ func _on_damage_timer_timeout() -> void:
 	flash_in_progress = false
 
 func shoot():
+	randomize()
+	speed = randf_range(-1, 100)
+	
 	if player:
 		if flash_in_progress:
 			return

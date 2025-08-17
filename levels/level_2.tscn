@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dy7amar1jgry4"]
+[gd_scene load_steps=6 format=3 uid="uid://dy7amar1jgry4"]
 
 [ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="2_0srwa"]
 [ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_pqqg8"]
 [ext_resource type="PackedScene" uid="uid://cnwbmgldjbxaf" path="res://scenes/boundaryTemp.tscn" id="3_0srwa"]
+[ext_resource type="Script" uid="uid://chg0wdfhyuoix" path="res://scripts/whip_holder.gd" id="4_5722l"]
+[ext_resource type="Script" uid="uid://dedffkykiudfg" path="res://scripts/whip_holderLEFT.gd" id="5_ilhis"]
 
 [node name="Level2" type="Node2D"]
 
@@ -18,5 +20,27 @@ scale = Vector2(15.8878, -9.74128)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(186, -63)
 scale = Vector2(1.35583, 1.35583)
+
+[node name="WhipHolder" type="Node2D" parent="."]
+position = Vector2(30, -26)
+script = ExtResource("4_5722l")
+
+[node name="Spawner2" type="Node2D" parent="WhipHolder"]
+position = Vector2(-514, 128)
+
+[node name="Spawner3" type="Node2D" parent="WhipHolder"]
+position = Vector2(-443, 142)
+
+[node name="WhipHolderLeftFacing" type="Node2D" parent="."]
+position = Vector2(29, -27)
+script = ExtResource("5_ilhis")
+
+[node name="Spawner2" type="Node2D" parent="WhipHolderLeftFacing"]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(-274, 135)
+
+[node name="Spawner3" type="Node2D" parent="WhipHolderLeftFacing"]
+modulate = Color(0, 1, 1, 1)
+position = Vector2(-329, 139)
 
 [editable path="Player"]

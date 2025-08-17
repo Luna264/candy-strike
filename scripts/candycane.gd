@@ -26,7 +26,7 @@ func hit(delta: float) -> void:
 		
 		
 	var overlapping = get_overlapping_bodies()
-	print("Overlapping bodies: ", overlapping)
+	#print("Overlapping bodies: ", overlapping)
 	
 	for body in get_overlapping_bodies():
 		

@@ -15,6 +15,7 @@ extends Node2D
 @onready var player = get_tree().get_first_node_in_group("player")
 
 func _ready():
+	await get_tree().create_timer(2.0).timeout
 	update_level(current_level)
 	add_to_group("level")
 

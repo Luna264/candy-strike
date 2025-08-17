@@ -74,6 +74,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("hitbox:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_n41ox"]
 resource_name = "dead"
@@ -207,6 +219,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("hitbox:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_sat0y"]
 resource_name = "jump"
@@ -234,13 +258,13 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
-size = Vector2(14, 12.25)
+size = Vector2(13, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
-size = Vector2(16, 12.875)
+size = Vector2(15, 11.875)
 
 [node name="slime" type="CharacterBody2D" groups=["enemy"]]
-z_index = 1
+collision_mask = 6
 script = ExtResource("1_ya1je")
 
 [node name="Marshmellowslime" type="Sprite2D" parent="."]
@@ -258,15 +282,13 @@ libraries = {
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, 4.875)
+position = Vector2(0.5, 5)
 shape = SubResource("RectangleShape2D_md0e3")
 
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(0, 4.4375)
+position = Vector2(0.5, 4.9375)
 shape = SubResource("RectangleShape2D_4ra3w")
 debug_color = Color(0.579367, 0.414971, 0.930006, 0.42)
 

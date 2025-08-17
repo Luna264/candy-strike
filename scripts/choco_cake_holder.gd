@@ -1,26 +1,22 @@
 extends Node2D
 
 @onready var current_level = 1
-@onready var max_level = 7
+@onready var max_level = 2
 @onready var level_manager = get_tree().get_first_node_in_group("level_manager")
 @onready var enemy_dict = { # level : enemy count
-	1: 2,
-	2: 2,
-	3: 4,
-	4: 4,
-	5: 1,
-	6: 3,
-	7: 1
+	1: 1,
 }
-@onready var enemy_scene = preload("res://scenes/enemys/slime.tscn")
+@onready var enemy_scene = preload("res://scenes/enemys/chococake.tscn")
 @onready var rand = RandomNumberGenerator.new()
 @onready var dead_enemies = 0
 
 @onready var wave_timer = get_node("%WaveTimer")
 @onready var player = get_tree().get_first_node_in_group("player")
+var canSpawn = false
+
+
 
 func _ready():
-	update_level(current_level)
 	add_to_group("level")
 
 func enemy_death():
@@ -43,8 +39,8 @@ func spawn_enemies():
 			new_enemy.spawner = self
 			add_child(new_enemy)
 				
-			if player and not new_enemy.damage_output.is_connected(player._on_slime_damage_output):
-				new_enemy.damage_output.connect(player._on_slime_damage_output)
+			if player and not new_enemy.damage_output.is_connected(player._on_chococake_damage_output):
+				new_enemy.damage_output.connect(player._on_chococake_damage_output)
 			
 			await get_tree().create_timer(2.0).timeout
 	else:
@@ -53,7 +49,8 @@ func spawn_enemies():
 func update_level(level):
 	spawn_enemies()
 
-func _on_wave_timer_timeout() -> void:
+
+func _on_wave_timer_choco_timeout() -> void:
 	if not level_manager.level_over:
 		print("finished level:", current_level)
 
@@ -63,3 +60,13 @@ func _on_wave_timer_timeout() -> void:
 
 		current_level += 1
 		update_level(current_level)
+
+
+func _process(delta: float) -> void:
+	if level_manager.level_now == "Level_1" and level_manager.totalDeaths < 20:
+		await get_tree().create_timer(1.0).timeout
+	elif level_manager.totalDeaths >= 20 and canSpawn == false:
+		update_level(current_level)
+		canSpawn = true
+		
+		

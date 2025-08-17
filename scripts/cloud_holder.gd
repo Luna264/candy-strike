@@ -1,11 +1,24 @@
 extends Node2D
 
 @onready var current_level = 1
-@onready var max_level = 3
+@onready var max_level = 6
 @onready var level_manager = get_tree().get_first_node_in_group("level_manager")
 @onready var enemy_dict = { # level : enemy count
-	1: 1,
-	2: 2
+	1: 2,
+	2: 2,
+	3: 3,
+	4: 1,
+	5: 2,
+	6: 2
+}
+
+@onready var enemy_dictLEVELTWO = { # level : enemy count
+	1: 2,
+	2: 2,
+	3: 3,
+	4: 1,
+	5: 2,
+	6: 2
 }
 @onready var enemy_scene = preload("res://scenes/enemys/flyingcloud.tscn")
 @onready var rand = RandomNumberGenerator.new()
@@ -13,9 +26,9 @@ extends Node2D
 
 @onready var wave_timer = get_node("%WaveTimer")
 @onready var player = get_tree().get_first_node_in_group("player")
+var canSpawn = false
 
 func _ready():
-	update_level(current_level)
 	add_to_group("level")
 
 func enemy_death():
@@ -28,23 +41,46 @@ func enemy_death():
 
 func spawn_enemies():
 	if not level_manager.level_over:
-		if enemy_dict.has(current_level):
-			for i in range(enemy_dict[current_level]):
-				var new_enemy = enemy_scene.instantiate()
-				var spawn_length = get_child_count() - 1
-				var spawn_num = rand.randi_range(0, spawn_length)
-				var spawn_position = get_child(spawn_num).position
+		if level_manager.level_now == "Level_1":
+			if enemy_dict.has(current_level):
+				for i in range(enemy_dict[current_level]):
+					var new_enemy = enemy_scene.instantiate()
+					var spawn_length = get_child_count() - 1
+					var spawn_num = rand.randi_range(0, spawn_length)
+					var spawn_position = get_child(spawn_num).position
 
-				new_enemy.position = spawn_position
-				new_enemy.spawner = self
-				add_child(new_enemy)
+					new_enemy.position = spawn_position
+					new_enemy.spawner = self
+					add_child(new_enemy)
 
-				if player and not new_enemy.damage_output.is_connected(player._on_cloud_damage_output):
-					new_enemy.damage_output.connect(player._on_cloud_damage_output)
+					if player and not new_enemy.damage_output.is_connected(player._on_cloud_damage_output):
+						new_enemy.damage_output.connect(player._on_cloud_damage_output)
 
-				await get_tree().create_timer(2.0).timeout
-	else:
-		print("LEVEL OVER! not spawning anymore")
+					await get_tree().create_timer(2.0).timeout
+		else:
+			print("LEVEL OVER! not spawning anymore")
+			
+			
+			
+			
+		if level_manager.level_now == "Level_2":
+			if enemy_dictLEVELTWO.has(current_level):
+				for i in range(enemy_dict[current_level]):
+					var new_enemy = enemy_scene.instantiate()
+					var spawn_length = get_child_count() - 1
+					var spawn_num = rand.randi_range(0, spawn_length)
+					var spawn_position = get_child(spawn_num).position
+
+					new_enemy.position = spawn_position
+					new_enemy.spawner = self
+					add_child(new_enemy)
+
+					if player and not new_enemy.damage_output.is_connected(player._on_cloud_damage_output):
+						new_enemy.damage_output.connect(player._on_cloud_damage_output)
+
+					await get_tree().create_timer(2.0).timeout
+		else:
+			print("LEVEL OVER! not spawning anymore")
 
 func update_level(level):
 	spawn_enemies()
@@ -59,3 +95,11 @@ func _on_wave_timer_timeout() -> void:
 
 		current_level += 1
 		update_level(current_level)
+
+
+func _process(delta: float) -> void:
+	if level_manager.level_now == "Level_1" and level_manager.totalDeaths < 2:
+		await get_tree().create_timer(1.0).timeout
+	elif level_manager.totalDeaths >= 2 and canSpawn == false:
+		update_level(current_level)
+		canSpawn = true

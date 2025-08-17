@@ -249,6 +249,13 @@ func _on_whip_damage_output(damage_output) -> void:
 	health = health - damage_output
 	hit_timer.start()
 	healthChanged.emit()
+	
+func _on_chococake_damage_output(damage_output) -> void: 
+	is_attacking = false 
+	is_damaged = true
+	health = health - damage_output
+	hit_timer.start()
+	healthChanged.emit()
 
 func update_animation(animation):
 	_player_animation_player.play(animation)
