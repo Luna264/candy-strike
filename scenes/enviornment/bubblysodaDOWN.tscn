@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfkrk6ijkg2em"]
+[gd_scene load_steps=11 format=3 uid="uid://dw22gm3lrjrd8"]
 
-[ext_resource type="Texture2D" uid="uid://dq0icahvjpahi" path="res://assets/sprites/bubbles.png" id="1_mk8cx"]
-[ext_resource type="Texture2D" uid="uid://bs27jshpdviam" path="res://assets/sprites/soda.png" id="2_hvv8u"]
-[ext_resource type="Script" uid="uid://b87qxuk5jgop6" path="res://scripts/bubblysoda.gd" id="2_mk8cx"]
-[ext_resource type="PackedScene" uid="uid://d4jmbagc8mcv0" path="res://scenes/audio_stream_player_2d.tscn" id="4_hemrg"]
-[ext_resource type="AudioStream" uid="uid://chfcdo8nfynvp" path="res://assets/audio/swoosh.wav" id="5_hemrg"]
+[ext_resource type="Texture2D" uid="uid://dq0icahvjpahi" path="res://assets/sprites/bubbles.png" id="1_yd18p"]
+[ext_resource type="Texture2D" uid="uid://bs27jshpdviam" path="res://assets/sprites/soda.png" id="2_l8y3y"]
+[ext_resource type="Script" uid="uid://ckkvcr8tl06nv" path="res://scripts/DOOOWWNBUBBLYSODA.gd" id="3_yd18p"]
+[ext_resource type="PackedScene" uid="uid://d4jmbagc8mcv0" path="res://scenes/audio_stream_player_2d.tscn" id="4_y4p31"]
+[ext_resource type="AudioStream" uid="uid://chfcdo8nfynvp" path="res://assets/audio/swoosh.wav" id="5_vfnqm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5cl85"]
 size = Vector2(32, 76.5)
@@ -271,24 +271,25 @@ _data = {
 
 [node name="bubblysoda" type="StaticBody2D"]
 z_index = 1
+rotation = 3.14159
 collision_mask = 3
 
 [node name="Bubbles" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(21, -1)
-texture = ExtResource("1_mk8cx")
+texture = ExtResource("1_yd18p")
 hframes = 3
 
 [node name="Soda" type="Sprite2D" parent="."]
 position = Vector2(21, 35.46)
-texture = ExtResource("2_hvv8u")
+texture = ExtResource("2_l8y3y")
 hframes = 3
 region_enabled = true
 region_rect = Rect2(0, 73, 750, 177)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 3
-script = ExtResource("2_mk8cx")
+script = ExtResource("3_yd18p")
 
 [node name="bubblebox" type="CollisionShape2D" parent="Area2D"]
 visible = false
@@ -305,10 +306,10 @@ libraries = {
 wait_time = 3.0
 autostart = true
 
-[node name="Swoosh" parent="." instance=ExtResource("4_hemrg")]
+[node name="Swoosh" parent="." instance=ExtResource("4_y4p31")]
 unique_name_in_owner = true
 position = Vector2(-49, 18)
-stream = ExtResource("5_hemrg")
+stream = ExtResource("5_vfnqm")
 panning_strength = 0.0
 bus = &"ButtonPress"
 

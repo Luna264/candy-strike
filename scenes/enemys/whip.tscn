@@ -1132,7 +1132,7 @@ shape = SubResource("CircleShape2D_q5imx")
 material = SubResource("ShaderMaterial_gh2eh")
 texture = ExtResource("3_jrsax")
 hframes = 25
-frame = 2
+frame = 1
 
 [node name="DamageTimer" type="Timer" parent="."]
 wait_time = 0.3
@@ -1149,7 +1149,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
-position = Vector2(-15, -3)
+position = Vector2(-14.5444, -2.90888)
 scale = Vector2(1.65474, 1.33153)
 collision_layer = 255
 collision_mask = 2

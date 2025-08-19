@@ -10,17 +10,18 @@ var body_under = false
 signal shatter
 
 func _physics_process(delta: float) -> void:
+	print(breaking_timer)
 	if is_breaking == true and body_under == false:
 		breaking_timer += delta
 		
 	if is_breaking == false and is_shattering == false:
-		breaking_timer -= delta
+		breaking_timer = 0
 		animation_player.play("idle")
 	
 	if is_breaking == true and not is_shattering and body_under == false:
 		animation_player.play("breaking")
 		
-	if breaking_timer > 0.2:
+	if breaking_timer > 0.7:
 		is_shattering = true
 		emit_signal("shatter")
 		

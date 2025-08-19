@@ -10,7 +10,7 @@
 size = Vector2(33, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5cl85"]
-size = Vector2(32, 75)
+size = Vector2(32, 76.5)
 
 [sub_resource type="Animation" id="Animation_simyp"]
 length = 0.001
@@ -273,7 +273,9 @@ _data = {
 }
 
 [node name="bubblysoda" type="StaticBody2D"]
+z_index = 1
 rotation = -1.57131
+collision_mask = 3
 
 [node name="Bubbles" type="Sprite2D" parent="."]
 visible = false
@@ -289,10 +291,12 @@ region_enabled = true
 region_rect = Rect2(0, 73, 750, 177)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_qlhfm")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
 script = ExtResource("3_lkgca")
 
 [node name="bubblebox" type="CollisionShape2D" parent="Area2D"]

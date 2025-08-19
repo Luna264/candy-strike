@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqjca4xshs5tw"]
+[gd_scene load_steps=7 format=3 uid="uid://bqjca4xshs5tw"]
 
 [ext_resource type="Texture2D" uid="uid://cu764fjk8wuga" path="res://assets/sprites/platforms.png" id="1_dx1af"]
+[ext_resource type="Script" uid="uid://drjstdgo211t3" path="res://scenes/platforms/platform.gd" id="1_gq68u"]
 
 [sub_resource type="Animation" id="Animation_1wk53"]
 length = 0.001
@@ -94,9 +95,13 @@ _data = {
 &"vertical": SubResource("Animation_dx1af")
 }
 
-[node name="mintPlatformBIG" type="StaticBody2D"]
+[node name="cakePlatformBIG" type="AnimatableBody2D"]
+position = Vector2(80.4, 0)
+collision_mask = 3
+script = ExtResource("1_gq68u")
 
 [node name="Platforms" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(0, -1)
 texture = ExtResource("1_dx1af")
 region_enabled = true
@@ -104,7 +109,6 @@ region_rect = Rect2(96, 16, 38, 16)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-18, -2, 18, -2, 18, -1, 19, -1, 19, 1, 18, 1, 18, 2, 0.725357, 2.00001, -18, 2, -18, 1, -19, 1, -19, -1, -18, -1)
-one_way_collision = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

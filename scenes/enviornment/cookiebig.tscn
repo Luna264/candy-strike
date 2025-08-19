@@ -3,4 +3,5 @@
 [ext_resource type="Texture2D" uid="uid://bvshcblvh0eyo" path="res://assets/sprites/cookiebig.png" id="1_7t7vp"]
 
 [node name="Sprite2D" type="Sprite2D"]
+z_index = 1
 texture = ExtResource("1_7t7vp")

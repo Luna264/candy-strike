@@ -20,7 +20,7 @@ func hit(delta: float) -> void:
 		
 		
 	if player.is_crit == true:
-		dmg = 25
+		dmg = 20
 		knock_x = 350
 		knock_y = -350
 		

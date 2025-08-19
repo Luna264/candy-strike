@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dfeh8870jr0ds" path="res://assets/audio/footstep.wav" id="5_tuyoq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
-size = Vector2(20.0783, 30.6258)
+size = Vector2(16.0627, 27.1309)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g2els"]
 shader = ExtResource("2_qhqgy")
@@ -15,7 +15,7 @@ shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/flash_value = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
-size = Vector2(21, 30.6258)
+size = Vector2(17, 28.175)
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.001
@@ -236,7 +236,7 @@ wait_time = 0.15
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 2.31289)
+position = Vector2(1, 3.7)
 scale = Vector2(0.996098, 1)
 shape = SubResource("RectangleShape2D_g2els")
 debug_color = Color(0.827121, 0.00154134, 0.951467, 0.42)
@@ -265,7 +265,7 @@ one_shot = true
 position = Vector2(-0.696641, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
-position = Vector2(2.19664, 2.31289)
+position = Vector2(2.197, 3.178)
 shape = SubResource("RectangleShape2D_qhqgy")
 debug_color = Color(0, 0.629523, 0.481748, 0.42)
 

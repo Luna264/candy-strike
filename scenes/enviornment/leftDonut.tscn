@@ -3,4 +3,5 @@
 [ext_resource type="Texture2D" uid="uid://40yird1f04lj" path="res://assets/sprites/donutLeft.png" id="1_sss68"]
 
 [node name="Sprite2D" type="Sprite2D"]
+z_index = 1
 texture = ExtResource("1_sss68")

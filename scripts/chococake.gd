@@ -12,7 +12,7 @@ var speed = 50
 var is_attacking = false
 var is_damaged = false
 var flash_in_progress = false
-var health = 10
+var health = 50
 var dead = false
 @onready var die_sound: AudioStreamPlayer2D = %Die
 @onready var die_timer: Timer = $DieTimer
@@ -79,7 +79,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name == "hurtbox":
-		emit_signal("damage_output", 10)
+		emit_signal("damage_output", 7)
 		
 
 func _process(delta: float) -> void:

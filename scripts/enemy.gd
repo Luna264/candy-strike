@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
-var health = 10
+var health = 45
 @export var speed = -80.0
 @onready var player = get_tree().get_first_node_in_group("player")
 var friction = 500.0
 var damageoutput = 150
-var knockback_x_jump = 200
-var knockback_y_jump = -200
+var knockback_x_jump = 400
+var knockback_y_jump = -300
 
 @onready var jump_timer: Timer = $JumpTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -69,7 +69,7 @@ func _physics_process(delta):
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name == "hurtbox":
-		emit_signal("damage_output", 4)
+		emit_signal("damage_output", 3)
 
 func _slime_jump() -> void:
 	if is_attacking or is_damaged or flash_in_progress:

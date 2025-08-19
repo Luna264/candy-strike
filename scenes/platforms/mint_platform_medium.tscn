@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ymr3gq86e3r7"]
+[gd_scene load_steps=7 format=3 uid="uid://ymr3gq86e3r7"]
 
+[ext_resource type="Script" uid="uid://drjstdgo211t3" path="res://scenes/platforms/platform.gd" id="1_r6r50"]
 [ext_resource type="Texture2D" uid="uid://cu764fjk8wuga" path="res://assets/sprites/platforms.png" id="1_r7np6"]
 
 [sub_resource type="Animation" id="Animation_1wk53"]
@@ -93,7 +94,11 @@ _data = {
 &"vertical": SubResource("Animation_dx1af")
 }
 
-[node name="mintPlatformMEDIUM" type="StaticBody2D"]
+[node name="mintPlatformMEDIUM" type="AnimatableBody2D"]
+z_index = 1
+position = Vector2(80.4, 0)
+collision_mask = 3
+script = ExtResource("1_r6r50")
 
 [node name="Platforms" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
@@ -104,7 +109,6 @@ region_rect = Rect2(240, 16, 16, 16)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -1)
 polygon = PackedVector2Array(7.02, -2.005, 6.995, -0.985, 8.015, -0.995, 8, 1.025, 6.992, 1.051, 6.985, 1.985, -6.99, 1.99, -7.01, 1, -8.005, 1.015, -8.025, -0.995, -6.996, -0.996, -7.015, -1.995)
-one_way_collision = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

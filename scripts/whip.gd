@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = 30
+var health = 20
 @export var speed = -80.0
 @onready var player = get_tree().get_first_node_in_group("player")
 var friction = 500.0
@@ -52,7 +52,7 @@ func take_damage(dmg, attacker_position, knockback_x, knockback_y):
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name == "hurtbox":
-		emit_signal("damage_output", 2)
+		emit_signal("damage_output", 5)
 
 
 	

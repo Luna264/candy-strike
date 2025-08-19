@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://0auhyaimwgnj"]
+[gd_scene load_steps=7 format=3 uid="uid://0auhyaimwgnj"]
 
+[ext_resource type="Script" uid="uid://drjstdgo211t3" path="res://scenes/platforms/platform.gd" id="1_hihnq"]
 [ext_resource type="Texture2D" uid="uid://cu764fjk8wuga" path="res://assets/sprites/platforms.png" id="1_q4rir"]
 
 [sub_resource type="Animation" id="Animation_1wk53"]
@@ -94,7 +95,11 @@ _data = {
 &"vertical": SubResource("Animation_dx1af")
 }
 
-[node name="icecreamPlatformMEDIUM" type="StaticBody2D"]
+[node name="icecreamPlatformMEDIUM" type="AnimatableBody2D"]
+z_index = 1
+position = Vector2(1.4, 56)
+collision_mask = 3
+script = ExtResource("1_hihnq")
 
 [node name="Platforms" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
@@ -105,7 +110,6 @@ region_rect = Rect2(46.547, 21.2708, 19.55, 7.21587)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(0, -1)
 polygon = PackedVector2Array(6.675, -1.885, 6.68, -0.915, 7.695, -0.88, 7.69, 1.125, 6.667, 1.131, 6.685, 2.125, -7.34, 2.135, -7.33, 1.12, -8.325, 1.115, -8.315, -0.855, -7.341, -0.916, -7.31, -1.885)
-one_way_collision = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

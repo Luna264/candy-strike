@@ -1,6 +1,6 @@
 extends Area2D
 
-var floatAmount = -400
+var floatAmount = 250
 var active = false
 @onready var cooldown_timer: Timer = $"../CooldownTimer"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
