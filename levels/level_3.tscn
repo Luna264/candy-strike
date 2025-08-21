@@ -1,33 +1,33 @@
-[gd_scene load_steps=34 format=3 uid="uid://dy7amar1jgry4"]
+[gd_scene load_steps=34 format=3 uid="uid://caf7rjpnh1c7g"]
 
-[ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="2_0srwa"]
-[ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_pqqg8"]
-[ext_resource type="PackedScene" uid="uid://cnwbmgldjbxaf" path="res://scenes/boundaryTemp.tscn" id="3_0srwa"]
-[ext_resource type="Script" uid="uid://chg0wdfhyuoix" path="res://scripts/whip_holder.gd" id="4_5722l"]
-[ext_resource type="Script" uid="uid://3plydfi27bmp" path="res://scripts/spawn_holder_slime.gd" id="4_dfjjl"]
-[ext_resource type="Script" uid="uid://yfxm8if4bbad" path="res://scripts/choco_cake_holder.gd" id="5_at1ld"]
-[ext_resource type="Script" uid="uid://dlq6ppx3aenyu" path="res://scripts/cloud_holder.gd" id="6_sd18g"]
-[ext_resource type="Script" uid="uid://dy5gn03cyk8v7" path="res://scripts/camera_2d.gd" id="9_sd18g"]
-[ext_resource type="PackedScene" uid="uid://bgfng7p1iiq4d" path="res://music.tscn" id="10_vm7no"]
-[ext_resource type="PackedScene" uid="uid://b2dc757t46rfw" path="res://scenes/level_swap.tscn" id="11_vm7no"]
-[ext_resource type="Script" uid="uid://b23w3mfh8ex6c" path="res://scripts/level_manager.gd" id="12_hbb88"]
-[ext_resource type="PackedScene" uid="uid://d4jmbagc8mcv0" path="res://scenes/audio_stream_player_2d.tscn" id="13_w200a"]
-[ext_resource type="AudioStream" uid="uid://3y2413avn6od" path="res://assets/audio/crit.wav" id="14_uo0vl"]
-[ext_resource type="AudioStream" uid="uid://dry1mjb3pt2rk" path="res://assets/audio/playerhurt.wav" id="15_k2aru"]
-[ext_resource type="Texture2D" uid="uid://ft05d6wkqj0h" path="res://assets/sprites/bgretry.png" id="16_amxoe"]
-[ext_resource type="AudioStream" uid="uid://cohungh0p6eqf" path="res://assets/audio/buttonpress.wav" id="16_ndgrd"]
-[ext_resource type="Texture2D" uid="uid://bulq0wcqo4jsy" path="res://assets/sprites/YOKLES.png" id="17_cp3aq"]
-[ext_resource type="Texture2D" uid="uid://biuknu02b437q" path="res://assets/sprites/retryPlayer.png" id="18_wgvos"]
-[ext_resource type="Script" uid="uid://cva408nwtvr20" path="res://scripts/playerdeath.gd" id="19_m4706"]
-[ext_resource type="AudioStream" uid="uid://pfnhrnf8dpco" path="res://assets/audio/wah-wah-sound-effect.mp3" id="20_4xp61"]
-[ext_resource type="Texture2D" uid="uid://w6p5tc1ssfsl" path="res://assets/sprites/retryButtonNORMAL..png" id="21_4yoxl"]
-[ext_resource type="Texture2D" uid="uid://bkblep1jmlydw" path="res://assets/sprites/retryButtonPRESSED.png" id="22_6dcgf"]
-[ext_resource type="Texture2D" uid="uid://bd86ykxxsbxk6" path="res://assets/sprites/retryButtonHOVER..png" id="23_ubuva"]
-[ext_resource type="Script" uid="uid://bxxxkbuwialt3" path="res://scripts/retry.gd" id="24_0nm7o"]
-[ext_resource type="Script" uid="uid://daaahjgsua4s5" path="res://scripts/control.gd" id="25_pjs8f"]
-[ext_resource type="Texture2D" uid="uid://dix8dnnj7oodf" path="res://assets/sprites/healthbarUNDER.png" id="26_bf7t1"]
-[ext_resource type="Texture2D" uid="uid://sboeb1b8nqkl" path="res://assets/sprites/healthbarOVER..png" id="27_ghfw4"]
-[ext_resource type="Script" uid="uid://d22wusqsc3ni0" path="res://scripts/playerhealth.gd" id="28_s67ts"]
+[ext_resource type="PackedScene" uid="uid://cnwbmgldjbxaf" path="res://scenes/boundaryTemp.tscn" id="1_tv8m3"]
+[ext_resource type="Script" uid="uid://3plydfi27bmp" path="res://scripts/spawn_holder_slime.gd" id="2_8nkwk"]
+[ext_resource type="Script" uid="uid://yfxm8if4bbad" path="res://scripts/choco_cake_holder.gd" id="3_kyq6o"]
+[ext_resource type="Script" uid="uid://dlq6ppx3aenyu" path="res://scripts/cloud_holder.gd" id="4_4gw27"]
+[ext_resource type="Script" uid="uid://chg0wdfhyuoix" path="res://scripts/whip_holder.gd" id="5_mb3d3"]
+[ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="6_q26s8"]
+[ext_resource type="Script" uid="uid://dy5gn03cyk8v7" path="res://scripts/camera_2d.gd" id="7_o87u6"]
+[ext_resource type="PackedScene" uid="uid://bgfng7p1iiq4d" path="res://music.tscn" id="8_h3b7p"]
+[ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="9_dvo5v"]
+[ext_resource type="PackedScene" uid="uid://b2dc757t46rfw" path="res://scenes/level_swap.tscn" id="10_16jej"]
+[ext_resource type="Script" uid="uid://b23w3mfh8ex6c" path="res://scripts/level_manager.gd" id="11_c3ijv"]
+[ext_resource type="PackedScene" uid="uid://d4jmbagc8mcv0" path="res://scenes/audio_stream_player_2d.tscn" id="12_b1cs7"]
+[ext_resource type="AudioStream" uid="uid://3y2413avn6od" path="res://assets/audio/crit.wav" id="13_fxw2g"]
+[ext_resource type="AudioStream" uid="uid://dry1mjb3pt2rk" path="res://assets/audio/playerhurt.wav" id="14_bm5fu"]
+[ext_resource type="AudioStream" uid="uid://cohungh0p6eqf" path="res://assets/audio/buttonpress.wav" id="15_wf2kr"]
+[ext_resource type="Texture2D" uid="uid://ft05d6wkqj0h" path="res://assets/sprites/bgretry.png" id="16_ro52v"]
+[ext_resource type="Texture2D" uid="uid://bulq0wcqo4jsy" path="res://assets/sprites/YOKLES.png" id="17_7yfsq"]
+[ext_resource type="Texture2D" uid="uid://biuknu02b437q" path="res://assets/sprites/retryPlayer.png" id="18_wcms2"]
+[ext_resource type="Script" uid="uid://cva408nwtvr20" path="res://scripts/playerdeath.gd" id="19_hs38q"]
+[ext_resource type="AudioStream" uid="uid://pfnhrnf8dpco" path="res://assets/audio/wah-wah-sound-effect.mp3" id="20_f34o0"]
+[ext_resource type="Texture2D" uid="uid://w6p5tc1ssfsl" path="res://assets/sprites/retryButtonNORMAL..png" id="21_l4seb"]
+[ext_resource type="Texture2D" uid="uid://bkblep1jmlydw" path="res://assets/sprites/retryButtonPRESSED.png" id="22_yw2fi"]
+[ext_resource type="Texture2D" uid="uid://bd86ykxxsbxk6" path="res://assets/sprites/retryButtonHOVER..png" id="23_nhvch"]
+[ext_resource type="Script" uid="uid://bxxxkbuwialt3" path="res://scripts/retry.gd" id="24_og6ag"]
+[ext_resource type="Script" uid="uid://daaahjgsua4s5" path="res://scripts/control.gd" id="25_pch6f"]
+[ext_resource type="Texture2D" uid="uid://dix8dnnj7oodf" path="res://assets/sprites/healthbarUNDER.png" id="26_xlsjf"]
+[ext_resource type="Texture2D" uid="uid://sboeb1b8nqkl" path="res://assets/sprites/healthbarOVER..png" id="27_hl0mj"]
+[ext_resource type="Script" uid="uid://d22wusqsc3ni0" path="res://scripts/playerhealth.gd" id="28_glbqa"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sd18g"]
 
@@ -95,7 +95,7 @@ collision_layer = 255
 position = Vector2(-2, 10)
 shape = SubResource("WorldBoundaryShape2D_sd18g")
 
-[node name="boundary2" parent="." instance=ExtResource("3_0srwa")]
+[node name="boundary2" parent="." instance=ExtResource("1_tv8m3")]
 position = Vector2(774, -65)
 scale = Vector2(15.8878, -9.74128)
 
@@ -112,7 +112,7 @@ one_shot = true
 
 [node name="SpawnHolderSlime" type="Node2D" parent="DONOTDELETE"]
 position = Vector2(1058, -97)
-script = ExtResource("4_dfjjl")
+script = ExtResource("2_8nkwk")
 
 [node name="Spawner" type="Node2D" parent="DONOTDELETE/SpawnHolderSlime"]
 position = Vector2(-863, -182)
@@ -125,7 +125,7 @@ position = Vector2(-1150, 87)
 
 [node name="ChocoCakeHolder" type="Node2D" parent="DONOTDELETE"]
 position = Vector2(29, -27)
-script = ExtResource("5_at1ld")
+script = ExtResource("3_kyq6o")
 
 [node name="Spawner" type="Node2D" parent="DONOTDELETE/ChocoCakeHolder"]
 position = Vector2(344, -101)
@@ -135,7 +135,7 @@ position = Vector2(281, -69)
 
 [node name="CloudHolder" type="Node2D" parent="DONOTDELETE"]
 position = Vector2(29, -27)
-script = ExtResource("6_sd18g")
+script = ExtResource("4_4gw27")
 
 [node name="Spawner" type="Node2D" parent="DONOTDELETE/CloudHolder"]
 position = Vector2(234, 17)
@@ -152,7 +152,7 @@ position = Vector2(138, -145)
 [node name="WhipHolder" type="Node2D" parent="DONOTDELETE"]
 unique_name_in_owner = true
 position = Vector2(46, -53)
-script = ExtResource("4_5722l")
+script = ExtResource("5_mb3d3")
 
 [node name="Spawner2" type="Node2D" parent="DONOTDELETE/WhipHolder"]
 position = Vector2(-77, 7)
@@ -160,7 +160,7 @@ position = Vector2(-77, 7)
 [node name="Spawner3" type="Node2D" parent="DONOTDELETE/WhipHolder"]
 position = Vector2(150, 7)
 
-[node name="player" parent="." instance=ExtResource("2_0srwa")]
+[node name="player" parent="." instance=ExtResource("6_q26s8")]
 position = Vector2(85, -25)
 scale = Vector2(0.657506, 0.657506)
 
@@ -170,24 +170,23 @@ rotation = -3.14159
 scale = Vector2(13.0643, -1.98949)
 zoom = Vector2(2.095, 2.095)
 position_smoothing_enabled = true
-script = ExtResource("9_sd18g")
+script = ExtResource("7_o87u6")
 
-[node name="Music" parent="player" instance=ExtResource("10_vm7no")]
+[node name="Music" parent="player" instance=ExtResource("8_h3b7p")]
 position = Vector2(3.04181, -30.418)
 scale = Vector2(1.5209, 1.5209)
 autoplay = true
 
-[node name="candycane" parent="player" instance=ExtResource("2_pqqg8")]
+[node name="candycane" parent="player" instance=ExtResource("9_dvo5v")]
 position = Vector2(48.6688, 10.6463)
 
-[node name="LevelSwap" parent="." instance=ExtResource("11_vm7no")]
+[node name="LevelSwap" parent="." instance=ExtResource("10_16jej")]
 unique_name_in_owner = true
 position = Vector2(372, -54)
 
 [node name="LevelManager" type="Node2D" parent="." groups=["level_manager"]]
 unique_name_in_owner = true
-scale = Vector2(1, 0.990075)
-script = ExtResource("12_hbb88")
+script = ExtResource("11_c3ijv")
 
 [node name="Check" type="Timer" parent="LevelManager"]
 wait_time = 0.5
@@ -195,30 +194,30 @@ autostart = true
 
 [node name="audio" type="Node" parent="."]
 
-[node name="BasicAttack" parent="audio" instance=ExtResource("13_w200a")]
+[node name="BasicAttack" parent="audio" instance=ExtResource("12_b1cs7")]
 unique_name_in_owner = true
 position = Vector2(-152, 66)
 panning_strength = 0.0
 bus = &"BasicAttack"
 
-[node name="CritAttack" parent="audio" instance=ExtResource("13_w200a")]
+[node name="CritAttack" parent="audio" instance=ExtResource("12_b1cs7")]
 unique_name_in_owner = true
 position = Vector2(-126, 12)
-stream = ExtResource("14_uo0vl")
+stream = ExtResource("13_fxw2g")
 panning_strength = 0.0
 bus = &"CritAttack"
 
-[node name="Hurt" parent="audio" instance=ExtResource("13_w200a")]
+[node name="Hurt" parent="audio" instance=ExtResource("12_b1cs7")]
 unique_name_in_owner = true
 position = Vector2(-127, 17)
-stream = ExtResource("15_k2aru")
+stream = ExtResource("14_bm5fu")
 panning_strength = 0.0
 bus = &"Hurt"
 
-[node name="ButtonPress" parent="audio" instance=ExtResource("13_w200a")]
+[node name="ButtonPress" parent="audio" instance=ExtResource("12_b1cs7")]
 unique_name_in_owner = true
 position = Vector2(-49, 18)
-stream = ExtResource("16_ndgrd")
+stream = ExtResource("15_wf2kr")
 panning_strength = 0.0
 bus = &"ButtonPress"
 
@@ -248,7 +247,7 @@ offset_left = -559.0
 offset_top = -282.0
 offset_right = 743.0
 offset_bottom = 357.0
-texture = ExtResource("16_amxoe")
+texture = ExtResource("16_ro52v")
 expand_mode = 1
 
 [node name="TextureRect" type="TextureRect" parent="gui/retry/Control"]
@@ -262,13 +261,13 @@ offset_left = -296.074
 offset_top = -96.2562
 offset_right = 311.16
 offset_bottom = 270.519
-texture = ExtResource("17_cp3aq")
+texture = ExtResource("17_7yfsq")
 
 [node name="Sprite2D" type="Sprite2D" parent="gui/retry/Control"]
 position = Vector2(54.0001, 20.305)
-texture = ExtResource("18_wgvos")
+texture = ExtResource("18_wcms2")
 hframes = 30
-script = ExtResource("19_m4706")
+script = ExtResource("19_hs38q")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="gui/retry/Control/Sprite2D"]
 root_node = NodePath("../..")
@@ -281,7 +280,7 @@ one_shot = true
 
 [node name="wahwah" type="AudioStreamPlayer2D" parent="gui/retry/Control/Sprite2D"]
 position = Vector2(-374, -209)
-stream = ExtResource("20_4xp61")
+stream = ExtResource("20_f34o0")
 volume_db = -0.155
 
 [node name="retry" type="TextureButton" parent="gui/retry/Control"]
@@ -291,10 +290,10 @@ offset_top = 34.305
 offset_right = -195.0
 offset_bottom = 74.305
 scale = Vector2(2.42866, 2.42866)
-texture_normal = ExtResource("21_4yoxl")
-texture_pressed = ExtResource("22_6dcgf")
-texture_hover = ExtResource("23_ubuva")
-script = ExtResource("24_0nm7o")
+texture_normal = ExtResource("21_l4seb")
+texture_pressed = ExtResource("22_yw2fi")
+texture_hover = ExtResource("23_nhvch")
+script = ExtResource("24_og6ag")
 
 [node name="healthbar" type="CanvasLayer" parent="gui"]
 
@@ -306,7 +305,7 @@ offset_top = 13.0
 offset_right = 51.0
 offset_bottom = 53.0
 scale = Vector2(0.80177, 0.80177)
-script = ExtResource("25_pjs8f")
+script = ExtResource("25_pch6f")
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="gui/healthbar/Control" node_paths=PackedStringArray("player")]
@@ -317,9 +316,9 @@ anchor_bottom = -0.031181
 offset_right = 114.0
 offset_bottom = 73.0
 scale = Vector2(3.1876, 3.2145)
-texture_under = ExtResource("26_bf7t1")
-texture_progress = ExtResource("27_ghfw4")
-script = ExtResource("28_s67ts")
+texture_under = ExtResource("26_xlsjf")
+texture_progress = ExtResource("27_hl0mj")
+script = ExtResource("28_glbqa")
 player = NodePath("../../../../player")
 metadata/_edit_use_anchors_ = true
 

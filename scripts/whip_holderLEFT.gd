@@ -13,6 +13,7 @@ extends Node2D
 
 @onready var wave_timer = get_node("%WaveTimerWhip")
 @onready var player = get_tree().get_first_node_in_group("player")
+@onready var whip_holder: Node2D = %WhipHolder
 
 func _ready():
 	await get_tree().create_timer(2.0).timeout

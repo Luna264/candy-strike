@@ -1151,7 +1151,6 @@ autoplay = "idle"
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
 position = Vector2(-14.5444, -2.90888)
 scale = Vector2(1.65474, 1.33153)
-collision_layer = 255
 collision_mask = 2
 
 [node name="hitbox" type="CollisionShape2D" parent="hitbox"]
@@ -1193,7 +1192,7 @@ hframes = 25
 frame = 1
 
 [node name="detection" type="Area2D" parent="whip" groups=["detection"]]
-scale = Vector2(0.779651, 0.776534)
+scale = Vector2(1.23173, 1.20284)
 collision_mask = 255
 script = ExtResource("9_13fnd")
 

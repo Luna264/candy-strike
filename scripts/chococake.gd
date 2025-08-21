@@ -83,7 +83,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		
 
 func _process(delta: float) -> void:
-	if not is_damaged and not flash_in_progress and not is_exploding and not detector.player_is:
+	if not is_damaged and not flash_in_progress and not is_exploding and not detector.player_is and not dead:
 		animation_player.play("idle")
 
 	if health <= 0 and not dead:
@@ -93,12 +93,11 @@ func _process(delta: float) -> void:
 	if detector.player_is == true:
 		explode_timer += delta
 		first_stage = true
-		if not second_stage and not is_exploding:
+		if not second_stage and not is_exploding and not dead:
 			animation_player.play("blow1")
 			
 	elif detector.player_is == false:
 		first_stage = false
-		explode_timer = 0.5
 	else:
 		explode_timer = max(0, explode_timer - delta)
 		
@@ -106,12 +105,12 @@ func _process(delta: float) -> void:
 	if explode_timer > 1 and not is_exploding:
 		first_stage = false
 		second_stage = true
-		if not first_stage and not is_exploding:
+		if not first_stage and not is_exploding and not dead:
 			animation_player.play("blow2")
 			
 
 		
-	if explode_timer > 2 and not is_exploding:
+	if explode_timer > 2 and not is_exploding and not dead:
 		first_stage = false
 		second_stage = false
 		is_exploding = true

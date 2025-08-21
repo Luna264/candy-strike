@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://7ukurqcasrlj" path="res://assets/audio/slashCrit.wav" id="6_58h82"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ad8d1"]
-size = Vector2(155.411, 95.9053)
+size = Vector2(109.041, 60.6584)
 
 [sub_resource type="Animation" id="Animation_abuwl"]
 length = 0.001

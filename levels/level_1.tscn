@@ -485,8 +485,8 @@ position = Vector2(-756, 88)
 [node name="CollisionPolygon2D" parent="platforms/icecreamPlatformBIG3" index="1"]
 one_way_collision = true
 
-[node name="icecreamPlatformBIG" parent="." instance=ExtResource("29_dp1ib")]
-position = Vector2(-510.6, 156)
+[node name="icecreamPlatformBIG4" parent="platforms" instance=ExtResource("29_dp1ib")]
+position = Vector2(-638.6, 168)
 animation = "horizontal"
 
 [node name="tilemaps" type="Node" parent="."]
@@ -554,13 +554,13 @@ position = Vector2(-1163, 69)
 [node name="bubblysoda4" parent="enviornment" instance=ExtResource("29_pnpm1")]
 position = Vector2(-887, -184)
 
-[node name="level" type="Node" parent="."]
+[node name="levelDDDOOONOT" type="Node" parent="."]
 
-[node name="LevelManager" type="Node2D" parent="level" groups=["level_manager"]]
+[node name="LevelManager" type="Node2D" parent="levelDDDOOONOT" groups=["level_manager"]]
 unique_name_in_owner = true
 script = ExtResource("6_btoec")
 
-[node name="Check" type="Timer" parent="level/LevelManager"]
+[node name="Check" type="Timer" parent="levelDDDOOONOT/LevelManager"]
 wait_time = 0.5
 autostart = true
 
@@ -573,8 +573,8 @@ autostart = true
 [connection signal="pressed" from="gui/retry/Control/retry" to="gui/retry/Control/retry" method="_on_pressed"]
 [connection signal="enemyShakescreen" from="player/candycane" to="player/Camera2D" method="_on_candycane_enemy_shakescreen"]
 [connection signal="finished" from="audio/ButtonPress" to="gui/retry/Control/retry" method="_on_button_press_finished"]
-[connection signal="levelSwap" from="level/LevelManager" to="enviornment/LevelSwap" method="_on_level_manager_level_swap"]
-[connection signal="timeout" from="level/LevelManager/Check" to="level/LevelManager" method="_on_check_timeout"]
+[connection signal="levelSwap" from="levelDDDOOONOT/LevelManager" to="enviornment/LevelSwap" method="_on_level_manager_level_swap"]
+[connection signal="timeout" from="levelDDDOOONOT/LevelManager/Check" to="levelDDDOOONOT/LevelManager" method="_on_check_timeout"]
 
 [editable path="platforms/icecreamPlatformMEDIUM3"]
 [editable path="platforms/mintPlatformBIG"]

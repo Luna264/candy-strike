@@ -14,7 +14,7 @@ signal enemyShakescreen
 
 func hit(delta: float) -> void:
 	if player.is_crit == false:
-		dmg = 10	
+		dmg = 90	
 		knock_x = 200
 		knock_y = -200
 		
