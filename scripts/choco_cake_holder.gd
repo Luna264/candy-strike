@@ -29,20 +29,21 @@ func enemy_death():
 
 func spawn_enemies():
 	if enemy_dict.has(current_level):
-		for i in range(enemy_dict[current_level]):
-			var new_enemy = enemy_scene.instantiate()
-			var spawn_length = get_child_count() - 1
-			var spawn_num = rand.randi_range(0, spawn_length)
-			var spawn_position = get_child(spawn_num).position
+		if level_manager.level_now == "Level_1":
+			for i in range(enemy_dict[current_level]):
+				var new_enemy = enemy_scene.instantiate()
+				var spawn_length = get_child_count() - 1
+				var spawn_num = rand.randi_range(0, spawn_length)
+				var spawn_position = get_child(spawn_num).position
 
-			new_enemy.position = spawn_position
-			new_enemy.spawner = self
-			add_child(new_enemy)
+				new_enemy.position = spawn_position
+				new_enemy.spawner = self
+				add_child(new_enemy)
+					
+				if player and not new_enemy.damage_output.is_connected(player._on_chococake_damage_output):
+					new_enemy.damage_output.connect(player._on_chococake_damage_output)
 				
-			if player and not new_enemy.damage_output.is_connected(player._on_chococake_damage_output):
-				new_enemy.damage_output.connect(player._on_chococake_damage_output)
-			
-			await get_tree().create_timer(2.0).timeout
+				await get_tree().create_timer(2.0).timeout
 	else:
 		print("LEVEL OVER! not spawning anymore")
 

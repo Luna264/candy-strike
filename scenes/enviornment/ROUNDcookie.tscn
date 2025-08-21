@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn2uqwd4p4xn7"]
+
+[ext_resource type="Texture2D" uid="uid://crf075qgrsade" path="res://assets/sprites/roundcookie.png" id="1_jmuk6"]
+
+[node name="Sprite2D" type="Sprite2D"]
+z_index = -1
+texture = ExtResource("1_jmuk6")

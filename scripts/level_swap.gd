@@ -7,7 +7,6 @@ var is_starting = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 var current_animation = ""
 
-
 func _process(delta: float) -> void:
 	
 	if is_active:
@@ -35,7 +34,7 @@ func _on_area_entered(area: Node2D) -> void:
 
 
 func _on_level_manager_level_swap() -> void:
-		is_starting = true
+	is_starting = true
 	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "alive":

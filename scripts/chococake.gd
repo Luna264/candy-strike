@@ -141,20 +141,21 @@ func take_damage(dmg, attacker_position, knockback_x, knockback_y):
 
 
 func _on_explode() -> void:
+	spawner.enemy_death()
 	is_damaged = false
 	is_attacking = false
 	first_stage = false
 	second_stage = false
-	spawner.enemy_death()
 	animation_player.play("explode")
 
 func _on_jump_timer_timeout() -> void:
-	var direction = (player.global_position - global_position).normalized()
-	is_jumping = true
-	velocity.y = -350 
-	velocity.x += 20 * direction.x
-	jump_timer.start()
-	is_jumping = false
+	if player:
+		var direction = (player.global_position - global_position).normalized()
+		is_jumping = true
+		velocity.y = -350 
+		velocity.x += 20 * direction.x
+		jump_timer.start()
+		is_jumping = false
 
 func die():
 	if dead:

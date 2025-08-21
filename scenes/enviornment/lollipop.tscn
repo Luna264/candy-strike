@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqxat4ht557ay"]
+
+[ext_resource type="Texture2D" uid="uid://bv2s1gkreipve" path="res://assets/sprites/lollipop..png" id="1_q3x0e"]
+
+[node name="Sprite2D" type="Sprite2D"]
+z_index = -1
+texture = ExtResource("1_q3x0e")
