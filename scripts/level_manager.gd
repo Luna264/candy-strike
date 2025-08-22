@@ -10,9 +10,6 @@ var level_over = false
 
 @onready var level_now = get_tree().current_scene.name
 
-func _ready() -> void:
-	totalDeaths = 34
-
 func _on_check_timeout() -> void:
 	level_now = get_tree().current_scene.name
 	print("TOTALDEATHS: ", totalDeaths)

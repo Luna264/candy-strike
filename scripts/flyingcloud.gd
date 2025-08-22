@@ -8,7 +8,7 @@ var damageoutput = 150
 var knockback_x_jump = 200
 var knockback_y_jump = -200
 
-
+@onready var hitbox: Area2D = $hitbox
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var damage_timer: Timer = $DamageTimer
 @onready var shoot_timer: Timer = $ShootTimer
@@ -18,16 +18,20 @@ var knockback_y_jump = -200
 @onready var die_timer: Timer = $DieTimer
 @onready var sprite_2d: Sprite2D = $Cloud
 var spawner = null
+@onready var move_timer: Timer = $MoveTimer
 
 var is_attacking = false
 var is_damaged = false
 var flash_in_progress = false
 var dead = false
+var moved_cloud = false
 
 signal damage_output
 signal shakescreen
 
 func _ready() -> void:
+	if player:
+		damage_output.connect(player._on_cloud_damage_output)
 	randomize()
 	var speed = randf_range(10, 100)
 	sprite_2d.material = sprite_2d.material.duplicate()
@@ -82,13 +86,12 @@ func _physics_process(delta):
 		move_and_slide()
 		face_player()
 
-
-
-
-
-
-
-
+		for body in hitbox.get_overlapping_bodies():
+			if body.name == "flyingcloud" and moved_cloud == false:
+				move_timer.start()
+				moved_cloud = true
+				velocity.x = -300
+				
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name == "hurtbox":
 		emit_signal("damage_output", 6)
@@ -171,3 +174,8 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "hit":
 		flash_in_progress = false
 		is_damaged = false
+
+
+func _on_move_timer_timeout() -> void:
+	moved_cloud = false
+	velocity = Vector2.ZERO

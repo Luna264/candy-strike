@@ -1151,7 +1151,7 @@ autoplay = "idle"
 [node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
 position = Vector2(-14.5444, -2.90888)
 scale = Vector2(1.65474, 1.33153)
-collision_mask = 2
+collision_mask = 6
 
 [node name="hitbox" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(-11.4526, -6.86195)
@@ -1179,7 +1179,7 @@ panning_strength = 0.0
 
 [node name="whip" type="Area2D" parent="."]
 position = Vector2(-23.271, -7.99942)
-collision_mask = 2
+collision_mask = 6
 script = ExtResource("7_xwrxu")
 
 [node name="Whip_" type="Sprite2D" parent="whip"]
@@ -1215,7 +1215,7 @@ libraries = {
 position = Vector2(29, -10)
 rotation = -2.17386
 scale = Vector2(1.39856, -1.16083)
-collision_mask = 2
+collision_mask = 6
 
 [node name="hitbox" type="CollisionShape2D" parent="whip/hitbox" groups=["enemy"]]
 position = Vector2(-11.4526, -6.86195)

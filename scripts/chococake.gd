@@ -32,6 +32,8 @@ var spawner = null
 
 
 func _ready() -> void:
+	#if player:
+		#damage_output.connect(player._on_chococake_damage_output)
 	randomize()
 	speed = randf_range(30, 50)
 
@@ -168,7 +170,6 @@ func die():
 func _on_hitbox_explode_area_entered(area: Area2D) -> void:
 	if area.name == "hurtbox":
 		emit_signal("damage_output", 30)
-
 
 func _on_die_timer_timeout() -> void:
 	queue_free()

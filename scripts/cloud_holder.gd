@@ -55,8 +55,6 @@ func spawn_enemies():
 				new_enemy.spawner = self
 				add_child(new_enemy)
 										
-				if player and not new_enemy.damage_output.is_connected(player._on_cloud_damage_output):
-					new_enemy.damage_output.connect(player._on_cloud_damage_output)
 								
 				await get_tree().create_timer(2.0).timeout
 		
@@ -74,10 +72,7 @@ func spawn_enemies():
 				new_enemy.position = spawn_position
 				new_enemy.spawner = self
 				add_child(new_enemy)
-										
-				if player and not new_enemy.damage_output.is_connected(player._on_cloud_damage_output):
-					new_enemy.damage_output.connect(player._on_cloud_damage_output)
-								
+				
 				await get_tree().create_timer(2.0).timeout		
 
 func update_level(level):

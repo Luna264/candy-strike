@@ -4,7 +4,6 @@ var health = 45
 @export var speed = -80.0
 @onready var player = get_tree().get_first_node_in_group("player")
 var friction = 500.0
-var damageoutput = 150
 var knockback_x_jump = 400
 var knockback_y_jump = -300
 
@@ -26,6 +25,9 @@ signal damage_output
 signal shakescreen
 
 func _ready() -> void:
+	if player:
+		damage_output.connect(player._on_slime_damage_output)
+		
 	sprite_2d.material = sprite_2d.material.duplicate()
 	jump_timer.start(randi_range(1,3))
 
