@@ -11,7 +11,7 @@ signal shatter
 
 func _physics_process(delta: float) -> void:
 	print(breaking_timer)
-	if is_breaking == true and body_under == false:
+	if is_breaking == true:
 		breaking_timer += delta
 		
 	if is_breaking == false and is_shattering == false:

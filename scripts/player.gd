@@ -28,6 +28,7 @@ var is_attacking = false
 var is_damaged = false
 var flash_in_progress = false
 var dead = false
+var double_jump = false
 
 
 var friction = 500.0
@@ -141,6 +142,9 @@ func _physics_process(delta: float) -> void:
 		buffer_timer.start()
 				
 	if Input.is_action_just_pressed("jump") and is_on_floor() || Input.is_action_just_pressed("jump") and not coyote_timer.is_stopped() ||  not buffer_timer.is_stopped() && is_on_floor():
+		if double_jump == false:
+			double_jump = true
+			velocity.y = JUMP_VELOCITY
 		if is_attacking:
 			is_attacking = false
 			update_animation("run")

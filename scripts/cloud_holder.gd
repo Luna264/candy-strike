@@ -19,6 +19,17 @@ extends Node2D
 	5: 1,
 	6: 2
 }
+
+@onready var enemy_dictLEVELTHREE = { # level : enemy count
+	1: 4,
+	2: 3,
+	3: 4,
+	4: 3,
+	5: 3,
+	6: 2,
+	7: 1
+}
+
 @onready var enemy_scene = preload("res://scenes/enemys/flyingcloud.tscn")
 @onready var rand = RandomNumberGenerator.new()
 @onready var dead_enemies = 0
@@ -63,6 +74,20 @@ func spawn_enemies():
 		
 	if level_now == "Level2":
 		if enemy_dictLEVELTWO.has(current_level):
+			for i in range(enemy_dictLEVELTWO[current_level]):
+				var new_enemy = enemy_scene.instantiate()
+				var spawn_length = get_child_count() - 1
+				var spawn_num = rand.randi_range(0, spawn_length)
+				var spawn_position = get_child(spawn_num).position
+
+				new_enemy.position = spawn_position
+				new_enemy.spawner = self
+				add_child(new_enemy)
+				
+				await get_tree().create_timer(2.0).timeout		
+				
+	if level_now == "Level3":
+		if enemy_dictLEVELTHREE.has(current_level):
 			for i in range(enemy_dictLEVELTWO[current_level]):
 				var new_enemy = enemy_scene.instantiate()
 				var spawn_length = get_child_count() - 1

@@ -22,6 +22,17 @@ extends Node2D
 	7: 2
 }
 
+@onready var enemy_dictLEVELTHREE = {
+	1: 2,
+	2: 2,
+	3: 3,
+	4: 3,
+	5: 4,
+	6: 2,
+	7: 3,
+	8: 1
+}
+
 @onready var enemy_scene = preload("res://scenes/enemys/slime.tscn")
 @onready var rand = RandomNumberGenerator.new()
 @onready var dead_enemies = 0
@@ -79,6 +90,23 @@ func spawn_enemies():
 					new_enemy.damage_output.connect(player._on_slime_damage_output)
 								
 				await get_tree().create_timer(2.0).timeout		
+	
+	if level_now == "Level3":
+		if enemy_dictLEVELTHREE.has(current_level):
+			for i in range(enemy_dictLEVELTWO[current_level]):
+				var new_enemy = enemy_scene.instantiate()
+				var spawn_length = get_child_count() - 1
+				var spawn_num = rand.randi_range(0, spawn_length)
+				var spawn_position = get_child(spawn_num).position
+
+				new_enemy.position = spawn_position
+				new_enemy.spawner = self
+				add_child(new_enemy)
+										
+				if player and not new_enemy.damage_output.is_connected(player._on_slime_damage_output):
+					new_enemy.damage_output.connect(player._on_slime_damage_output)
+								
+				await get_tree().create_timer(2.0).timeout	
 
 
 func update_level(level):

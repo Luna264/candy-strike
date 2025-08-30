@@ -92,6 +92,7 @@ size = Vector2(33.6406, 19.2123)
 
 [node name="glassplatform" type="AnimatableBody2D"]
 z_index = 1
+collision_mask = 3
 script = ExtResource("1_6dscm")
 
 [node name="Sugarglass" type="Sprite2D" parent="."]
@@ -105,6 +106,7 @@ polygon = PackedVector2Array(14.6116, -1.45901, 14.6116, -1.45901, 6.21585, -1.4
 one_way_collision = true
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2(0, -1)
@@ -118,6 +120,7 @@ libraries = {
 }
 
 [node name="detection" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
 position = Vector2(0.613105, 8.18302)
@@ -127,3 +130,5 @@ shape = SubResource("RectangleShape2D_6dscm")
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="detection" to="." method="_on_detection_area_entered"]
+[connection signal="area_exited" from="detection" to="." method="_on_detection_area_exited"]

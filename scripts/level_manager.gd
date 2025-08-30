@@ -24,3 +24,9 @@ func _on_check_timeout() -> void:
 			return
 		else:
 			emit_signal("levelSwap")
+			
+	if totalDeaths >= 80 and not level_over and level_now == "Level3":
+		if level_over == true:
+			return
+		else:
+			emit_signal("levelSwap")

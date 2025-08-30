@@ -6,6 +6,17 @@ extends Node2D
 	1: 1,
 	2: 1,
 }
+
+@onready var enemy_dictLEVELTHREE = {
+	1: 2,
+	2: 2,
+	3: 2,
+	4: 3,
+	5: 2,
+	6: 3,
+	7: 2,
+	8: 1
+}
 @onready var enemy_scene = preload("res://scenes/enemys/whiP.tscn")
 @onready var rand = RandomNumberGenerator.new()
 @onready var dead_enemies = 0
@@ -26,10 +37,26 @@ func enemy_death():
 		dead_enemies = 0
 
 func spawn_enemies():
-	print("EENMYSPAW")
 	var level_now = get_tree().current_scene.name
 	if level_now == "Level2":
 		if enemy_dictLEVELTWO.has(current_level):
+			for i in range(enemy_dictLEVELTWO[current_level]):
+				var new_enemy = enemy_scene.instantiate()
+				var spawn_length = get_child_count() - 1
+				var spawn_num = rand.randi_range(0, spawn_length)
+				var spawn_position = get_child(spawn_num).position
+				var screen = get_viewport_rect().size.x / 2
+				if new_enemy.position.x > screen:
+					new_enemy.scale.x = 1
+				else:
+					new_enemy.scale.x = -1
+				new_enemy.position = spawn_position
+				new_enemy.spawner = self
+				add_child(new_enemy)
+				await get_tree().create_timer(2.0).timeout		
+				
+	if level_now == "Level3":
+		if enemy_dictLEVELTHREE.has(current_level):
 			for i in range(enemy_dictLEVELTWO[current_level]):
 				var new_enemy = enemy_scene.instantiate()
 				var spawn_length = get_child_count() - 1
