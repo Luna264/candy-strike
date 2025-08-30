@@ -98,6 +98,7 @@ _data = {
 [node name="icecreamPlatformBIG" type="AnimatableBody2D"]
 z_index = 1
 position = Vector2(1.4, 56)
+scale = Vector2(1.19473, 1.19473)
 collision_mask = 3
 script = ExtResource("1_ktc7a")
 

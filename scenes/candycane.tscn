@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://7ukurqcasrlj" path="res://assets/audio/slashCrit.wav" id="6_58h82"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ad8d1"]
-size = Vector2(109.041, 60.6584)
+size = Vector2(210.86, 130.704)
 
 [sub_resource type="Animation" id="Animation_abuwl"]
 length = 0.001
@@ -242,7 +242,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-35.6043, -9.68187)]
+"values": [Vector2(-38.4152, -7.80797)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false

@@ -96,7 +96,7 @@ _data = {
 &"playerfall": SubResource("Animation_7nvrk")
 }
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4knja"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xapae"]
 texture = ExtResource("26_0fu15")
 8:1/0 = 0
 8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -229,7 +229,7 @@ texture = ExtResource("26_0fu15")
 
 [sub_resource type="TileSet" id="TileSet_voubc"]
 physics_layer_0/collision_layer = 4
-sources/0 = SubResource("TileSetAtlasSource_4knja")
+sources/0 = SubResource("TileSetAtlasSource_xapae")
 
 [node name="Level_1" type="Node2D"]
 position = Vector2(-128, 12)
