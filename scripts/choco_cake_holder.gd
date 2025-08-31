@@ -52,7 +52,10 @@ func enemy_death():
 	dead_enemies += 1
 	level_manager.totalDeaths += 1
 	print(dead_enemies)
-	if dead_enemies == enemy_dictLEVELTWO.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.name == "Level_3" or get_tree().current_scene.name == "Level3":
+	if dead_enemies == enemy_dictLEVELTWO.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.name == "Level_2" or get_tree().current_scene.name == "Level2":
+		wave_timer.start()
+		dead_enemies = 0
+	if dead_enemies == enemy_dictLEVELTHREE.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.name == "Level_3" or get_tree().current_scene.name == "Level3":
 		wave_timer.start()
 		dead_enemies = 0
 

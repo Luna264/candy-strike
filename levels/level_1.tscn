@@ -348,9 +348,9 @@ theme_override_colors/font_shadow_color = Color(1, 0.807843, 1, 1)
 theme_override_fonts/font = ExtResource("4_r0nt2")
 text = "when you defeat 
 all enemies, 
-jump into the yellow thing
+look for the yellow thing
 that will 
-appear 
+appear and jump into it
 to go to the next level!"
 horizontal_alignment = 1
 

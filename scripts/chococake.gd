@@ -170,7 +170,7 @@ func die():
 
 func _on_hitbox_explode_area_entered(area: Area2D) -> void:
 	if area.name == "hurtbox":
-		emit_signal("damage_output", 30)
+		emit_signal("damage_output", 20)
 
 func _on_die_timer_timeout() -> void:
 	queue_free()

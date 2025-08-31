@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://dy7amar1jgry4"]
+[gd_scene load_steps=57 format=4 uid="uid://dy7amar1jgry4"]
 
 [ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="2_0srwa"]
 [ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_pqqg8"]
@@ -49,6 +49,7 @@
 [ext_resource type="PackedScene" uid="uid://ymr3gq86e3r7" path="res://scenes/platforms/mint_platform_medium.tscn" id="47_wvv8u"]
 [ext_resource type="PackedScene" uid="uid://cy87ehw1n735y" path="res://scenes/platforms/mint_platform_small.tscn" id="48_4s8mp"]
 [ext_resource type="PackedScene" uid="uid://dw22gm3lrjrd8" path="res://scenes/enviornment/bubblysodaDOWN.tscn" id="49_wvv8u"]
+[ext_resource type="FontFile" uid="uid://dbrkp47mi20ie" path="res://assets/fonts/ChiKareGo2.ttf" id="50_4s8mp"]
 
 [sub_resource type="Animation" id="Animation_jkxa6"]
 length = 0.001
@@ -323,6 +324,18 @@ unique_name_in_owner = true
 wait_time = 8.0
 one_shot = true
 
+[node name="bubblysoda" parent="DONOTDELETE" instance=ExtResource("33_0nm7o")]
+position = Vector2(-68, 97)
+
+[node name="bubblysoda2" parent="DONOTDELETE" instance=ExtResource("49_wvv8u")]
+position = Vector2(954, -36)
+
+[node name="bubblysoda3" parent="DONOTDELETE" instance=ExtResource("49_wvv8u")]
+position = Vector2(984, -228)
+
+[node name="bubblysoda4" parent="DONOTDELETE" instance=ExtResource("32_ubuva")]
+position = Vector2(1120, -127)
+
 [node name="player" parent="." instance=ExtResource("2_0srwa")]
 position = Vector2(320, 73)
 scale = Vector2(0.657506, 0.657506)
@@ -541,7 +554,7 @@ position = Vector2(-449.6, -463)
 animation = "vertical"
 
 [node name="icecreamPlatformSMALL4" parent="." instance=ExtResource("31_4yoxl")]
-position = Vector2(-381.6, -532)
+position = Vector2(-396, -522)
 
 [node name="icecreamPlatformBIG" parent="." instance=ExtResource("30_4xp61")]
 position = Vector2(-420, -53)
@@ -570,10 +583,6 @@ position = Vector2(-179, -468)
 
 [node name="bubblysoda2" parent="." instance=ExtResource("33_0nm7o")]
 position = Vector2(-137, -494)
-
-[node name="bubblysoda4" parent="." instance=ExtResource("35_bf7t1")]
-position = Vector2(-342, -419)
-scale = Vector2(1, 1.03449)
 
 [node name="icecreamPlatformBIG4" parent="." instance=ExtResource("30_4xp61")]
 position = Vector2(-448.6, -201)
@@ -863,7 +872,7 @@ position = Vector2(959, -150)
 position = Vector2(134.4, 102)
 
 [node name="glassplatform13" parent="." instance=ExtResource("35_ubuva")]
-position = Vector2(-174, 75)
+position = Vector2(-166, 76)
 
 [node name="bubblysoda13" parent="." instance=ExtResource("49_wvv8u")]
 position = Vector2(59, -407)
@@ -872,7 +881,376 @@ position = Vector2(59, -407)
 position = Vector2(292, 8)
 
 [node name="icecreamPlatformMEDIUM2" parent="." instance=ExtResource("29_m4706")]
-position = Vector2(1053.4, -19)
+position = Vector2(1074, -53)
+
+[node name="Sprite2D34" parent="." instance=ExtResource("29_6bdx5")]
+position = Vector2(-485, -401)
+rotation = 1.58032
+
+[node name="Sprite2D35" parent="." instance=ExtResource("40_wvv8u")]
+position = Vector2(-367, -441)
+
+[node name="Sprite2D36" parent="." instance=ExtResource("44_m0g18")]
+position = Vector2(-247, -152)
+rotation = -1.5246
+
+[node name="Sprite2D37" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-503, -32)
+rotation = 1.59472
+
+[node name="Sprite2D38" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-506, -43)
+rotation = 1.24833
+
+[node name="Sprite2D39" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-504, -51)
+rotation = 0.970185
+
+[node name="Sprite2D40" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-504, -25)
+rotation = 1.62856
+
+[node name="Sprite2D41" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-446, 47)
+rotation = 0.171677
+
+[node name="Sprite2D42" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-455, 49)
+
+[node name="Sprite2D43" parent="." instance=ExtResource("41_4s8mp")]
+position = Vector2(-440, 48)
+
+[node name="Sprite2D44" parent="." instance=ExtResource("44_m0g18")]
+position = Vector2(-459, 44)
+rotation = 0.663378
+
+[node name="Sprite2D45" parent="." instance=ExtResource("44_m0g18")]
+position = Vector2(-336, 108)
+
+[node name="Sprite2D46" parent="." instance=ExtResource("45_df2rw")]
+position = Vector2(-308, 107)
+
+[node name="Sprite2D47" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-327, 93)
+
+[node name="Sprite2D48" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-313, 92)
+
+[node name="Sprite2D49" parent="." instance=ExtResource("41_4s8mp")]
+position = Vector2(-321, 95)
+
+[node name="Sprite2D50" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-326, 92)
+rotation = -0.468336
+
+[node name="Sprite2D51" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-319, 88)
+
+[node name="Sprite2D52" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-135, -95)
+rotation = 1.46626
+
+[node name="Sprite2D53" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-139, -62)
+rotation = 2.31266
+
+[node name="Sprite2D54" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-121, -140)
+rotation = 1.87469
+
+[node name="Sprite2D55" parent="." instance=ExtResource("40_wvv8u")]
+position = Vector2(217, -51)
+
+[node name="Sprite2D56" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(223, -39)
+
+[node name="Sprite2D57" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(213, -39)
+
+[node name="Sprite2D58" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(207, -39)
+rotation = -0.344005
+
+[node name="Sprite2D59" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(217, -41)
+rotation = 0.345803
+
+[node name="Sprite2D60" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(217, -39)
+rotation = -0.163991
+
+[node name="Sprite2D61" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(223, -41)
+rotation = 0.29423
+
+[node name="Sprite2D62" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-9, -181)
+rotation = 1.63082
+
+[node name="Sprite2D63" parent="." instance=ExtResource("45_df2rw")]
+position = Vector2(370, -72)
+rotation = 3.11852
+
+[node name="Sprite2D64" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-457, -659)
+rotation = 2.77195
+
+[node name="Sprite2D65" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-456, -655)
+rotation = 2.77195
+
+[node name="Sprite2D66" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-458, -652)
+rotation = 2.77195
+
+[node name="Sprite2D67" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-452, -654)
+rotation = 1.94212
+
+[node name="Sprite2D68" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-442, -658)
+rotation = 3.11629
+
+[node name="Sprite2D69" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-447, -656)
+rotation = 3.50645
+
+[node name="Sprite2D70" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-439, -653)
+rotation = 2.82483
+
+[node name="Sprite2D71" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-440, -655)
+rotation = 2.6648
+
+[node name="Sprite2D72" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-445, -651)
+rotation = 3.40082
+
+[node name="Sprite2D73" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-440, -648)
+rotation = 2.697
+
+[node name="Sprite2D74" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-439, -645)
+rotation = 2.697
+
+[node name="Sprite2D75" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-445, -642)
+rotation = 3.51292
+
+[node name="Sprite2D76" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-445, -638)
+rotation = 3.29954
+
+[node name="Sprite2D77" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-398, -692)
+rotation = -2.96936
+
+[node name="Sprite2D78" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-393, -688)
+rotation = -3.41664
+
+[node name="Sprite2D79" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-400, -684)
+rotation = -2.85266
+
+[node name="Sprite2D80" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-394, -680)
+rotation = -3.36334
+
+[node name="Sprite2D81" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-402, -677)
+rotation = -2.6453
+
+[node name="Sprite2D82" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-391, -675)
+rotation = 2.57718
+
+[node name="Sprite2D83" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-398, -671)
+rotation = 3.20049
+
+[node name="Sprite2D94" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-336.156, -649.747)
+rotation = -3.22519
+
+[node name="Sprite2D95" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-331.156, -645.747)
+rotation = -3.67247
+
+[node name="Sprite2D96" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-338.156, -641.747)
+rotation = -3.1085
+
+[node name="Sprite2D97" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-332.156, -637.747)
+rotation = -3.61917
+
+[node name="Sprite2D98" parent="." instance=ExtResource("43_nfgrx")]
+position = Vector2(-340.156, -634.747)
+rotation = -2.90113
+
+[node name="Sprite2D99" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-329.156, -632.747)
+rotation = 2.32135
+
+[node name="Sprite2D100" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-336.156, -628.747)
+rotation = 2.94466
+
+[node name="Sprite2D84" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-402, -668)
+rotation = 3.32667
+
+[node name="Sprite2D85" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-398, -665)
+rotation = 3.03523
+
+[node name="Sprite2D86" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-394, -663)
+rotation = 2.79955
+
+[node name="Sprite2D87" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-398, -671)
+rotation = 2.79955
+
+[node name="Sprite2D88" parent="." instance=ExtResource("41_4s8mp")]
+position = Vector2(-329, -692)
+rotation = 2.35316
+
+[node name="Sprite2D89" parent="." instance=ExtResource("41_4s8mp")]
+position = Vector2(-332, -681)
+rotation = 2.75819
+
+[node name="Sprite2D90" parent="." instance=ExtResource("41_4s8mp")]
+position = Vector2(-329, -676)
+rotation = 1.86573
+
+[node name="Sprite2D91" parent="." instance=ExtResource("41_4s8mp")]
+position = Vector2(-333, -668)
+rotation = 2.40335
+
+[node name="Sprite2D92" parent="." instance=ExtResource("41_4s8mp")]
+position = Vector2(-330, -661)
+rotation = 1.99889
+
+[node name="Sprite2D93" parent="." instance=ExtResource("41_4s8mp")]
+position = Vector2(-336, -654)
+rotation = 2.80815
+
+[node name="Sprite2D101" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-285, -692)
+rotation = -2.79435
+
+[node name="Sprite2D102" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-281, -689)
+rotation = -3.48692
+
+[node name="Sprite2D103" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-236, -692)
+rotation = -3.48692
+
+[node name="Sprite2D104" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-243, -690)
+rotation = -2.57488
+
+[node name="Sprite2D105" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-238, -686)
+rotation = -3.3485
+
+[node name="Sprite2D106" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-241, -683)
+rotation = -2.90727
+
+[node name="Sprite2D107" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-239, -681)
+rotation = -3.56056
+
+[node name="Sprite2D108" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-237, -679)
+rotation = -3.81283
+
+[node name="Sprite2D109" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-237, -676)
+rotation = -4.05907
+
+[node name="Sprite2D110" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-241, -670)
+rotation = -3.42234
+
+[node name="Sprite2D111" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-238, -668)
+rotation = -3.78263
+
+[node name="Sprite2D112" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-238, -668)
+rotation = -3.78263
+
+[node name="Sprite2D113" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-236, -672)
+rotation = -3.65538
+
+[node name="Sprite2D114" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-237, -675)
+rotation = -3.35217
+
+[node name="Sprite2D115" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-237, -678)
+rotation = -3.25522
+
+[node name="Sprite2D116" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-237, -681)
+rotation = -3.25522
+
+[node name="Sprite2D117" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-235, -685)
+rotation = -3.25522
+
+[node name="Sprite2D118" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-234, -688)
+rotation = -3.25522
+
+[node name="Sprite2D119" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-233, -691)
+rotation = -3.25522
+
+[node name="Sprite2D120" parent="." instance=ExtResource("42_wsmxb")]
+position = Vector2(-233, -693)
+rotation = -3.25522
+
+[node name="Sprite2D121" parent="." instance=ExtResource("45_df2rw")]
+position = Vector2(-79, -632)
+rotation = -2.63682
+
+[node name="Sprite2D122" parent="." instance=ExtResource("45_df2rw")]
+position = Vector2(-51, -629)
+rotation = -2.63682
+
+[node name="Sprite2D123" parent="." instance=ExtResource("44_m0g18")]
+position = Vector2(-99, -655)
+rotation = -2.58139
+
+[node name="Sprite2D124" parent="." instance=ExtResource("40_wvv8u")]
+position = Vector2(-58, -497)
+
+[node name="icecreamPlatformMEDIUM6" parent="." instance=ExtResource("29_m4706")]
+position = Vector2(-349, -547)
+
+[node name="controls3" type="Label" parent="."]
+offset_left = -363.0
+offset_top = 15.0
+offset_right = 38.0
+offset_bottom = 66.0
+theme_override_colors/font_shadow_color = Color(1, 0.807843, 1, 1)
+theme_override_fonts/font = ExtResource("50_4s8mp")
+text = "*the red orb whips
+are enemies too! 
+you have to kill them!"
+horizontal_alignment = 1
+
+[node name="cakePlatformMEDIUM3" parent="." instance=ExtResource("39_jyp08")]
+position = Vector2(1047.4, 2)
 
 [connection signal="timeout" from="DONOTDELETE/WaveTimer" to="DONOTDELETE/SpawnHolderSlime" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="DONOTDELETE/WaveTimer" to="DONOTDELETE/ChocoCakeHolder" method="_on_wave_timer_timeout"]
