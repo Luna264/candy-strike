@@ -11,7 +11,9 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	for body in get_overlapping_bodies():
-			if body.is_in_group("player") or body.is_in_group("enemy"):
+			if body.is_in_group("player"):
+				body.soda_boost(Vector2(400, 0))
+			if body.is_in_group("enemy"):
 				body.velocity.x = floatAmount
 
 #func update_animation(animation):

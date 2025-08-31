@@ -18,7 +18,7 @@ var dead = false
 @onready var die_timer: Timer = $DieTimer
 
 var explode_timer = 0.0
-
+var current_anim = "idle"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attack_timer: Timer = $AttackTimer
 @onready var damage_timer: Timer = $DamageTimer
@@ -32,8 +32,9 @@ var spawner = null
 
 
 func _ready() -> void:
-	#if player:
-		#damage_output.connect(player._on_chococake_damage_output)
+	animation_player.play("idle")
+	if player:
+		damage_output.connect(player._on_chococake_damage_output)
 	randomize()
 	speed = randf_range(30, 50)
 
@@ -86,7 +87,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 
 func _process(delta: float) -> void:
 	if not is_damaged and not flash_in_progress and not is_exploding and not detector.player_is and not dead:
-		animation_player.play("idle")
+		play_anim("idle")
 
 	if health <= 0 and not dead:
 		spawner.enemy_death()
@@ -174,3 +175,9 @@ func _on_hitbox_explode_area_entered(area: Area2D) -> void:
 func _on_die_timer_timeout() -> void:
 	queue_free()
 	
+
+func play_anim(name):
+	if current_anim == name:
+		return
+	current_anim = name
+	animation_player.play(name)

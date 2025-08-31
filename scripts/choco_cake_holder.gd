@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var timer: Timer = %Timer
+
 @onready var current_level = 1
 @onready var level_manager = get_tree().get_first_node_in_group("level_manager")
 @onready var enemy_dict = { # level : enemy count
@@ -41,6 +43,8 @@ var canSpawn = false
 
 
 func _ready():
+	if get_tree().current_scene.name == "Level_1" or get_tree().current_scene.name == "Level1":
+		timer.start()
 	add_to_group("level")
 
 func enemy_death():
@@ -48,16 +52,13 @@ func enemy_death():
 	dead_enemies += 1
 	level_manager.totalDeaths += 1
 	print(dead_enemies)
-	if dead_enemies == enemy_dict.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.name == "Level1":
-		wave_timer.start()
-		dead_enemies = 0
-	if dead_enemies == enemy_dictLEVELTWO.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.name == "Level2":
+	if dead_enemies == enemy_dictLEVELTWO.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.name == "Level_3" or get_tree().current_scene.name == "Level3":
 		wave_timer.start()
 		dead_enemies = 0
 
 func spawn_enemies():
 	var level_now = get_tree().current_scene.name
-	if level_now == "Level1":
+	if level_now == "Level_1" or level_now == "Level1":
 		if enemy_dict.has(current_level):
 			for i in range(enemy_dict[current_level]):
 				var new_enemy = enemy_scene.instantiate()
@@ -77,7 +78,7 @@ func spawn_enemies():
 	#---------------------------------------------------------------------------------------------------------------
 		
 		
-	if level_now == "Level2":
+	if level_now == "Level_2" or level_now == "Level2":
 		print("spawning")
 		if enemy_dictLEVELTWO.has(current_level):
 			for i in range(enemy_dictLEVELTWO[current_level]):
@@ -95,9 +96,9 @@ func spawn_enemies():
 								
 				await get_tree().create_timer(2.0).timeout		
 				
-	if level_now == "Level3":
+	if level_now == "Level_3" or level_now == "Level3":
 		if enemy_dictLEVELTHREE.has(current_level):
-			for i in range(enemy_dictLEVELTWO[current_level]):
+			for i in range(enemy_dictLEVELTHREE[current_level]):
 				var new_enemy = enemy_scene.instantiate()
 				var spawn_length = get_child_count() - 1
 				var spawn_num = rand.randi_range(0, spawn_length)
@@ -112,21 +113,6 @@ func spawn_enemies():
 func update_level(level):
 	spawn_enemies()
 
-#func _process(delta: float) -> void:
-	#if level_manager.level_now == "Level_1" and level_manager.totalDeaths < 20:
-		#return
-	#elif level_manager.totalDeaths >= 20 and canSpawn == false:
-		#update_level(current_level)
-		#canSpawn = true
-		
-	#if level_manager.level_now == "Level_2" and level_manager.totalDeaths < 4:
-		#return
-	#elif level_manager.totalDeaths >= 4 and canSpawn == false:
-		#update_level(current_level)
-		#canSpawn = true
-		
-		
-
 
 func _on_wave_timer_timeout() -> void:
 	if not level_manager.level_over:
@@ -134,3 +120,7 @@ func _on_wave_timer_timeout() -> void:
 
 		current_level += 1
 		update_level(current_level)
+
+
+func _on_timer_timeout() -> void:
+	spawn_enemies()

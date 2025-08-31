@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var health = 25
+var health = 35
 @export var speed = 80.0
 @onready var player = get_tree().get_first_node_in_group("player")
 var friction = 500.0
@@ -143,7 +143,7 @@ func shoot():
 		bullet.velocity = direction * 100
 		
 		randomize()
-		var size = randf_range(0.7, 1.5)
+		var size = randf_range(1, 2)
 		bullet.scale = Vector2(size, size)
 		
 		

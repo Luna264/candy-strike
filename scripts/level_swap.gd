@@ -8,17 +8,8 @@ var is_starting = false
 var current_animation = ""
 @onready var level_manager: Node2D = %LevelManager
 
+
 func _process(delta: float) -> void:
-	if level_manager.totalDeaths >= 30 and not level_manager.level_over and level_manager.level_now == "Level1":
-		is_active = true
-		
-	if level_manager.totalDeaths >= 34 and not level_manager.level_over and level_manager.level_now == "Level2":
-		is_active = true
-		
-	if level_manager.totalDeaths >= 80 and not level_manager.level_over and level_manager.level_now == "Level3":
-		is_active = true
-		
-			
 	if is_active == false:
 		animation_player.play("inactive")
 
@@ -28,6 +19,7 @@ func _process(delta: float) -> void:
 
 
 func _on_area_entered(area: Node2D) -> void:
+	level_manager.totalDeaths = 0
 	if area.is_in_group("player"):
 		var current_scene_file = get_tree().current_scene.scene_file_path
 		var next_level_number = current_scene_file.to_int() + 1

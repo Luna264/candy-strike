@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dfb26hk2p4fvb"]
+[gd_scene load_steps=22 format=3 uid="uid://dfb26hk2p4fvb"]
 
 [ext_resource type="Script" uid="uid://dy6sq7u4p1mt7" path="res://scripts/chococake.gd" id="1_if2gg"]
 [ext_resource type="Shader" uid="uid://llhsmpsnall1" path="res://shaders/enemy.gdshader" id="1_uce80"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d4jmbagc8mcv0" path="res://scenes/audio_stream_player_2d.tscn" id="6_0lnsd"]
 [ext_resource type="AudioStream" uid="uid://cou1kd5msxlov" path="res://assets/audio/die.wav" id="7_a1hjk"]
 [ext_resource type="Texture2D" uid="uid://c2uxk8ch81dfy" path="res://assets/sprites/enemyExplosion.png" id="8_a1hjk"]
+[ext_resource type="AudioStream" uid="uid://7ukurqcasrlj" path="res://assets/audio/slashCrit.wav" id="9_q5hek"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s5g4n"]
 shader = ExtResource("1_uce80")
@@ -436,6 +437,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [8, 9, 10, 11, 12, 13, 14]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SlashCrit")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_if2gg"]
 resource_name = "hit"
@@ -695,9 +710,17 @@ position = Vector2(5, -17.214)
 texture = ExtResource("8_a1hjk")
 hframes = 6
 
+[node name="SlashCrit" parent="." instance=ExtResource("6_0lnsd")]
+unique_name_in_owner = true
+position = Vector2(-275, 94)
+stream = ExtResource("9_q5hek")
+panning_strength = 0.0
+bus = &"SlashCrit"
+
 [connection signal="explode" from="." to="." method="_on_explode"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="detector" to="detector" method="_on_area_entered"]
+[connection signal="area_exited" from="detector" to="." method="_on_detector_area_exited"]
 [connection signal="area_exited" from="detector" to="detector" method="_on_area_exited"]
 [connection signal="attack" from="detector" to="." method="_on_detector_attack"]
 [connection signal="stopAttack" from="detector" to="." method="_on_detector_stop_attack"]

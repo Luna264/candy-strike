@@ -15,7 +15,7 @@ func _on_alive_timer_timeout() -> void:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name == "hurtbox":
-		emit_signal("damage_output", 0.5)
+		emit_signal("damage_output", 1)
 
 func _ready() -> void:
 	if player:

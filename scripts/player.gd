@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var hit_timer: Timer = $HitTimer
 
 @onready var sprite_2d: Sprite2D = $Player
+@onready var soda_timer: Timer = $SodaTimer
 
 @onready var candycane: Area2D = $candycane
 
@@ -24,9 +25,9 @@ signal healthChanged
 
 var is_dashing = false
 @onready var dash_timer: Timer = $DashTimer
-var dash_speed = 200.0
+var dash_speed = 300.0
 var can_dash = true
-
+var soda_active = false
 var is_whip = false
 var is_crit = false
 var is_attacking = false
@@ -165,7 +166,7 @@ func _physics_process(delta: float) -> void:
 
 
 	if knockback_toggle == false: #move when knockback is not enabled
-		if direction and not is_damaged and not flash_in_progress:
+		if direction and not is_damaged and not flash_in_progress and not soda_active:
 			if is_dashing:
 				velocity.x = direction * dash_speed
 			else:
@@ -321,3 +322,11 @@ func _on_dash_timer_timeout() -> void:
 
 func _on_cooldown_dash_timeout() -> void:
 	can_dash = true
+
+func soda_boost(boost: Vector2):
+	velocity = boost
+	soda_active = true
+	soda_timer.start()
+
+func _on_soda_timer_timeout() -> void:
+	soda_active = false

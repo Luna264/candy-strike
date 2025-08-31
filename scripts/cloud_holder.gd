@@ -45,16 +45,16 @@ func enemy_death():
 	print("enemy died")
 	dead_enemies += 1
 	level_manager.totalDeaths += 1
-	if dead_enemies == enemy_dict.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.name == "Level1":
+	if dead_enemies == enemy_dictLEVELTWO.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.name == "Level_2" or get_tree().current_scene.name == "Level2":
 		wave_timer.start()
 		dead_enemies = 0
-	if dead_enemies == enemy_dictLEVELTWO.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.name == "Level2":
+	if dead_enemies == enemy_dictLEVELTWO.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.name == "Level_3" or get_tree().current_scene.name == "Level3":
 		wave_timer.start()
 		dead_enemies = 0
 
 func spawn_enemies():
 	var level_now = get_tree().current_scene.name
-	if level_now == "Level1":
+	if level_now == "Level_1" or level_now == "Level1":
 		if enemy_dict.has(current_level):
 			for i in range(enemy_dict[current_level]):
 				var new_enemy = enemy_scene.instantiate()
@@ -72,7 +72,7 @@ func spawn_enemies():
 	#---------------------------------------------------------------------------------------------------------------
 		
 		
-	if level_now == "Level2":
+	if level_now == "Level_2" or level_now == "Level2":
 		if enemy_dictLEVELTWO.has(current_level):
 			for i in range(enemy_dictLEVELTWO[current_level]):
 				var new_enemy = enemy_scene.instantiate()
@@ -86,9 +86,9 @@ func spawn_enemies():
 				
 				await get_tree().create_timer(2.0).timeout		
 				
-	if level_now == "Level3":
+	if level_now == "Level_3" or level_now == "Level3":
 		if enemy_dictLEVELTHREE.has(current_level):
-			for i in range(enemy_dictLEVELTWO[current_level]):
+			for i in range(enemy_dictLEVELTHREE[current_level]):
 				var new_enemy = enemy_scene.instantiate()
 				var spawn_length = get_child_count() - 1
 				var spawn_num = rand.randi_range(0, spawn_length)
@@ -112,7 +112,7 @@ func _on_wave_timer_timeout() -> void:
 
 
 func _process(delta: float) -> void:
-	if level_manager.level_now == "Level_1" and level_manager.totalDeaths < 2:
+	if level_manager.level_now == "Level_1" or level_manager.level_now == "Level1" and level_manager.totalDeaths < 2:
 		await get_tree().create_timer(1.0).timeout
 	elif level_manager.totalDeaths >= 2 and canSpawn == false:
 		update_level(current_level)

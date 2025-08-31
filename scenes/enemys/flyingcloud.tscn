@@ -309,7 +309,7 @@ shape = SubResource("RectangleShape2D_2qnhh")
 debug_color = Color(0.579367, 0.414971, 0.930006, 0.42)
 
 [node name="ShootTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 2.0
 autostart = true
 
 [node name="AttackTimer" type="Timer" parent="."]

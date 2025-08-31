@@ -316,7 +316,12 @@ position = Vector2(-166, 108)
 position = Vector2(969, 97)
 
 [node name="Spawner4" type="Node2D" parent="DONOTDELETE/WhipHolder"]
-position = Vector2(-462, -268)
+position = Vector2(-389, -303)
+
+[node name="Timer" type="Timer" parent="DONOTDELETE"]
+unique_name_in_owner = true
+wait_time = 8.0
+one_shot = true
 
 [node name="player" parent="." instance=ExtResource("2_0srwa")]
 position = Vector2(320, 73)
@@ -561,7 +566,7 @@ animation = "horizontal"
 position = Vector2(-367, -419)
 
 [node name="bubblysoda" parent="." instance=ExtResource("32_ubuva")]
-position = Vector2(-179, -452)
+position = Vector2(-179, -468)
 
 [node name="bubblysoda2" parent="." instance=ExtResource("33_0nm7o")]
 position = Vector2(-137, -494)
@@ -636,7 +641,7 @@ position = Vector2(59.4, -411)
 position = Vector2(15.4, -447)
 
 [node name="bubblysoda5" parent="." instance=ExtResource("33_0nm7o")]
-position = Vector2(25, -235)
+position = Vector2(123, -99)
 
 [node name="cakePlatformBIG4" parent="." instance=ExtResource("37_qthv2")]
 position = Vector2(-87.6, 9)
@@ -862,6 +867,12 @@ position = Vector2(-174, 75)
 
 [node name="bubblysoda13" parent="." instance=ExtResource("49_wvv8u")]
 position = Vector2(59, -407)
+
+[node name="bubblysoda15" parent="." instance=ExtResource("35_bf7t1")]
+position = Vector2(292, 8)
+
+[node name="icecreamPlatformMEDIUM2" parent="." instance=ExtResource("29_m4706")]
+position = Vector2(1053.4, -19)
 
 [connection signal="timeout" from="DONOTDELETE/WaveTimer" to="DONOTDELETE/SpawnHolderSlime" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="DONOTDELETE/WaveTimer" to="DONOTDELETE/ChocoCakeHolder" method="_on_wave_timer_timeout"]

@@ -10,7 +10,6 @@ var body_under = false
 signal shatter
 
 func _physics_process(delta: float) -> void:
-	print(breaking_timer)
 	if is_breaking == true:
 		breaking_timer += delta
 		
