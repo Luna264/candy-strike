@@ -280,7 +280,7 @@ script = ExtResource("5_at1ld")
 position = Vector2(351, 19)
 
 [node name="Spawner2" type="Node2D" parent="DONOTDELETE/ChocoCakeHolder"]
-position = Vector2(-96, -69)
+position = Vector2(-8, -155)
 
 [node name="Spawner3" type="Node2D" parent="DONOTDELETE/ChocoCakeHolder"]
 position = Vector2(-400, 51)
@@ -310,13 +310,16 @@ position = Vector2(46, -53)
 script = ExtResource("4_5722l")
 
 [node name="Spawner2" type="Node2D" parent="DONOTDELETE/WhipHolder"]
-position = Vector2(-173, 77)
+position = Vector2(-166, 108)
 
 [node name="Spawner3" type="Node2D" parent="DONOTDELETE/WhipHolder"]
 position = Vector2(969, 97)
 
+[node name="Spawner4" type="Node2D" parent="DONOTDELETE/WhipHolder"]
+position = Vector2(-462, -268)
+
 [node name="player" parent="." instance=ExtResource("2_0srwa")]
-position = Vector2(-351, 85)
+position = Vector2(320, 73)
 scale = Vector2(0.657506, 0.657506)
 
 [node name="Camera2D" type="Camera2D" parent="player"]

@@ -614,3 +614,5 @@ tile_set = SubResource("TileSet_4gw27")
 [connection signal="animation_finished" from="gui/retry/Control/Sprite2D/AnimationPlayer" to="gui/retry/Control/Sprite2D" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="gui/retry/Control/Sprite2D/wait" to="gui/retry/Control/Sprite2D" method="_on_wait_timeout"]
 [connection signal="pressed" from="gui/retry/Control/retry" to="gui/retry/Control/retry" method="_on_pressed"]
+
+[editable path="player/candycane"]

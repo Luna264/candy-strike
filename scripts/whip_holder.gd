@@ -45,7 +45,7 @@ func spawn_enemies():
 				var spawn_length = get_child_count() - 1
 				var spawn_num = rand.randi_range(0, spawn_length)
 				var spawn_position = get_child(spawn_num).position
-				var screen = get_viewport_rect().size.x / 2
+				var screen = get_viewport_rect().size.x / 4
 				if new_enemy.position.x > screen:
 					new_enemy.scale.x = 1
 				else:

@@ -11,7 +11,8 @@ extends CharacterBody2D
 
 @onready var candycane: Area2D = $candycane
 
-@onready var anim_player = candycane.get_node("AnimationPlayer")
+@onready var cooldown_dash: Timer = $CooldownDash
+@onready var anim_player: AnimationPlayer = $candycane/AnimationPlayer
 @onready var _player_animation_player: AnimationPlayer = $AnimationPlayer
 @onready var die_timer: Timer = $DieTimer
 @onready var collision_shape_2d_hurtbox: CollisionShape2D = $hurtbox/CollisionShape2D
@@ -21,6 +22,10 @@ extends CharacterBody2D
 signal shakescreenplayer
 signal healthChanged
 
+var is_dashing = false
+@onready var dash_timer: Timer = $DashTimer
+var dash_speed = 200.0
+var can_dash = true
 
 var is_whip = false
 var is_crit = false
@@ -28,7 +33,7 @@ var is_attacking = false
 var is_damaged = false
 var flash_in_progress = false
 var dead = false
-var double_jump = false
+var jumps = 0
 
 
 var friction = 500.0
@@ -115,10 +120,9 @@ var was_on_floor = false
 func _physics_process(delta: float) -> void:
 	
 	
+	
+	
 	var direction := Input.get_axis("left", "right")
-	
-	
-	
 	
 	if knockback_timer > 0.0: #knockback enabled
 		velocity.x = knockback.x
@@ -130,6 +134,8 @@ func _physics_process(delta: float) -> void:
 		knockback = Vector2.ZERO
 		is_whip = false
 		
+	if is_on_floor():
+		jumps = 0
 		
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -141,22 +147,29 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and not is_on_floor():
 		buffer_timer.start()
 				
-	if Input.is_action_just_pressed("jump") and is_on_floor() || Input.is_action_just_pressed("jump") and not coyote_timer.is_stopped() ||  not buffer_timer.is_stopped() && is_on_floor():
-		if double_jump == false:
-			double_jump = true
-			velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("jump") and is_on_floor() or Input.is_action_just_pressed("jump") and not coyote_timer.is_stopped() or not buffer_timer.is_stopped() and is_on_floor():
+		buffer_timer.stop()
+		coyote_timer.stop()
+		velocity.y = JUMP_VELOCITY
 		if is_attacking:
 			is_attacking = false
 			update_animation("run")
-		
-		velocity.y = JUMP_VELOCITY
-		buffer_timer.stop()
-		coyote_timer.stop()
+			
+	if Input.is_action_just_pressed("dash") and can_dash:
+		can_dash = false
+		is_dashing = true
+		cooldown_dash.start()
+		dash_timer.start()
+
+
 
 
 	if knockback_toggle == false: #move when knockback is not enabled
 		if direction and not is_damaged and not flash_in_progress:
-			velocity.x = direction * SPEED
+			if is_dashing:
+				velocity.x = direction * dash_speed
+			else:
+				velocity.x = direction * SPEED
 			if not is_attacking:
 				update_animation("run") 
 			if is_attacking:
@@ -300,3 +313,11 @@ func _on_die_timer_timeout() -> void:
 	retry_screen.visible = true
 	Engine.time_scale = 1
 	queue_free()
+
+
+func _on_dash_timer_timeout() -> void:
+	is_dashing = false
+
+
+func _on_cooldown_dash_timeout() -> void:
+	can_dash = true
