@@ -334,7 +334,7 @@ position = Vector2(954, -36)
 position = Vector2(984, -228)
 
 [node name="bubblysoda4" parent="DONOTDELETE" instance=ExtResource("32_ubuva")]
-position = Vector2(1120, -127)
+position = Vector2(1120, -143)
 
 [node name="player" parent="." instance=ExtResource("2_0srwa")]
 position = Vector2(320, 73)
@@ -844,7 +844,7 @@ tile_set = SubResource("TileSet_m4706")
 position = Vector2(1068, 152)
 
 [node name="mintPlatformBIG" parent="." instance=ExtResource("46_jyp08")]
-position = Vector2(1069, 80)
+position = Vector2(1072, 53)
 animation = "vertical"
 
 [node name="mintPlatformMEDIUM" parent="." instance=ExtResource("47_wvv8u")]
@@ -879,9 +879,6 @@ position = Vector2(59, -407)
 
 [node name="bubblysoda15" parent="." instance=ExtResource("35_bf7t1")]
 position = Vector2(292, 8)
-
-[node name="icecreamPlatformMEDIUM2" parent="." instance=ExtResource("29_m4706")]
-position = Vector2(1074, -53)
 
 [node name="Sprite2D34" parent="." instance=ExtResource("29_6bdx5")]
 position = Vector2(-485, -401)
@@ -1249,8 +1246,16 @@ are enemies too!
 you have to kill them!"
 horizontal_alignment = 1
 
-[node name="cakePlatformMEDIUM3" parent="." instance=ExtResource("39_jyp08")]
-position = Vector2(1047.4, 2)
+[node name="cakePlatformBIG12" parent="." instance=ExtResource("37_qthv2")]
+position = Vector2(1036.4, 3)
+
+[node name="CollisionPolygon2D" parent="cakePlatformBIG12" index="1"]
+polygon = PackedVector2Array(-18, -2, -0.409119, -2, 18, -2, 18, -1, 19, -1, 19, 1, 18, 1, 18, 2, 0.725357, 2.00001, -18, 2, -18, 1, -19, 1, -19, -1, -18, -1)
+one_way_collision = true
+
+[node name="mintPlatformBIG3" parent="." instance=ExtResource("46_jyp08")]
+position = Vector2(1079, -85)
+animation = "vertical"
 
 [connection signal="timeout" from="DONOTDELETE/WaveTimer" to="DONOTDELETE/SpawnHolderSlime" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="DONOTDELETE/WaveTimer" to="DONOTDELETE/ChocoCakeHolder" method="_on_wave_timer_timeout"]
@@ -1270,3 +1275,4 @@ position = Vector2(1047.4, 2)
 [editable path="cakePlatformBIG10"]
 [editable path="mintPlatformSMALL"]
 [editable path="mintPlatformMEDIUM2"]
+[editable path="cakePlatformBIG12"]
