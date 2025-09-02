@@ -7,6 +7,7 @@ var friction = 500.0
 var knockback_x_jump = 400
 var knockback_y_jump = -300
 
+@onready var jumpytimer: Timer = $jumpytimer
 @onready var jump_timer: Timer = $JumpTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attack_timer: Timer = $AttackTimer
@@ -79,8 +80,8 @@ func _slime_jump() -> void:
 	is_attacking = true
 	face_player()
 	var direction = (player.global_position - global_position).normalized()
-	velocity.x = direction.x * knockback_x_jump
 	velocity.y = knockback_y_jump
+	jumpytimer.start()
 	attack_timer.start()
 
 func _on_jump_timer_timeout() -> void:
@@ -116,3 +117,8 @@ func _on_die_timer_timeout() -> void:
 
 func update_animation(animation):
 	animation_player.play(animation)
+
+
+func _on_jumpytimer_timeout() -> void:
+	var direction = (player.global_position - global_position).normalized()
+	velocity.x = direction.x * 400
