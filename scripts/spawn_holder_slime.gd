@@ -23,14 +23,14 @@ extends Node2D
 }
 
 @onready var enemy_dictLEVELTHREE = {
-	1: 2,
-	2: 2,
-	3: 3,
-	4: 3,
-	5: 4,
-	6: 2,
-	7: 3,
-	8: 1
+	1: 4,
+	2: 4,
+	3: 5,
+	4: 5,
+	5: 6,
+	6: 4,
+	7: 5,
+	8: 3
 }
 
 @onready var enemy_scene = preload("res://scenes/enemys/slime.tscn")
@@ -48,20 +48,20 @@ func enemy_death():
 	print("enemy died")
 	dead_enemies += 1
 	level_manager.totalDeaths += 1
-	if dead_enemies == enemy_dict.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.name == "Level_1" or get_tree().current_scene.name == "Level1":
+	if dead_enemies == enemy_dict.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.scene_file_path == "res://levels/level_1.tscn":
 		wave_timer.start()
 		dead_enemies = 0
-	if dead_enemies == enemy_dictLEVELTWO.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.name == "Level_2" or get_tree().current_scene.name == "Level2":
+	if dead_enemies == enemy_dictLEVELTWO.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.scene_file_path == "res://levels/level_2.tscn":
 		wave_timer.start()
 		dead_enemies = 0
-	if dead_enemies == enemy_dictLEVELTWO.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.name == "Level_3" or get_tree().current_scene.name == "Level3":
+	if dead_enemies == enemy_dictLEVELTWO.get(current_level, 0) and not level_manager.level_over and get_tree().current_scene.scene_file_path == "res://levels/level_3.tscn":
 		wave_timer.start()
 		dead_enemies = 0
 
 func spawn_enemies():
+	print("SLIME SPAWNED")
 	var level_now = get_tree().current_scene.name
-	print(level_now)
-	if level_now == "Level_1" or level_now == "Level1":
+	if get_tree().current_scene.scene_file_path == "res://levels/level_1.tscn":
 		if enemy_dict.has(current_level):
 			for i in range(enemy_dict[current_level]):
 				var new_enemy = enemy_scene.instantiate()
@@ -77,7 +77,7 @@ func spawn_enemies():
 	#---------------------------------------------------------------------------------------------------------------
 		
 		
-	if level_now == "Level_2" or level_now == "Level2":
+	if get_tree().current_scene.scene_file_path == "res://levels/level_2.tscn":
 		if enemy_dictLEVELTWO.has(current_level):
 			for i in range(enemy_dictLEVELTWO[current_level]):
 				var new_enemy = enemy_scene.instantiate()
@@ -94,7 +94,7 @@ func spawn_enemies():
 								
 				await get_tree().create_timer(2.0).timeout		
 	
-	if level_now == "Level_3" or level_now == "Level3":
+	if get_tree().current_scene.scene_file_path == "res://levels/level_3.tscn":
 		if enemy_dictLEVELTHREE.has(current_level):
 			for i in range(enemy_dictLEVELTHREE[current_level]):
 				var new_enemy = enemy_scene.instantiate()

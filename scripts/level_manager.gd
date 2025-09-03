@@ -6,23 +6,43 @@ extends Node2D
 
 signal levelSwap
 var level_over = false
+var max = 0
 @onready var level_swap: Area2D = %LevelSwap
 
 @onready var level_now = get_tree().current_scene.name
+@onready var totaldeaths: Label = %TOTALDEATHS
+
+func _ready() -> void:
+	pass
 
 func _on_check_timeout() -> void:
+	
+	if get_tree().current_scene.scene_file_path == "res://levels/level_1.tscn":
+		max = 28
+	
+	if get_tree().current_scene.scene_file_path == "res://levels/level_2.tscn":
+		max = 34
+	
+	if get_tree().current_scene.scene_file_path == "res://levels/level_3.tscn":
+		max = 83
+	
+	if totaldeaths:
+		totaldeaths.text = str(totalDeaths) + " out of " + str(max) + " enemies killed"
+	
 	level_now = get_tree().current_scene.name
 	print("TOTALDEATHS: ", totalDeaths)
-	print(level_now)
-	if (totalDeaths >= 28) and (level_now == "Level1" or level_now == "Level_1"):
+	print(get_tree().current_scene.scene_file_path)
+	if totalDeaths >= 28 and get_tree().current_scene.scene_file_path == "res://levels/level_1.tscn":
 		level_swap.is_active = true
 		level_over = true
-		
-	if (totalDeaths >= 34) and (level_now == "Level2" or level_now == "Level_2"):
+
+	if totalDeaths >= 34 and 	get_tree().current_scene.scene_file_path == "res://levels/level_2.tscn":
 		level_swap.is_active = true
 		level_over = true
-		
-	if (totalDeaths >= 80) and (level_now == "Level3" or level_now == "Level_3"):
+
+	if totalDeaths >= 83 and get_tree().current_scene.scene_file_path == "res://levels/level_3.tscn":
+		print("LEVEL 3 is OVER")
 		level_swap.is_active = true
 		level_over = true
+	
 		

@@ -14,13 +14,13 @@ signal enemyShakescreen
 
 func hit(delta: float) -> void:
 	if player.is_crit == false:
-		dmg = 10	
+		dmg = 15	
 		knock_x = 200
 		knock_y = -200
 		
 		
 	if player.is_crit == true:
-		dmg = 20
+		dmg = 25
 		knock_x = 350
 		knock_y = -350
 		

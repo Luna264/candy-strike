@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://dy7amar1jgry4"]
+[gd_scene load_steps=58 format=4 uid="uid://dy7amar1jgry4"]
 
 [ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="2_0srwa"]
 [ext_resource type="PackedScene" uid="uid://djeboigret4lq" path="res://scenes/candycane.tscn" id="2_pqqg8"]
@@ -33,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://b8sgpre6ca4v8" path="res://scenes/platforms/icecream_platform_big.tscn" id="30_4xp61"]
 [ext_resource type="PackedScene" uid="uid://dyjuunfsheqkw" path="res://scenes/platforms/icecream_platform_small.tscn" id="31_4yoxl"]
 [ext_resource type="PackedScene" uid="uid://dr011u87e1yw" path="res://scenes/enviornment/bubblysodaXAXIS.tscn" id="32_ubuva"]
+[ext_resource type="Script" uid="uid://cu4sbjftx5oyw" path="res://levels/totaldeaths.gd" id="32_wsmxb"]
 [ext_resource type="PackedScene" uid="uid://cfkrk6ijkg2em" path="res://scenes/enviornment/bubblysoda.tscn" id="33_0nm7o"]
 [ext_resource type="PackedScene" uid="uid://b24inkr1iqgu1" path="res://scenes/enviornment/bubblysodaXAXISRIGGGHT.tscn" id="35_bf7t1"]
 [ext_resource type="PackedScene" uid="uid://cv7u13y5ejaoy" path="res://scenes/enviornment/glassplatform.tscn" id="35_ubuva"]
@@ -337,7 +338,7 @@ position = Vector2(984, -228)
 position = Vector2(1120, -143)
 
 [node name="player" parent="." instance=ExtResource("2_0srwa")]
-position = Vector2(320, 73)
+position = Vector2(-380, 89)
 scale = Vector2(0.657506, 0.657506)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
@@ -498,6 +499,29 @@ texture_progress = ExtResource("27_ghfw4")
 script = ExtResource("28_s67ts")
 player = NodePath("../../../../player")
 metadata/_edit_use_anchors_ = true
+
+[node name="Control2" type="Control" parent="gui/healthbar"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_bottom = 11.12
+grow_horizontal = 0
+
+[node name="TOTALDEATHS" type="Label" parent="gui/healthbar/Control2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -401.0
+offset_bottom = 51.0
+grow_horizontal = 0
+theme_override_colors/font_shadow_color = Color(1, 0.807843, 1, 1)
+theme_override_fonts/font = ExtResource("50_4s8mp")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 2
+script = ExtResource("32_wsmxb")
 
 [node name="tilemaps" type="Node" parent="."]
 

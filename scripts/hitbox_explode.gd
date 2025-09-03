@@ -7,7 +7,6 @@ var knock_y = -400
 
 func _process(delta: float) -> void:
 	var overlapping = get_overlapping_bodies()
-	print("Overlapping bodies: ", overlapping)
 	
 	for body in get_overlapping_bodies():
 		if body.has_method("take_damage_explode"):

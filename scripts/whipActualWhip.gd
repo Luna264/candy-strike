@@ -33,4 +33,4 @@ func _on_detection_stop_attack() -> void:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name == "hurtbox":
-		emit_signal("damage_output", 5)
+		emit_signal("damage_output", 2)

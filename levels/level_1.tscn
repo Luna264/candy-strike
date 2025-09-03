@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://wpb33gohd6n1"]
+[gd_scene load_steps=49 format=4 uid="uid://wpb33gohd6n1"]
 
 [ext_resource type="PackedScene" uid="uid://deycg7gb1han2" path="res://scenes/player.tscn" id="1_btoec"]
 [ext_resource type="Texture2D" uid="uid://ft05d6wkqj0h" path="res://assets/sprites/bgretry.png" id="1_lrvbd"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://cva408nwtvr20" path="res://scripts/playerdeath.gd" id="8_7nvrk"]
 [ext_resource type="Script" uid="uid://d22wusqsc3ni0" path="res://scripts/playerhealth.gd" id="10_aerfg"]
 [ext_resource type="Script" uid="uid://bxxxkbuwialt3" path="res://scripts/retry.gd" id="11_5ot28"]
+[ext_resource type="Script" uid="uid://cu4sbjftx5oyw" path="res://levels/totaldeaths.gd" id="19_xv8d5"]
 [ext_resource type="PackedScene" uid="uid://d4jmbagc8mcv0" path="res://scenes/audio_stream_player_2d.tscn" id="20_jkxa6"]
 [ext_resource type="AudioStream" uid="uid://3y2413avn6od" path="res://assets/audio/crit.wav" id="21_w75he"]
 [ext_resource type="AudioStream" uid="uid://dry1mjb3pt2rk" path="res://assets/audio/playerhurt.wav" id="22_udfhf"]
@@ -452,6 +453,28 @@ texture_progress = ExtResource("7_nmsli")
 script = ExtResource("10_aerfg")
 player = NodePath("../../../../player")
 metadata/_edit_use_anchors_ = true
+
+[node name="Control2" type="Control" parent="gui/healthbar"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="TOTALDEATHS" type="Label" parent="gui/healthbar/Control2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -216.0
+offset_bottom = 51.0
+grow_horizontal = 0
+theme_override_colors/font_shadow_color = Color(1, 0.807843, 1, 1)
+theme_override_fonts/font = ExtResource("4_r0nt2")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 2
+script = ExtResource("19_xv8d5")
 
 [node name="player" parent="." instance=ExtResource("1_btoec")]
 position = Vector2(-1013, 116)

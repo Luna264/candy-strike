@@ -120,5 +120,6 @@ func update_animation(animation):
 
 
 func _on_jumpytimer_timeout() -> void:
-	var direction = (player.global_position - global_position).normalized()
-	velocity.x = direction.x * 400
+	if player:
+		var direction = (player.global_position - global_position).normalized()
+		velocity.x = direction.x * 400

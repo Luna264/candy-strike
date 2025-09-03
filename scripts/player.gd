@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var soda_timer: Timer = $SodaTimer
 
 @onready var candycane: Area2D = $candycane
+@onready var heal_timer: Timer = $HealTimer
 
 @onready var cooldown_dash: Timer = $CooldownDash
 @onready var anim_player: AnimationPlayer = $candycane/AnimationPlayer
@@ -45,7 +46,7 @@ var knockback = Vector2.ZERO
 var knockback_toggle = false
 var knockback_timer = 0.0
 
-var health = 100
+var health = 30
 var maxHealth = 100
 
 @onready var hurt: AudioStreamPlayer2D = %Hurt
@@ -193,7 +194,6 @@ func _physics_process(delta: float) -> void:
 	elif knockback_toggle == true:
 		direction = 0 #no moving when knockback is enabled
 
-		
 	move_and_slide()
 		
 	
@@ -330,3 +330,10 @@ func soda_boost(boost: Vector2):
 
 func _on_soda_timer_timeout() -> void:
 	soda_active = false
+
+
+func _on_heal_timer_timeout() -> void:
+	if health < 60:
+		print('healed')
+		health += 10
+	heal_timer.start()
