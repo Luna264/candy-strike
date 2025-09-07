@@ -14,7 +14,6 @@ var max = 0
 
 func _ready() -> void:
 	pass
-
 func _on_check_timeout() -> void:
 	
 	if get_tree().current_scene.scene_file_path == "res://levels/level_1.tscn":

@@ -240,7 +240,7 @@ metadata/_edit_horizontal_guides_ = [-9.0]
 [node name="LevelSwap" parent="." instance=ExtResource("7_gwceb")]
 unique_name_in_owner = true
 z_index = 3
-position = Vector2(-737, -1)
+position = Vector2(-1012, 95)
 
 [node name="DONOTDELETE" type="Node" parent="."]
 
@@ -341,18 +341,34 @@ horizontal_alignment = 1
 
 [node name="yellow" type="Label" parent="gui"]
 unique_name_in_owner = true
-offset_left = -780.0
-offset_top = 26.0
-offset_right = -575.0
-offset_bottom = 131.0
+offset_left = -840.0
+offset_top = 24.0
+offset_right = -454.0
+offset_bottom = 165.0
 theme_override_colors/font_shadow_color = Color(1, 0.807843, 1, 1)
 theme_override_fonts/font = ExtResource("4_r0nt2")
 text = "when you defeat 
 all enemies, 
-look for the yellow thing
+look for the 
+yellow thing 
+(it will be where you spawned)
 that will 
 appear and jump into it
 to go to the next level!"
+horizontal_alignment = 1
+
+[node name="yellow2" type="Label" parent="gui"]
+unique_name_in_owner = true
+offset_left = -1189.0
+offset_top = -290.0
+offset_right = -560.0
+offset_bottom = -185.0
+theme_override_colors/font_shadow_color = Color(1, 0.807843, 1, 1)
+theme_override_fonts/font = ExtResource("4_r0nt2")
+text = "you start healing a teeny bit
+ every few seconds
+after you go 
+below 70 health"
 horizontal_alignment = 1
 
 [node name="retry" type="CanvasLayer" parent="gui"]

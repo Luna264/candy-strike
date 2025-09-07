@@ -46,7 +46,7 @@ var knockback = Vector2.ZERO
 var knockback_toggle = false
 var knockback_timer = 0.0
 
-var health = 30
+var health = 100
 var maxHealth = 100
 
 @onready var hurt: AudioStreamPlayer2D = %Hurt
@@ -335,5 +335,5 @@ func _on_soda_timer_timeout() -> void:
 func _on_heal_timer_timeout() -> void:
 	if health < 60:
 		print('healed')
-		health += 10
+		health += 5
 	heal_timer.start()

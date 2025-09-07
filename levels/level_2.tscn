@@ -359,7 +359,7 @@ position = Vector2(48.6688, 10.6463)
 
 [node name="LevelSwap" parent="." instance=ExtResource("11_vm7no")]
 unique_name_in_owner = true
-position = Vector2(-251, 59)
+position = Vector2(-319, 80)
 
 [node name="LevelManager" type="Node2D" parent="." groups=["level_manager"]]
 unique_name_in_owner = true
