@@ -338,7 +338,7 @@ offset_bottom = 312.0
 theme_override_colors/font_shadow_color = Color(1, 0.807843, 1, 1)
 theme_override_fonts/font = ExtResource("5_yp04h")
 text = "CONGRATS! you beat Candy 
-Strrrike!"
+Strrrike! thanks for playing!"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
@@ -474,6 +474,7 @@ script = ExtResource("22_xuk4p")
 position = Vector2(3.04181, -30.418)
 scale = Vector2(1.5209, 1.5209)
 autoplay = true
+parameters/looping = true
 
 [node name="audio" type="Node" parent="."]
 

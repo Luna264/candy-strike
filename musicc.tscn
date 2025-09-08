@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn0ny14qy76q2"]
+
+[ext_resource type="AudioStream" uid="uid://dw7wjj73uglsf" path="res://assets/audio/music.mp3" id="1_wg7u7"]
+
+[node name="Musicc" type="AudioStreamPlayer2D"]
+scale = Vector2(1, 1)
+stream = ExtResource("1_wg7u7")

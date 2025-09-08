@@ -353,6 +353,7 @@ script = ExtResource("9_sd18g")
 position = Vector2(3.04181, -30.418)
 scale = Vector2(1.5209, 1.5209)
 autoplay = true
+parameters/looping = true
 
 [node name="candycane" parent="player" instance=ExtResource("2_pqqg8")]
 position = Vector2(48.6688, 10.6463)
@@ -1259,15 +1260,18 @@ position = Vector2(-58, -497)
 position = Vector2(-349, -547)
 
 [node name="controls3" type="Label" parent="."]
-offset_left = -363.0
-offset_top = 15.0
-offset_right = 38.0
-offset_bottom = 66.0
+offset_left = -416.0
+offset_top = 8.0
+offset_right = -15.0
+offset_bottom = 113.0
 theme_override_colors/font_shadow_color = Color(1, 0.807843, 1, 1)
 theme_override_fonts/font = ExtResource("50_4s8mp")
 text = "*the red orb whips
 are enemies too! 
-you have to kill them!"
+you have to kill them! 
+youll know 
+when you see one! 
+(they will be mean to you)"
 horizontal_alignment = 1
 
 [node name="cakePlatformBIG12" parent="." instance=ExtResource("37_qthv2")]

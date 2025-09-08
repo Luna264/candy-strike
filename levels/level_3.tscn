@@ -650,6 +650,7 @@ script = ExtResource("7_o87u6")
 position = Vector2(3.04181, -30.418)
 scale = Vector2(1.5209, 1.5209)
 autoplay = true
+parameters/looping = true
 
 [node name="candycane" parent="player" instance=ExtResource("9_dvo5v")]
 position = Vector2(48.6688, 10.6463)
@@ -1043,7 +1044,7 @@ position = Vector2(-39, 706)
 position = Vector2(522.095, 1128.51)
 
 [node name="bubblysoda8" parent="tilemaps" instance=ExtResource("34_c3ijv")]
-position = Vector2(-95, 598)
+position = Vector2(-108, 599)
 
 [node name="bubblysoda9" parent="tilemaps" instance=ExtResource("34_c3ijv")]
 position = Vector2(1324, 773)
@@ -1733,7 +1734,7 @@ animation = "horizontal"
 one_way_collision = true
 
 [node name="cakePlatformSMALL7" parent="." instance=ExtResource("32_dvo5v")]
-position = Vector2(-95, 601)
+position = Vector2(-108, 602)
 
 [node name="CollisionPolygon2D" parent="cakePlatformSMALL7" index="1"]
 one_way_collision = true
@@ -1889,6 +1890,9 @@ position = Vector2(1172, 530)
 [node name="cakePlatformMEDIUM8" parent="." instance=ExtResource("31_h3b7p")]
 position = Vector2(1763.4, 525)
 
+[node name="CollisionPolygon2D" parent="cakePlatformMEDIUM8" index="1"]
+one_way_collision = true
+
 [node name="cakePlatformMEDIUM9" parent="." instance=ExtResource("31_h3b7p")]
 position = Vector2(1410.4, 545)
 
@@ -1938,17 +1942,23 @@ one_way_collision = true
 [node name="mintPlatformMEDIUM13" parent="." instance=ExtResource("31_mb3d3")]
 position = Vector2(1931.4, 166)
 
+[node name="CollisionPolygon2D" parent="mintPlatformMEDIUM13" index="1"]
+one_way_collision = true
+
 [node name="bubblysoda21" parent="." instance=ExtResource("34_c3ijv")]
 position = Vector2(1980, 191)
 
 [node name="mintPlatformMEDIUM14" parent="." instance=ExtResource("31_mb3d3")]
 position = Vector2(2037.4, 243)
 
+[node name="CollisionPolygon2D" parent="mintPlatformMEDIUM14" index="1"]
+one_way_collision = true
+
 [node name="bubblysoda7" parent="." instance=ExtResource("34_c3ijv")]
 position = Vector2(-127, 721)
 
 [node name="bubblysoda15" parent="." instance=ExtResource("34_c3ijv")]
-position = Vector2(-226, 705)
+position = Vector2(-226.105, 705.085)
 
 [node name="mintPlatformMEDIUM15" parent="." instance=ExtResource("31_mb3d3")]
 position = Vector2(-227.6, 778)
@@ -2664,14 +2674,26 @@ position = Vector2(735.4, -102)
 [node name="mintPlatformBIG23" parent="." instance=ExtResource("32_q26s8")]
 position = Vector2(1653.4, 391)
 
+[node name="CollisionPolygon2D" parent="mintPlatformBIG23" index="1"]
+one_way_collision = true
+
 [node name="mintPlatformMEDIUM17" parent="." instance=ExtResource("31_mb3d3")]
 position = Vector2(1487.4, 502)
+
+[node name="CollisionPolygon2D" parent="mintPlatformMEDIUM17" index="1"]
+one_way_collision = true
 
 [node name="mintPlatformBIG24" parent="." instance=ExtResource("32_q26s8")]
 position = Vector2(1745.4, 347)
 
+[node name="CollisionPolygon2D" parent="mintPlatformBIG24" index="1"]
+one_way_collision = true
+
 [node name="mintPlatformMEDIUM18" parent="." instance=ExtResource("31_mb3d3")]
 position = Vector2(1638.4, 341)
+
+[node name="CollisionPolygon2D" parent="mintPlatformMEDIUM18" index="1"]
+one_way_collision = true
 
 [node name="mintPlatformBIG25" parent="." instance=ExtResource("32_q26s8")]
 position = Vector2(1820.4, 247)
@@ -2814,11 +2836,18 @@ one_way_collision = true
 [editable path="mintPlatformMEDIUM10"]
 [editable path="mintPlatformMEDIUM11"]
 [editable path="mintPlatformMEDIUM12"]
+[editable path="cakePlatformMEDIUM8"]
 [editable path="icecreamPlatformBIG11"]
 [editable path="mintPlatformBIG22"]
+[editable path="mintPlatformMEDIUM13"]
+[editable path="mintPlatformMEDIUM14"]
 [editable path="mintPlatformMEDIUM15"]
 [editable path="mintPlatformMEDIUM16"]
 [editable path="cakePlatformBIG15"]
+[editable path="mintPlatformBIG23"]
+[editable path="mintPlatformMEDIUM17"]
+[editable path="mintPlatformBIG24"]
+[editable path="mintPlatformMEDIUM18"]
 [editable path="mintPlatformBIG25"]
 [editable path="mintPlatformBIG26"]
 [editable path="mintPlatformBIG27"]

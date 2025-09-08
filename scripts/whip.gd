@@ -51,7 +51,6 @@ func take_damage(dmg, attacker_position, knockback_x, knockback_y):
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	print("H")
 	if area.name == "hurtbox":
 		emit_signal("damage_output", 5)
 		

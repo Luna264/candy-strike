@@ -333,7 +333,11 @@ func _on_soda_timer_timeout() -> void:
 
 
 func _on_heal_timer_timeout() -> void:
+	print(health)
+	print('heal timer done')
 	if health < 60:
 		print('healed')
 		health += 5
+	else:
+		return
 	heal_timer.start()
