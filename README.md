@@ -5,6 +5,9 @@
 this is my precious baby CANDY STRRRIKE, my first ever godot project: a candy-themed lighthearted action platformer, in which you defeat a certain amount of enemies in a chaotic platformerish setting to move on to the next level (there are 3)
 it is highly unlikely you beat this game without dying :)
 
+you can download or play it in a browser here: 
+https://lunaa173.itch.io/candy-strrrike
+
 **why?**
 
 i love coding. i love candy. i love bullet-hell games. and thus, candy strike was born.
